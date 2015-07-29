@@ -10,59 +10,51 @@ var {
   Image
 } = React;
 
-var Forecast = React.createClass({
-  render: function() {
-    return (
-      <View>
-        <Text style={styles.bigText}>
-          {this.props.main}
-        </Text>
-        <Text style={styles.mainText}>
-          Current conditions: {this.props.description}
-        </Text>
-        <Text style={styles.bigText}>
-          {this.props.temp}°F
-        </Text>
-      </View>
-    );
-  }
-});
+var Forecast = require('./Forecast');
+var LocationButton = require('./LocationButton');
 
 var WeatherProject = React.createClass({
   getInitialState: function() {
-    navigator.geolocation.getCurrentPosition(
-      (initialPosition) => {
-        console.log('getting pos');
-        console.log(initialPosition);
-        return;
-      },
-      (error) => {alert(error.message)},
-      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
-    );
     return {
       zip: '',
       forecast: null
     };
   },
 
-  _handleTextChange: function(event) {
-    var zip = event.nativeEvent.text;
-    this.setState({zip: zip});
-    fetch('http://api.openweathermap.org/data/2.5/weather?q='
-      + zip + '&units=imperial')
+  _getForecastForZip: function(zip, cb) {
+    this._getForecast('http://api.openweathermap.org/data/2.5/weather?q='
+      + zip + '&units=imperial', cb)
+  },
+
+  _getForecastForCoords: function(lat, lon, cb) {
+    this._getForecast('http://api.openweathermap.org/data/2.5/weather?lat='
+      + lat + '&lon=' + lon, cb);
+  },
+
+  _getForecast: function(url, cb) {
+    fetch(url)
       .then((response) => response.json())
       .then((responseJSON) => {
-        this.setState({
-          forecast: {
-            main: responseJSON.weather[0].main,
-            description: responseJSON.weather[0].description,
-            temp: responseJSON.main.temp
-          }
-        });
+        cb(responseJSON);
       })
       .catch((error) => {
         console.warn(error);
       });
+  },
+
+  _handleTextChange: function(event) {
+    var zip = event.nativeEvent.text;
+    this.setState({zip: zip});
+
+    this._getForecastForZip(zip, (responseJSON) => {
+      this.setState({
+        forecast: {
+          main: responseJSON.weather[0].main,
+          description: responseJSON.weather[0].description,
+          temp: responseJSON.main.temp
+        }
+      })
+    });
   },
 
   render: function() {
@@ -73,6 +65,7 @@ var WeatherProject = React.createClass({
                   description={this.state.forecast.description}
                   temp={this.state.forecast.temp}/>;
     }
+
     return (
       <View style={styles.container}>
         <Image source={require('image!flowers')}
@@ -80,15 +73,16 @@ var WeatherProject = React.createClass({
                style={styles.backdrop}>
           <View style={styles.overlay}>
            <View style={styles.row}>
-             <Text style={styles.mainText}>
+             <Text style={textStyles.mainText}>
                Current weather for 
              </Text>
              <View style={styles.zipContainer}>
                <TextInput
-                 style={[styles.zipCode, styles.mainText]}
+                 style={[styles.zipCode, textStyles.mainText]}
                  returnKeyType='go'
                  onSubmitEditing={this._handleTextChange}/>
              </View>
+             <LocationButton/>
            </View>
            {content}
          </View>
@@ -98,7 +92,7 @@ var WeatherProject = React.createClass({
   }
 });
 
-var baseFontSize = 16;
+var textStyles = require('./styles/typography.js');
 
 var styles = StyleSheet.create({
   container: {
@@ -133,20 +127,7 @@ var styles = StyleSheet.create({
   },
   zipCode: {
     width: 50,
-    height: baseFontSize,
-  },
-  bigText: {
-    flex: 2,
-    fontSize: baseFontSize + 4,
-    textAlign: 'center',
-    margin: 10,
-    color: '#FFFFFF'
-  },
-  mainText: {
-    flex: 1,
-    fontSize: baseFontSize,
-    textAlign: 'center',
-    color: '#FFFFFF'
+    height: textStyles.baseFontSize,
   },
   placeHolder: {
     flex: 1
