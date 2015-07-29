@@ -8,22 +8,18 @@ var {
   View,
   TouchableHighlight
 } = React;
-
+var styles = require('./style.js');
 
 var LocationButton = React.createClass({
-  getInitialState: function() {
-    return {
-      longitude: '',
-      latitude: ''
-    }
+  propTypes: {
+    onGetCoords: React.PropTypes.func.isRequired
   },
+
   _onPress: function() {
     navigator.geolocation.getCurrentPosition(
       (initialPosition) => {
-        this.setState({
-          longitude: initialPosition.coords.longitude,
-          latitude: initialPosition.coords.latitude
-        });
+        this.props.onGetCoords(initialPosition.coords.latitude,
+          initialPosition.coords.longitude);
       },
       (error) => {alert(error.message)},
       {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
@@ -33,9 +29,9 @@ var LocationButton = React.createClass({
   render: function() {
     return (
       <TouchableHighlight onPress={this._onPress}>
-        <View style={{height: 50, width: 50, backgroundColor: '#FF0000'}}>
+        <View style={styles.locationButton}>
           <Text>
-            {this.state.longitude} , {this.state.latitude}
+            Use Current Location
           </Text>
         </View>
       </TouchableHighlight>

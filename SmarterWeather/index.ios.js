@@ -16,26 +16,32 @@ var LocationButton = require('./LocationButton');
 var WeatherProject = React.createClass({
   getInitialState: function() {
     return {
-      zip: '',
       forecast: null
     };
   },
 
-  _getForecastForZip: function(zip, cb) {
+  _getForecastForZip: function(zip) {
     this._getForecast('http://api.openweathermap.org/data/2.5/weather?q='
-      + zip + '&units=imperial', cb)
+      + zip + '&units=imperial');
   },
 
-  _getForecastForCoords: function(lat, lon, cb) {
+  _getForecastForCoords: function(lat, lon) {
     this._getForecast('http://api.openweathermap.org/data/2.5/weather?lat='
-      + lat + '&lon=' + lon, cb);
+      + lat + '&lon=' + lon + '&units=imperial');
   },
 
   _getForecast: function(url, cb) {
     fetch(url)
       .then((response) => response.json())
       .then((responseJSON) => {
-        cb(responseJSON);
+        console.log(responseJSON);
+        this.setState({
+          forecast: {
+            main: responseJSON.weather[0].main,
+            description: responseJSON.weather[0].description,
+            temp: responseJSON.main.temp
+          }
+        });
       })
       .catch((error) => {
         console.warn(error);
@@ -44,17 +50,7 @@ var WeatherProject = React.createClass({
 
   _handleTextChange: function(event) {
     var zip = event.nativeEvent.text;
-    this.setState({zip: zip});
-
-    this._getForecastForZip(zip, (responseJSON) => {
-      this.setState({
-        forecast: {
-          main: responseJSON.weather[0].main,
-          description: responseJSON.weather[0].description,
-          temp: responseJSON.main.temp
-        }
-      })
-    });
+    this._getForecastForZip(zip);
   },
 
   render: function() {
@@ -82,7 +78,9 @@ var WeatherProject = React.createClass({
                  returnKeyType='go'
                  onSubmitEditing={this._handleTextChange}/>
              </View>
-             <LocationButton/>
+           </View>
+           <View style={styles.row}>
+             <LocationButton onGetCoords={this._getForecastForCoords}/>
            </View>
            {content}
          </View>
@@ -109,14 +107,14 @@ var styles = StyleSheet.create({
     backgroundColor: '#000000',
     opacity: 0.5,
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   row: {
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'nowrap',
     alignItems: 'flex-start',
-    padding: 30
+    padding: 30,
   },
   zipContainer: {
     flex: 1,
