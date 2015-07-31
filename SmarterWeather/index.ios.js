@@ -11,7 +11,7 @@ var {
 } = React;
 
 var Forecast = require('./Forecast');
-var Photos = require('./Photos');
+var PhotoBackdrop = require('./PhotoBackdrop');
 var LocationButton = require('./LocationButton');
 
 var WeatherProject = React.createClass({
@@ -64,7 +64,7 @@ var WeatherProject = React.createClass({
     }
 
     return (
-        <Photos>
+        <PhotoBackdrop>
           <View style={styles.overlay}>
            <View style={styles.row}>
              <Text style={textStyles.mainText}>
@@ -82,7 +82,7 @@ var WeatherProject = React.createClass({
            </View>
            {content}
          </View>
-        </Photos>
+        </PhotoBackdrop>
     );
   }
 });
@@ -90,15 +90,6 @@ var WeatherProject = React.createClass({
 var textStyles = require('./styles/typography.js');
 
 var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    paddingTop: 30
-  },
-  backdrop: {
-    flex: 1,
-    flexDirection: 'column'
-  },
   overlay: {
     paddingTop: 5,
     backgroundColor: '#000000',
