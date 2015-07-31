@@ -11,10 +11,11 @@ var {
 } = React;
 
 var Forecast = require('./Forecast');
+var Photos = require('./Photos');
 var LocationButton = require('./LocationButton');
 
 var WeatherProject = React.createClass({
-  getInitialState: function() {
+  getInitialState() {
     return {
       forecast: null
     };
@@ -63,10 +64,7 @@ var WeatherProject = React.createClass({
     }
 
     return (
-      <View style={styles.container}>
-        <Image source={require('image!flowers')}
-               resizeMode='cover'
-               style={styles.backdrop}>
+        <Photos>
           <View style={styles.overlay}>
            <View style={styles.row}>
              <Text style={textStyles.mainText}>
@@ -84,8 +82,7 @@ var WeatherProject = React.createClass({
            </View>
            {content}
          </View>
-        </Image>
-      </View>
+        </Photos>
     );
   }
 });
