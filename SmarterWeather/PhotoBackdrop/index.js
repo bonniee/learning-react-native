@@ -4,7 +4,8 @@ var React = require('react-native');
 var {
   StyleSheet,
   Image,
-  CameraRoll
+  CameraRoll,
+  ImagePickerIOS
 } = React;
 var styles = require('./style.js');
 
@@ -15,14 +16,25 @@ var PhotoBackdrop = React.createClass({
     }
   },
   componentDidMount() {
-    CameraRoll.getPhotos(
-      {first: 8},
+    // CameraRoll.getPhotos(
+    //   {first: 8},
+    //   (data) => {
+    //     this.setState({
+    //       photoSource: {uri: data.edges[7].node.image.uri}
+    //     })},
+    //   (error) => {
+    //     console.warn(error);
+    //   });
+
+    ImagePickerIOS.openSelectDialog(
+      {},
       (data) => {
         this.setState({
-          photoSource: {uri: data.edges[7].node.image.uri}
-        })},
-      (error) => {
-        console.warn(error);
+          photoSource: {uri: data}
+        });
+      },
+      () => {
+        console.log('User canceled the action');
       });
   },
   render() {
