@@ -7,12 +7,15 @@ var {
   Text,
   View,
   TextInput,
+  AsyncStorage,
   Image
 } = React;
 
 var Forecast = require('./Forecast');
 var PhotoBackdrop = require('./PhotoBackdrop');
 var LocationButton = require('./LocationButton');
+
+var STORAGE_KEY = '@SmarterWeather:zip';
 
 var WeatherProject = React.createClass({
   getInitialState() {
@@ -21,7 +24,24 @@ var WeatherProject = React.createClass({
     };
   },
 
+  componentDidMount: function() {
+    AsyncStorage.getItem(STORAGE_KEY)
+      .then((value) => {
+        if (value !== null) {
+          this._getForecastForZip(value);
+        }
+      })
+      .catch((error) => console.log('AsyncStorage error: ' + error.message))
+      .done();
+  },
+
   _getForecastForZip: function(zip) {
+    // Store zip code
+    AsyncStorage.setItem(STORAGE_KEY, zip)
+      .then(() => console.log('Saved selection to disk: ' + zip))
+      .catch((error) => console.log('AsyncStorage error: ' + error.message))
+      .done();
+
     this._getForecast('http://api.openweathermap.org/data/2.5/weather?q='
       + zip + '&units=imperial');
   },
