@@ -11,43 +11,49 @@ var {
   Text,
   View,
 } = React;
+var Video = require('react-native-video');
 
 var Depends = React.createClass({
   render: function() {
+    console.log('RENDER!!');
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
+      <View style={styles.backgroundVideo}>
+      <Video source={{uri: "PianoStairs"}} // Can be a URL or a local file.
+             rate={1.0}                   // 0 is paused, 1 is normal.
+             volume={1.0}                 // 0 is muted, 1 is normal.
+             muted={false}                // Mutes the audio entirely.
+             paused={false}               // Pauses playback entirely.
+             resizeMode="cover"           // Fill the whole screen at aspect ratio.
+             repeat={true}                // Repeat forever.
+             style={styles.backgroundVideo} />
+
+       <Text style={styles.overlay}>
+          Read more: http://bit.ly/makepianostairs
+       </Text>
+
+       </View>
     );
   }
 });
 
 var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+  backgroundVideo: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    backgroundColor: '#FFFF00'
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  overlay: {
+    opacity: 0,
+    position: 'absolute',
+    top: 20,
+    left: 20,
+    height: 100,
+    width: 200,
+    color: '#FF0000'
+  }
 });
 
 AppRegistry.registerComponent('Depends', () => Depends);
