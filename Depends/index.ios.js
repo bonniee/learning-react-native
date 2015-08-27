@@ -13,9 +13,14 @@ var {
 } = React;
 var Video = require('react-native-video');
 
+var HelloWorld = require('react-native').NativeModules.HelloWorld;
+
+
 var Depends = React.createClass({
+  componentDidMount: function() {
+    HelloWorld.greeting('Bonnie');
+  },
   render: function() {
-    console.log('RENDER!!');
     return (
       <View style={styles.backgroundVideo}>
       <Video source={{uri: "PianoStairs"}} // Can be a URL or a local file.

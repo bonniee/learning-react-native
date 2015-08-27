@@ -24,6 +24,7 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		FA1F06A41B8BD84D00B40CEF /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA1F06A11B8BD74100B40CEF /* libRCTVideo.a */; };
+		FA75F88C1B8F43C1004D14E8 /* HelloWorld.m in Sources */ = {isa = PBXBuildFile; fileRef = FA75F88B1B8F43C1004D14E8 /* HelloWorld.m */; };
 		FAB90BB61B8F3C3C00B8BC66 /* PianoStairs.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = FAB90BB51B8F3C3C00B8BC66 /* PianoStairs.mp4 */; };
 /* End PBXBuildFile section */
 
@@ -137,6 +138,8 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		FA1F06941B8BD74100B40CEF /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVideo.xcodeproj; path = "node_modules/react-native-video/RCTVideo.xcodeproj"; sourceTree = "<group>"; };
+		FA75F88A1B8F43C1004D14E8 /* HelloWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelloWorld.h; path = iOS/HelloWorld.h; sourceTree = "<group>"; };
+		FA75F88B1B8F43C1004D14E8 /* HelloWorld.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HelloWorld.m; path = iOS/HelloWorld.m; sourceTree = "<group>"; };
 		FAB90BB51B8F3C3C00B8BC66 /* PianoStairs.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = PianoStairs.mp4; path = iOS/PianoStairs.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -245,6 +248,8 @@
 		13B07FAE1A68108700A75B9A /* Depends */ = {
 			isa = PBXGroup;
 			children = (
+				FA75F88A1B8F43C1004D14E8 /* HelloWorld.h */,
+				FA75F88B1B8F43C1004D14E8 /* HelloWorld.m */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -560,6 +565,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA75F88C1B8F43C1004D14E8 /* HelloWorld.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
