@@ -24,7 +24,7 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		FA1F06A41B8BD84D00B40CEF /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA1F06A11B8BD74100B40CEF /* libRCTVideo.a */; };
-		FA1F06A61B8BDCF700B40CEF /* PianoStairs.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = FA1F06A51B8BDCF700B40CEF /* PianoStairs.mp4 */; };
+		FAB90BB61B8F3C3C00B8BC66 /* PianoStairs.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = FAB90BB51B8F3C3C00B8BC66 /* PianoStairs.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,7 +137,7 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		FA1F06941B8BD74100B40CEF /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVideo.xcodeproj; path = "node_modules/react-native-video/RCTVideo.xcodeproj"; sourceTree = "<group>"; };
-		FA1F06A51B8BDCF700B40CEF /* PianoStairs.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = PianoStairs.mp4; path = iOS/PianoStairs.mp4; sourceTree = "<group>"; };
+		FAB90BB51B8F3C3C00B8BC66 /* PianoStairs.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = PianoStairs.mp4; path = iOS/PianoStairs.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -301,7 +301,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				FA1F06A51B8BDCF700B40CEF /* PianoStairs.mp4 */,
+				FAB90BB51B8F3C3C00B8BC66 /* PianoStairs.mp4 */,
 				13B07FAE1A68108700A75B9A /* Depends */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* DependsTests */,
@@ -538,10 +538,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA1F06A61B8BDCF700B40CEF /* PianoStairs.mp4 in Resources */,
 				008F07F31AC5B25A0029DE68 /* main.jsbundle in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				FAB90BB61B8F3C3C00B8BC66 /* PianoStairs.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
