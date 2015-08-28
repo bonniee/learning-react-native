@@ -12,6 +12,7 @@ var {
   View,
 } = React;
 var Video = require('react-native-video');
+var _ = require('lodash');
 
 var HelloWorld = require('react-native').NativeModules.HelloWorld;
 
@@ -19,6 +20,7 @@ var HelloWorld = require('react-native').NativeModules.HelloWorld;
 var Depends = React.createClass({
   componentDidMount: function() {
     HelloWorld.greeting('Bonnie');
+    console.log('Random number: ' + _.random(0, 5));
   },
   render: function() {
     return (
