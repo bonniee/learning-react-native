@@ -10,15 +10,21 @@ var {
   StyleSheet,
   Text,
   View,
+  Navigator
 } = React;
 
 var Decks = require('./components/Decks');
 
 var Zebro = React.createClass({
+  _renderScene: function(route, navigator) {
+    return <Decks/>;
+  },
   render: function() {
     return (
       <View style={styles.container}>
-        <Decks/>
+        <Navigator
+          initialRoute={{name: 'Decks', index: 0}}
+          renderScene={this._renderScene}/>
       </View>
     );
   }
