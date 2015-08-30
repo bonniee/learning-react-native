@@ -13,7 +13,9 @@ var {
   Navigator
 } = React;
 
-var Decks = require('./components/Decks');
+var Actions = require('./src/actions');
+
+var Decks = require('./src/components/Decks');
 
 var Zebro = React.createClass({
   _renderScene: function(route, navigator) {
@@ -23,7 +25,7 @@ var Zebro = React.createClass({
     return (
       <View style={styles.container}>
         <Navigator
-          initialRoute={{name: 'Decks', index: 0}}
+          initialRoute={{name: 'Decks'}}
           renderScene={this._renderScene}/>
       </View>
     );

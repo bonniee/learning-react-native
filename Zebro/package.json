@@ -6,6 +6,8 @@
     "start": "node_modules/react-native/packager/packager.sh"
   },
   "dependencies": {
-    "react-native": "^0.10.1"
+    "react": "^0.13.3",
+    "react-native": "^0.10.1",
+    "reflux": "^0.2.12"
   }
 }

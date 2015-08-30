@@ -3,6 +3,7 @@ var {
   AppRegistry,
   StyleSheet,
   Text,
+  TouchableHighlight,
   View,
 } = React;
 
@@ -15,13 +16,17 @@ var Deck = React.createClass({
   render: function() {
     return (
       <View style={styles.deckGroup}>
-        <View style={styles.deckButton}>
+  
+        <TouchableHighlight style={styles.deckButton} onPress={this.props.onReview}>      
           <Text style={styles.deckName}>
             {this.props.name}
           </Text>
-        </View>
+        </TouchableHighlight>
+
         <View style={styles.editButton}>
-          <Text style={styles.edit}>Edit</Text>
+          <Text style={styles.edit}>
+            Edit
+          </Text>
         </View>
       </View>
       );
