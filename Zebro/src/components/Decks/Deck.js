@@ -16,8 +16,8 @@ var Deck = React.createClass({
   render: function() {
     return (
       <View style={styles.deckGroup}>
-  
-        <TouchableHighlight style={styles.deckButton} onPress={this.props.onReview}>      
+
+        <TouchableHighlight style={styles.deckButton} onPress={this.props.onReview}>
           <Text style={styles.deckName}>
             {this.props.name}
           </Text>

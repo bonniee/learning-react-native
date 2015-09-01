@@ -17,11 +17,19 @@ var Actions = require('./src/actions');
 
 var Decks = require('./src/components/Decks');
 
+var CardsStore = require('./src/stores/CardsStore');
+var DeckStore = require('./src/stores/DeckStore');
+var DeckMetaStore = require('./src/stores/DeckMetaStore');
+
 var Zebro = React.createClass({
-  _renderScene: function(route, navigator) {
+  componentWillMount() {
+    // TODO: fetch deck data from local storage or something
+  },
+  _renderScene(route, navigator) {
     return <Decks/>;
   },
-  render: function() {
+
+  render() {
     return (
       <View style={styles.container}>
         <Navigator
@@ -41,13 +49,13 @@ var styles = StyleSheet.create({
   welcome: {
     fontSize: 20,
     textAlign: 'center',
-    margin: 10,
+    margin: 10
   },
   instructions: {
     textAlign: 'center',
     color: '#333333',
-    marginBottom: 5,
-  },
+    marginBottom: 5
+  }
 });
 
 AppRegistry.registerComponent('Zebro', () => Zebro);
