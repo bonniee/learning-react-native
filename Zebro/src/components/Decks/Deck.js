@@ -1,19 +1,17 @@
 var React = require('react-native');
 var {
-  AppRegistry,
   StyleSheet,
   Text,
   TouchableHighlight,
-  View,
+  View
 } = React;
-
-var colors = require('../../styles/colors');
 
 var Deck = React.createClass({
   propTypes: {
-    name: React.PropTypes.string.isRequired
+    name: React.PropTypes.string.isRequired,
+    onReview: React.PropTypes.func.isRequired
   },
-  render: function() {
+  render() {
     return (
       <View style={styles.deckGroup}>
 

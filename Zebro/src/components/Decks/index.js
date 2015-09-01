@@ -1,6 +1,5 @@
 var React = require('react-native');
 var {
-  AppRegistry,
   StyleSheet,
   Text,
   View,
@@ -50,12 +49,11 @@ var Decks = React.createClass({
   },
 
   review(deckName) {
-    console.log('review ' + deckName);
-    // TODO
+    // TODO: go to review screen
   },
 
   _newDeck() {
-    // Go to new deck screen
+    // TODO: Go to new deck screen
   },
 
   _getDecks() {
@@ -87,7 +85,7 @@ var Decks = React.createClass({
 
 var styles = StyleSheet.create({
   container: {
-    backgroundColor: '#EEEEDD',
+    backgroundColor: '#EEEEDD'
   },
   wideButton: {
     justifyContent: 'center',
