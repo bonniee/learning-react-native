@@ -18,6 +18,7 @@ var Actions = require('./src/actions');
 var Decks = require('./src/components/Decks');
 
 var CardsStore = require('./src/stores/CardsStore');
+var DeckMetaStore = require('./src/stores/DeckMetaStore');
 
 var Zebro = React.createClass({
   componentWillMount() {

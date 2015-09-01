@@ -14,9 +14,12 @@ var Deck = require('./Deck');
 
 var Button = React.createClass({
   propTypes: {
-    onPress: React.PropTypes.func.isRequired
+    onPress: React.PropTypes.func.isRequired,
+    styles: View.propTypes.style,
+    children: React.PropTypes.object
   },
-  render: function() {
+
+  render() {
     return (
       <TouchableHighlight
         onPress={this.props.onPress}
@@ -51,13 +54,20 @@ var Decks = React.createClass({
     // TODO
   },
 
+  _newDeck() {
+    // Go to new deck screen
+  },
+
   _getDecks() {
     if (!this.state.decks) {
       return null;
     }
 
     return this.state.decks.map((deck) => {
-      return <Deck name={deck.name} onReview={this.review} />;
+      return (
+        <Deck name={deck.name}
+          onReview={this.review}
+          key={deck.id} />);
     });
   },
 
@@ -66,7 +76,8 @@ var Decks = React.createClass({
       <View style={styles.container}>
         <Text>Decks</Text>
         {this._getDecks()}
-        <Button styles={styles.wideButton}>
+        <Button styles={styles.wideButton}
+          onPress={this._newDeck}>
           <Text>Create Deck</Text>
         </Button>
       </View>
