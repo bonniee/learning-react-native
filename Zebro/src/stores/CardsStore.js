@@ -3,7 +3,7 @@ var Data = require('./../data/data');
 
 var cardsStore = Reflux.createStore({
   init() {
-    var data = Data();
+    var data = new Data();
     this._cards = data.loadCards();
   }
 });
