@@ -20,6 +20,10 @@ var Decks = require('./src/components/Decks');
 var DecksStore = require('./src/stores/DecksStore');
 
 var Zebro = React.createClass({
+  componentWillMount() {
+    // TODO: fetch deck data from local storage or something
+    DecksStore.
+  },
   _renderScene(route, navigator) {
     return <Decks/>;
   },
