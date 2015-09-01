@@ -6,6 +6,10 @@ var {
   View,
   TouchableHighlight
 } = React;
+
+var Reflux = require('reflux');
+var DeckMetaStore = require('./../../stores/DeckMetaStore');
+
 var Deck = require('./Deck');
 
 var Button = React.createClass({
@@ -24,20 +28,44 @@ var Button = React.createClass({
 });
 
 var Decks = React.createClass({
-  propTypes: {
-    decks: React.PropTypes.array.isRequired
+  mixins: [Reflux.listenTo(DeckMetaStore, 'onDecksChange')],
+
+  getInitialState() {
+    return {
+      decks: []
+    };
   },
-  review: function(deckName) {
+
+  componentDidMount() {
+    DeckMetaStore.decks();
+  },
+
+  onDecksChange(decks) {
+    this.setState({
+      decks: decks
+    });
+  },
+
+  review(deckName) {
     console.log('review ' + deckName);
+    // TODO
   },
+
+  _getDecks() {
+    if (!this.state.decks) {
+      return null;
+    }
+
+    return this.state.decks.map((deck) => {
+      return <Deck name={deck.name} onReview={this.review} />;
+    });
+  },
+
   render() {
     return (
       <View style={styles.container}>
         <Text>Decks</Text>
-        <Deck name="Esperanto Words"
-              onReview={this.review} />
-        <Deck name="JLPT N5 Kanji"
-              onReview={this.review} />
+        {this._getDecks()}
         <Button styles={styles.wideButton}>
           <Text>Create Deck</Text>
         </Button>
