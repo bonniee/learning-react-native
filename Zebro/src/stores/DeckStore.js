@@ -41,7 +41,7 @@ export default Reflux.createStore({
     this._currentDeckInfo = deck[0];
   },
 
-  _trigger() {
+  emit() {
     this.trigger({
       deckInfo: this._currentDeckInfo,
       cards: this._currentDeckCards
@@ -65,6 +65,10 @@ export default Reflux.createStore({
     this._currentDeckCards = this._cards.filter((c) => {
       return c.deckID === deckID;
     });
+    this._currentDeckCards.sort((a, b) => {
+      return a.dueDate < b.dueDate;
+    });
+    this.emit();
     console.log(this._currentDeckCards);
   }
 
