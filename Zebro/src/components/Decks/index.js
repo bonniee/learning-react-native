@@ -65,7 +65,7 @@ var Decks = React.createClass({
       return (
         <Deck
           deck={deck}
-          onReview={this.review}
+          onReview={this.props.review}
           key={deck.id} />);
     });
   },

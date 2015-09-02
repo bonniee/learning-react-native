@@ -1,17 +1,29 @@
-'use strict';
-
-var React = require('react-native');
+import React from 'react-native';
 var {
-  AppRegistry,
   StyleSheet,
   View,
-  Navigator
+  Text
 } = React;
 
+import DeckStore from './src/stores/DeckStore';
+
 var Review = React.createClass({
+  propTypes: {
+    deckID: React.PropTypes.string.isRequired
+  },
   render() {
-    return null;
+    return (
+      <View>
+        <Text>
+          {this.props.deckID}
+        </Text>
+      </View>
+      );
   }
 });
 
-module.exports = Review;
+var styles = StyleSheet.create({
+
+});
+
+export default Review;

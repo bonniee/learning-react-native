@@ -1,7 +1,15 @@
-var Reflux = require('reflux');
+import Reflux from 'reflux';
 
-var actions = Reflux.createActions({
-  addDeck: {}
-});
-
-module.exports = actions;
+module.exports = {
+  DeckActions: Reflux.createActions([
+    'createDeck',
+    'deleteDeck',
+    'reviewDeck'
+  ]),
+  CardActions: Reflux.createActions([
+    'createCard',
+    'deleteCard',
+    'reviewCard',
+    'editCard'
+  ])
+};

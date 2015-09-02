@@ -2,7 +2,6 @@
  * Sample React Native App
  * https://github.com/facebook/react-native
  */
-'use strict';
 
 var React = require('react-native');
 var {
@@ -11,8 +10,6 @@ var {
   View,
   Navigator
 } = React;
-
-var Actions = require('./src/actions');
 
 var Decks = require('./src/components/Decks');
 var Review = require('./src/components/Review');
@@ -36,13 +33,11 @@ var Zebro = React.createClass({
   },
 
   _renderScene(route, navigator) {
-    // 'decks', 'review'
-    var name = route.name;
     switch (route.name) {
     case 'decks':
       return <Decks review={this.review}/>;
     case 'review':
-      return <Review />;
+      return <Review {...route.data} />;
     default:
       console.error('Encountered unexpected route: ' + route.name);
     }
@@ -66,16 +61,6 @@ var styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F5FCFF',
     marginTop: 30
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5
   }
 });
 
