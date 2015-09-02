@@ -6,10 +6,14 @@ import DeckMetaStore from './DeckMetaStore';
 
 export default Reflux.createStore({
   init() {
+    // Info about the state of the app, to track
     this._deckInfos = null;
+    this._cards = [];
+
+    // Info about the current deck
     this._currentDeckInfo = null;
     this._currentDeckID = null;
-    this._cards = [];
+    this._currentDeckCards = [];
 
     this.listenTo(CardsStore, this.cardUpdate);
     this.listenTo(DeckMetaStore, this.deckMetaUpdate);
@@ -37,6 +41,13 @@ export default Reflux.createStore({
     this._currentDeckInfo = deck[0];
   },
 
+  _trigger() {
+    this.trigger({
+      deckInfo: this._currentDeckInfo,
+      cards: this._currentDeckCards
+    });
+  },
+
   cardUpdate(cards) {
     this._cards = cards;
   },
@@ -51,6 +62,10 @@ export default Reflux.createStore({
 
   onReviewDeck(deckID) {
     console.log(`onReviewDeck: ${deckID}`);
+    this._currentDeckCards = this._cards.filter((c) => {
+      return c.deckID === deckID;
+    });
+    console.log(this._currentDeckCards);
   }
 
 });
