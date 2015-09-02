@@ -11,6 +11,8 @@ var {
   Navigator
 } = React;
 
+var {DeckActions} = require('./src/actions');
+
 var Decks = require('./src/components/Decks');
 var Review = require('./src/components/Review');
 
@@ -24,6 +26,7 @@ var Zebro = React.createClass({
   },
 
   review(deckID) {
+    DeckActions.reviewDeck(deckID);
     this.refs.navigator.push({
       name: 'review',
       data: {

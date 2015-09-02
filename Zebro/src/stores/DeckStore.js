@@ -50,7 +50,7 @@ export default Reflux.createStore({
   },
 
   onReviewDeck(deckID) {
-    console.log('onReviewDeck');
+    console.log(`onReviewDeck: ${deckID}`);
   }
 
 });
