@@ -1,15 +1,15 @@
 import Reflux from 'reflux';
 
-module.exports = {
-  DeckActions: Reflux.createActions([
-    'createDeck',
-    'deleteDeck',
-    'reviewDeck'
-  ]),
-  CardActions: Reflux.createActions([
-    'createCard',
-    'deleteCard',
-    'reviewCard',
-    'editCard'
-  ])
-};
+export var DeckActions = Reflux.createActions([
+  'createDeck',
+  'deleteDeck',
+  'reviewDeck'
+]);
+
+export var CardActions = Reflux.createActions([
+  'createCard',
+  'deleteCard',
+  'reviewCard',
+  'editCard'
+]);
+

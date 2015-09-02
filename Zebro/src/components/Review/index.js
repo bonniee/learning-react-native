@@ -5,7 +5,7 @@ var {
   Text
 } = React;
 
-import DeckStore from './src/stores/DeckStore';
+import DeckStore from './../../stores/DeckStore';
 
 var Review = React.createClass({
   propTypes: {

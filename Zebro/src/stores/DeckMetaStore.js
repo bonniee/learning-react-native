@@ -1,7 +1,7 @@
 var Reflux = require('reflux');
 
 var Data = require('./../data/data');
-import DeckActions from './../actions';
+import {DeckActions} from './../actions';
 var Deck = require('./../data/Deck');
 
 var CardsStore = require('./CardsStore');
@@ -12,7 +12,7 @@ var decksStore = Reflux.createStore({
     this._decks = data.loadDecks();
     console.log(this._decks);
     this.listenTo(CardsStore, this.cardUpdate);
-    this.listenTo(DeckActions.addDeck, this.addDeck);
+    this.listenTo(DeckActions.createDeck, this.createDeck);
   },
   decks() {
     console.log('triggering');
@@ -22,7 +22,7 @@ var decksStore = Reflux.createStore({
     console.log('got new cards in DeckMetaStore');
     console.log(cards);
   },
-  addDeck(name) {
+  createDeck(name) {
     this._decks.push(Deck(name));
     this.trigger(this._decks);
   }
