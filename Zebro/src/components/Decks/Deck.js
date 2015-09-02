@@ -6,18 +6,23 @@ var {
   View
 } = React;
 
+var DeckModel = require('./../../data/Deck');
+
 var Deck = React.createClass({
   propTypes: {
-    name: React.PropTypes.string.isRequired,
-    onReview: React.PropTypes.func.isRequired
+    onReview: React.PropTypes.func.isRequired,
+    deck: React.PropTypes.instanceOf(DeckModel)
+  },
+  _review() {
+    this.props.onReview(this.props.deck.id);
   },
   render() {
     return (
       <View style={styles.deckGroup}>
 
-        <TouchableHighlight style={styles.deckButton} onPress={this.props.onReview}>
+        <TouchableHighlight style={styles.deckButton} onPress={this._review}>
           <Text style={styles.deckName}>
-            {this.props.name}
+            {this.props.deck.name}
           </Text>
         </TouchableHighlight>
 

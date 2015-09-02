@@ -63,7 +63,8 @@ var Decks = React.createClass({
 
     return this.state.decks.map((deck) => {
       return (
-        <Deck name={deck.name}
+        <Deck
+          deck={deck}
           onReview={this.review}
           key={deck.id} />);
     });

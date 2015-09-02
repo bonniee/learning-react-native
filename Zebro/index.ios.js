@@ -8,7 +8,6 @@ var React = require('react-native');
 var {
   AppRegistry,
   StyleSheet,
-  Text,
   View,
   Navigator
 } = React;
@@ -16,6 +15,7 @@ var {
 var Actions = require('./src/actions');
 
 var Decks = require('./src/components/Decks');
+var Review = require('./src/components/Review');
 
 var CardsStore = require('./src/stores/CardsStore');
 var DeckMetaStore = require('./src/stores/DeckMetaStore');
@@ -25,7 +25,27 @@ var Zebro = React.createClass({
     CardsStore.start();
     // TODO: fetch deck data from local storage or something
   },
+
+  review(deckID) {
+    this.refs.navigator.push({
+      name: 'review',
+      data: {
+        deckID: deckID
+      }
+    });
+  },
+
   _renderScene(route, navigator) {
+    // 'decks', 'review'
+    var name = route.name;
+    switch (route.name) {
+    case 'decks':
+      return <Decks review={this.review}/>;
+    case 'review':
+      return <Review />;
+    default:
+      console.error('Encountered unexpected route: ' + route.name);
+    }
     return <Decks/>;
   },
 
@@ -33,7 +53,8 @@ var Zebro = React.createClass({
     return (
       <View style={styles.container}>
         <Navigator
-          initialRoute={{name: 'Decks'}}
+          ref='navigator'
+          initialRoute={{name: 'decks'}}
           renderScene={this._renderScene}/>
       </View>
     );
