@@ -1,8 +1,13 @@
 import Reflux from 'reflux';
+import _ from 'lodash';
 
 import {DeckActions} from './../actions';
 import CardsStore from './CardsStore';
 import DeckMetaStore from './DeckMetaStore';
+
+/**
+ * Emits current deck with *due* cards.
+ **/
 
 export default Reflux.createStore({
   init() {
@@ -61,15 +66,13 @@ export default Reflux.createStore({
   },
 
   onReviewDeck(deckID) {
-    console.log(`onReviewDeck: ${deckID}`);
+    var now = new Date();
     this._currentDeckCards = this._cards.filter((c) => {
-      return c.deckID === deckID;
+      return c.deckID === deckID && now >= c.dueDate;
     });
-    this._currentDeckCards.sort((a, b) => {
-      return a.dueDate < b.dueDate;
-    });
+
+    this._currentDeckCards = _.shuffle(this._currentDeckCards);
     this.emit();
-    console.log(this._currentDeckCards);
   }
 
 });

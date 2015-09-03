@@ -1,0 +1,21 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install' ]
+2 info using npm@2.13.5
+3 info using node@v0.12.7
+4 verbose node symlink /usr/local/bin/node
+5 verbose readDependencies loading dependencies from /Users/bonnie/lrn-code/package.json
+6 error install Couldn't read dependencies
+7 verbose stack Error: ENOENT, open '/Users/bonnie/lrn-code/package.json'
+7 verbose stack     at Error (native)
+8 verbose cwd /Users/bonnie/lrn-code
+9 error Darwin 14.4.0
+10 error argv "node" "/usr/local/bin/npm" "install"
+11 error node v0.12.7
+12 error npm  v2.13.5
+13 error path /Users/bonnie/lrn-code/package.json
+14 error code ENOPACKAGEJSON
+15 error errno -2
+16 error package.json ENOENT, open '/Users/bonnie/lrn-code/package.json'
+16 error package.json This is most likely not a problem with npm itself.
+16 error package.json npm can't find a package.json file in your current directory.
+17 verbose exit [ -2, true ]

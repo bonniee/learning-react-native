@@ -11,8 +11,27 @@ var ViewCard = React.createClass({
     correctAnswer: React.PropTypes.string.isRequired,
     prompt: React.PropTypes.string.isRequired
   },
+  _buttons() {
+    if (!this.props.answers) {
+      return null;
+    }
+
+    return this.props.answers.map((a) => {
+      return (
+        <Text key={a}>
+          {a}
+        </Text>
+        );
+    });
+  },
   render() {
-    return ();
+    var buttons = this._buttons();
+    return (
+      <View>
+        <Text>{this.props.prompt}</Text>
+        {buttons}
+      </View>
+      );
   }
 });
 
