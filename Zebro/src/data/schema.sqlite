@@ -1,0 +1,15 @@
+CREATE TABLE `schema_info` (
+  `version` integer DEFAULT (0) NOT NULL);
+
+CREATE TABLE `cards` (
+  `id` integer NOT NULL,
+  `front` text NOT NULL,
+  `back` text NOT NULL,
+  `deck_id` integer REFERENCES `decks`(`id`),
+  `strength` integer NOT NULL,
+  `due_date` timestamp NOT NULL,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE `decks`(
+  `id` integer DEFAULT (NULL) NOT NULL PRIMARY KEY,
+  `name` text DEFAULT (NULL) NOT NULL);
