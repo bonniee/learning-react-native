@@ -10,6 +10,7 @@
     "md5": "^2.0.0",
     "react": "^0.13.3",
     "react-native": "^0.10.1",
+    "react-native-sqlite": "0.0.12",
     "reflux": "^0.2.12"
   }
 }
