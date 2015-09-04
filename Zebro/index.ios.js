@@ -35,10 +35,15 @@ var Zebro = React.createClass({
     });
   },
 
+  createdDeck(deckName) {
+    console.log('createdDeck callback: ', deckName);
+  },
+
   _renderScene(route, navigator) {
     switch (route.name) {
     case 'decks':
-      return <Decks review={this.review}/>;
+      return <Decks review={this.review}
+        createdDeck={this.createdDeck}/>;
     case 'review':
       return <Review {...route.data} />;
     default:

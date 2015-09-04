@@ -2,32 +2,16 @@ var React = require('react-native');
 var {
   StyleSheet,
   Text,
-  View,
-  TouchableHighlight
+  View
 } = React;
 
 var Reflux = require('reflux');
 var DeckMetaStore = require('./../../stores/DeckMetaStore');
+var { DeckActions } = require('./../../actions');
 
 var Deck = require('./Deck');
 
-var Button = React.createClass({
-  propTypes: {
-    onPress: React.PropTypes.func.isRequired,
-    styles: View.propTypes.style,
-    children: React.PropTypes.object
-  },
-
-  render() {
-    return (
-      <TouchableHighlight
-        onPress={this.props.onPress}
-        style={[styles.button, this.props.styles]}>
-        {this.props.children}
-      </TouchableHighlight>
-      );
-  }
-});
+var DeckCreation = require('./DeckCreation');
 
 var Decks = React.createClass({
   mixins: [Reflux.listenTo(DeckMetaStore, 'onDecksChange')],
@@ -48,12 +32,9 @@ var Decks = React.createClass({
     });
   },
 
-  review(deckName) {
-    // TODO: go to review screen
-  },
-
-  _newDeck() {
-    // TODO: Go to new deck screen
+  _newDeck(newDeckName) {
+    DeckActions.createDeck(newDeckName);
+    this.props.createdDeck(newDeckName);
   },
 
   _getDecks() {
@@ -75,10 +56,7 @@ var Decks = React.createClass({
       <View style={styles.container}>
         <Text>Decks</Text>
         {this._getDecks()}
-        <Button styles={styles.wideButton}
-          onPress={this._newDeck}>
-          <Text>Create Deck</Text>
-        </Button>
+        <DeckCreation newDeck={this._newDeck}/>
       </View>
     );
   }
@@ -87,15 +65,6 @@ var Decks = React.createClass({
 var styles = StyleSheet.create({
   container: {
     backgroundColor: '#EEEEDD'
-  },
-  wideButton: {
-    justifyContent: 'center',
-    flex: 1,
-    padding: 10,
-    margin: 10
-  },
-  button: {
-    backgroundColor: '#FFFF00'
   }
 });
 

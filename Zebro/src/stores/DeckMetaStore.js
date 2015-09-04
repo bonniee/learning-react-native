@@ -23,7 +23,7 @@ var decksStore = Reflux.createStore({
     console.log(cards);
   },
   createDeck(name) {
-    this._decks.push(Deck(name));
+    this._decks.push(new Deck(name));
     this.trigger(this._decks);
   }
 });
