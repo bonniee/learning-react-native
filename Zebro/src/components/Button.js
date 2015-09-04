@@ -8,7 +8,7 @@ var {
 var Button = React.createClass({
   propTypes: {
     onPress: React.PropTypes.func.isRequired,
-    styles: View.propTypes.style,
+    style: View.propTypes.style,
     children: React.PropTypes.object
   },
 

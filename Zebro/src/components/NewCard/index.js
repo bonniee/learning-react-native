@@ -5,6 +5,9 @@ var {
   Text
 } = React;
 
+import Reflux from 'reflux';
+import { CardActions } from './../../actions';
+
 var Button = require('../Button');
 var LabeledInput = require('../LabeledInput');
 
@@ -12,21 +15,58 @@ var NewCard = React.createClass({
   propTypes: {
     deckID: React.PropTypes.string.isRequired
   },
+
+  getInitialState() {
+    return {
+      font: '',
+      back: ''
+    };
+  },
+
+  _handleFront(text) {
+    this.setState({front: text});
+  },
+
+  _handleBack(text) {
+    this.setState({back: text});
+  },
+
+  _createCard() {
+    CardActions.createCard(this.state.front, this.state.back);
+  },
+
+  _quit() {
+    // TODO
+  },
+
+  _reviewDeck() {
+    // TODO
+  },
+
   render() {
     return (
       <View>
-        <LabeledInput label="Front"/>
-        <LabeledInput label="Back"/>
-        <Button style={styles.createButton}>
+
+        <LabeledInput
+          label="Front"
+          onEntry={this._handleFront}/>
+        <LabeledInput
+          label="Back"
+          onEntry={this._handleBack}/>
+
+        <Button style={styles.createButton}
+          onPress={this._createCard}>
           <Text>Create Card</Text>
         </Button>
 
         <View style={styles.buttonRow}>
-          <Button style={styles.createButton}>
+          <Button style={styles.createButton}
+            onPress={this._quit}>
             <Text>Done</Text>
           </Button>
 
-          <Button style={styles.createButton}>
+          <Button style={styles.createButton}
+            onPress={this._reviewDeck}>
             <Text>Review Deck</Text>
           </Button>
         </View>

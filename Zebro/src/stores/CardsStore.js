@@ -1,14 +1,24 @@
-var Reflux = require('reflux');
 var Data = require('./../data/data');
+import Card from './../data/Card';
+
+import Reflux from 'reflux';
+import {CardActions} from './../actions';
 
 var cardsStore = Reflux.createStore({
   init() {
-    console.log('init CardsStore');
     var data = new Data();
     this._cards = data.loadCards();
-    console.log(this._cards);
+
+    this.listenTo(CardActions.createCard, this.createCard);
+
     this.trigger(this._cards);
   },
+
+  createCard(front, back, deckID) {
+    this._cards.push(new Card(front, back, deckID));
+    this.start();
+  },
+
   start() {
     this.trigger(this._cards);
   }
