@@ -8,12 +8,15 @@ var {
 import Reflux from 'reflux';
 import { CardActions } from './../../actions';
 
+import DeckModel from './../../data/Deck';
+
 var Button = require('../Button');
 var LabeledInput = require('../LabeledInput');
 
 var NewCard = React.createClass({
   propTypes: {
-    deckID: React.PropTypes.string.isRequired
+    deck: React.PropTypes.instanceOf(DeckModel),
+    quit: React.PropTypes.func.isRequired
   },
 
   getInitialState() {
@@ -32,11 +35,9 @@ var NewCard = React.createClass({
   },
 
   _createCard() {
-    CardActions.createCard(this.state.front, this.state.back);
-  },
-
-  _quit() {
-    // TODO
+    CardActions.createCard(this.state.front,
+      this.state.back,
+      this.props.deck.id);
   },
 
   _reviewDeck() {
@@ -61,7 +62,7 @@ var NewCard = React.createClass({
 
         <View style={styles.buttonRow}>
           <Button style={styles.createButton}
-            onPress={this._quit}>
+            onPress={this.props.quit}>
             <Text>Done</Text>
           </Button>
 

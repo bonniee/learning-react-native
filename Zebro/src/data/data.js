@@ -1,15 +1,13 @@
 var Deck = require('./Deck');
 var Card = require('./Card');
 
-var SQLite = require('react-native-sqlite');
-
-
 class Data {
   constructor() {
     var d = new Deck('Esperanto Vocabulary');
     var germanDeck = new Deck('German Vocabulary');
     this.decks = [
-      d
+      d,
+      germanDeck
     ];
     this.cards = [
       new Card('saluton', 'hello', d.id),

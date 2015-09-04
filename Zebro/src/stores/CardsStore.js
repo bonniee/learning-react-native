@@ -16,10 +16,10 @@ var cardsStore = Reflux.createStore({
 
   createCard(front, back, deckID) {
     this._cards.push(new Card(front, back, deckID));
-    this.start();
+    this.emit();
   },
 
-  start() {
+  emit() {
     this.trigger(this._cards);
   }
 });

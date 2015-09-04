@@ -1,8 +1,8 @@
-var Reflux = require('reflux');
+import Reflux from 'reflux';
 
-var Data = require('./../data/data');
+import Data from './../data/data';
 import {DeckActions} from './../actions';
-var Deck = require('./../data/Deck');
+import Deck from './../data/Deck';
 
 var CardsStore = require('./CardsStore');
 
@@ -37,8 +37,8 @@ var decksStore = Reflux.createStore({
     this.emit();
   },
 
-  createDeck(name) {
-    this._decks.push(new Deck(name));
+  createDeck(deck) {
+    this._decks.push(deck);
     this.trigger(this._decks);
   }
 });

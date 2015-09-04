@@ -8,6 +8,7 @@ var {
 var Reflux = require('reflux');
 var DeckMetaStore = require('./../../stores/DeckMetaStore');
 var { DeckActions } = require('./../../actions');
+import DeckModel from './../../data/Deck';
 
 var Deck = require('./Deck');
 
@@ -33,8 +34,9 @@ var Decks = React.createClass({
   },
 
   _newDeck(newDeckName) {
-    DeckActions.createDeck(newDeckName);
-    this.props.createdDeck(newDeckName);
+    let deck = new DeckModel(newDeckName);
+    DeckActions.createDeck(deck);
+    this.props.createdDeck(deck);
   },
 
   _getDecks() {

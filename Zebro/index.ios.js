@@ -6,6 +6,7 @@ var {
   Navigator
 } = React;
 
+import Reflux from 'reflux';
 var {DeckActions} = require('./src/actions');
 
 var Decks = require('./src/components/Decks');
@@ -16,8 +17,10 @@ var CardsStore = require('./src/stores/CardsStore');
 var DeckMetaStore = require('./src/stores/DeckMetaStore');
 
 var Zebro = React.createClass({
+  mixins: [Reflux.connect(DeckMetaStore, 'deckMetas')],
+
   componentWillMount() {
-    CardsStore.start();
+    CardsStore.emit();
   },
 
   review(deckID) {
@@ -30,13 +33,17 @@ var Zebro = React.createClass({
     });
   },
 
-  createdDeck(deckName) {
+  createdDeck(deck) {
     this.refs.navigator.push({
       name: 'createCards',
       data: {
-        deckName: deckName
+        deck: deck
       }
     });
+  },
+
+  goHome() {
+    this.refs.navigator.push({name: 'decks'});
   },
 
   _renderScene(route) {
@@ -45,7 +52,7 @@ var Zebro = React.createClass({
       return <Decks review={this.review}
         createdDeck={this.createdDeck}/>;
     case 'createCards':
-      return <NewCard />;
+      return <NewCard quit={this.goHome} {...route.data}/>;
     case 'review':
       return <Review {...route.data} />;
     default:
