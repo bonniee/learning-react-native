@@ -22,7 +22,7 @@ var Deck = React.createClass({
 
         <TouchableHighlight style={styles.deckButton} onPress={this._review}>
           <Text style={styles.deckName}>
-            {this.props.deck.name}
+            {this.props.deck.name}: {this.props.deck.dueCards} due
           </Text>
         </TouchableHighlight>
 
