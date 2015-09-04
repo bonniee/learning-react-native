@@ -7,6 +7,11 @@ class Deck {
     this.dueCards = 0;
     this.id = md5(name); // LOL temporary
   }
+
+  resetCounts() {
+    this.totalCards = 0;
+    this.dueCards = 0;
+  }
 }
 
 module.exports = Deck;

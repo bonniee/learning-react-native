@@ -23,7 +23,7 @@ var Decks = React.createClass({
   },
 
   componentDidMount() {
-    DeckMetaStore.decks();
+    DeckMetaStore.emit();
   },
 
   onDecksChange(decks) {

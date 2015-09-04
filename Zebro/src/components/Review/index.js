@@ -7,19 +7,19 @@ var {
 
 import _ from 'lodash';
 import Reflux from 'reflux';
-import DeckStore from './../../stores/DeckStore';
+import ReviewStore from './../../stores/ReviewStore';
 
 import ViewCard from './ViewCard';
 
 var Review = React.createClass({
-  mixins: [Reflux.connect(DeckStore, 'currentDeck')],
+  mixins: [Reflux.connect(ReviewStore, 'currentDeck')],
 
   propTypes: {
     deckID: React.PropTypes.string.isRequired
   },
 
   componentWillMount() {
-    DeckStore.emit();
+    ReviewStore.emit();
   },
 
   generateQuestion() {

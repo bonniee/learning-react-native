@@ -13,11 +13,30 @@ var decksStore = Reflux.createStore({
     this.listenTo(CardsStore, this.cardUpdate);
     this.listenTo(DeckActions.createDeck, this.createDeck);
   },
-  decks() {
+
+  emit() {
     this.trigger(this._decks);
   },
+
   cardUpdate(cards) {
+    let deckMap = {};
+    this._decks.forEach((d) => {
+      d.resetCounts();
+      deckMap[d.id] = d;
+    });
+
+    let now = new Date();
+    cards.forEach((card) => {
+      if (card.deckID in deckMap) {
+        deckMap[card.deckID].totalCards++;
+        if (card.dueDate <= now) {
+          deckMap[card.deckID].dueCards++;
+        }
+      }
+    });
+    this.emit();
   },
+
   createDeck(name) {
     this._decks.push(new Deck(name));
     this.trigger(this._decks);
