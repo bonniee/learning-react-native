@@ -28,6 +28,7 @@ export default Button;
 var styles = StyleSheet.create({
   wideButton: {
     justifyContent: 'center',
+    alignItems: 'center',
     flex: 1,
     padding: 10,
     margin: 10

@@ -1,12 +1,14 @@
 var React = require('react-native');
 var {
   StyleSheet,
-  TextInput
+  TextInput,
+  View
 } = React;
 
 var Input = React.createClass({
   propTypes: {
-    onEntry: React.PropTypes.func.isRequired
+    onEntry: React.PropTypes.func.isRequired,
+    style: View.propTypes.style
   },
   getInitialState() {
     return {
