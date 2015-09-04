@@ -43,7 +43,7 @@ var Zebro = React.createClass({
   },
 
   goHome() {
-    this.refs.navigator.push({name: 'decks'});
+    this.refs.navigator.popToTop();
   },
 
   _renderScene(route) {
@@ -52,7 +52,10 @@ var Zebro = React.createClass({
       return <Decks review={this.review}
         createdDeck={this.createdDeck}/>;
     case 'createCards':
-      return <NewCard quit={this.goHome} {...route.data}/>;
+      return <NewCard
+        quit={this.goHome}
+        nextCard={this.createdDeck}
+        {...route.data}/>;
     case 'review':
       return <Review {...route.data} />;
     default:

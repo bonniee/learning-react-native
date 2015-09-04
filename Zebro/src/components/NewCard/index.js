@@ -16,7 +16,8 @@ var LabeledInput = require('../LabeledInput');
 var NewCard = React.createClass({
   propTypes: {
     deck: React.PropTypes.instanceOf(DeckModel),
-    quit: React.PropTypes.func.isRequired
+    quit: React.PropTypes.func.isRequired,
+    nextCard: React.PropTypes.func.isRequired
   },
 
   getInitialState() {
@@ -38,6 +39,7 @@ var NewCard = React.createClass({
     CardActions.createCard(this.state.front,
       this.state.back,
       this.props.deck.id);
+    this.props.nextCard(this.props.deck);
   },
 
   _reviewDeck() {
