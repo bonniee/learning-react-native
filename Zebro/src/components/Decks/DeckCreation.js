@@ -3,32 +3,16 @@ var {
   StyleSheet,
   Text,
   View,
-  TextInput,
-  TouchableHighlight
+  TextInput
 } = React;
 
-var Button = React.createClass({
-  propTypes: {
-    onPress: React.PropTypes.func.isRequired,
-    styles: View.propTypes.style,
-    children: React.PropTypes.object
-  },
-
-  render() {
-    return (
-      <TouchableHighlight
-        onPress={this.props.onPress}
-        style={[styles.button, this.props.styles]}>
-        {this.props.children}
-      </TouchableHighlight>
-      );
-  }
-});
+var Button = require('./../Button');
 
 var CreateDeckButton = React.createClass({
   render() {
     return (
-      <Button styles={styles.wideButton}
+      <Button
+        style={styles.createDeck}
         onPress={this.props.onPress}>
         <Text>Create Deck</Text>
       </Button>
@@ -98,17 +82,17 @@ export default React.createClass({
 });
 
 var styles = StyleSheet.create({
+  nameField: {
+    backgroundColor: '#FF7777',
+    height: 40
+  },
   wideButton: {
     justifyContent: 'center',
     flex: 1,
     padding: 10,
     margin: 10
   },
-  button: {
-    backgroundColor: '#FFFF00'
-  },
-  nameField: {
-    backgroundColor: '#FF7777',
-    height: 40
+  createDeck: {
+    backgroundColor: '#7777FF'
   }
 });

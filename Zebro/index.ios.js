@@ -1,8 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
-
 var React = require('react-native');
 var {
   AppRegistry,
@@ -15,6 +10,7 @@ var {DeckActions} = require('./src/actions');
 
 var Decks = require('./src/components/Decks');
 var Review = require('./src/components/Review');
+var NewCard = require('./src/components/NewCard');
 
 var CardsStore = require('./src/stores/CardsStore');
 var DeckMetaStore = require('./src/stores/DeckMetaStore');
@@ -36,14 +32,21 @@ var Zebro = React.createClass({
   },
 
   createdDeck(deckName) {
-    console.log('createdDeck callback: ', deckName);
+    this.refs.navigator.push({
+      name: 'createCards',
+      data: {
+        deckName: deckName
+      }
+    });
   },
 
-  _renderScene(route, navigator) {
+  _renderScene(route) {
     switch (route.name) {
     case 'decks':
       return <Decks review={this.review}
         createdDeck={this.createdDeck}/>;
+    case 'createCards':
+      return <NewCard />;
     case 'review':
       return <Review {...route.data} />;
     default:
