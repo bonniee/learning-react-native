@@ -7,6 +7,7 @@ var {
 } = React;
 
 var Button = require('./../Button');
+var Input = require('./../Input');
 
 var CreateDeckButton = React.createClass({
   render() {
@@ -24,32 +25,10 @@ var EnterDeck = React.createClass({
   propTypes: {
     create: React.PropTypes.func.isRequired
   },
-  getInitialState() {
-    return {
-      text: ''
-    };
-  },
-  _create() {
-    this.props.create(this.state.text);
-    this.setState(this.getInitialState());
-  },
-  _onSubmit(ev) {
-    this.props.create(ev.nativeEvent.text);
-    this.setState(this.getInitialState());
-  },
-  _onChange(text) {
-    this.setState({text: text});
-  },
   render() {
     return (
       <View style={styles.enterDeck}>
-        <TextInput style={[styles.nameField, styles.wideButton]}
-          ref="newDeckInput"
-          multiline={false}
-          value={this.state.text}
-          autoCorrect={false}
-          onChangeText={this._onChange}
-          onSubmitEditing={this._onSubmit}/>
+        <Input onEntry={this.props.create}/>
         <CreateDeckButton onPress={this._create}/>
       </View>
       );

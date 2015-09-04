@@ -1,6 +1,5 @@
 var React = require('react-native');
 var {
-  AppRegistry,
   StyleSheet,
   View,
   Text
@@ -15,11 +14,17 @@ var NewCard = React.createClass({
   render() {
     return (
       <View>
-        <Button>
-          <Text>New Card</Text>
+        <Button style={styles.createButton}>
+          <Text>Create Card</Text>
         </Button>
       </View>
       );
+  }
+});
+
+var styles = StyleSheet.create({
+  createButton: {
+    backgroundColor: '#88FFFF'
   }
 });
 

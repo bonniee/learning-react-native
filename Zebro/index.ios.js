@@ -18,7 +18,6 @@ var DeckMetaStore = require('./src/stores/DeckMetaStore');
 var Zebro = React.createClass({
   componentWillMount() {
     CardsStore.start();
-    // TODO: fetch deck data from local storage or something
   },
 
   review(deckID) {
