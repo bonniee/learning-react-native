@@ -51,6 +51,7 @@ var Decks = React.createClass({
       return (
         <Deck
           deck={deck}
+          addCards={this.props.createdDeck}
           onReview={this.props.review}
           key={deck.id} />);
     });

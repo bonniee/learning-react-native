@@ -10,8 +10,7 @@ export var DeckActions = Reflux.createActions([
 export var CardActions = Reflux.createActions([
   'createCard',
   'deleteCard',
-  'reviewCard',
+  'review',
   'editCard',
   'deleteAllCards'
 ]);
-

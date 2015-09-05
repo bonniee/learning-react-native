@@ -8,13 +8,20 @@ var {
 
 var DeckModel = require('./../../data/Deck');
 
+var Button = require('./../Button');
+
 var Deck = React.createClass({
+  displayName: 'Deck',
   propTypes: {
     onReview: React.PropTypes.func.isRequired,
-    deck: React.PropTypes.instanceOf(DeckModel)
+    deck: React.PropTypes.instanceOf(DeckModel),
+    addCards: React.PropTypes.func.isRequired
   },
   _review() {
     this.props.onReview(this.props.deck.id);
+  },
+  _addCards() {
+    this.props.addCards(this.props.deck);
   },
   render() {
     return (
@@ -26,11 +33,10 @@ var Deck = React.createClass({
           </Text>
         </TouchableHighlight>
 
-        <View style={styles.editButton}>
-          <Text style={styles.edit}>
-            Edit
-          </Text>
-        </View>
+        <Button style={styles.editButton}
+          onPress={this._addCards}>
+          <Text>Add</Text>
+        </Button>
       </View>
       );
   }
@@ -57,7 +63,10 @@ var styles = StyleSheet.create({
     width: 60,
     backgroundColor: '#00ffff',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    padding: 0,
+    margin: 0,
+    flex: 0,
   },
   edit: {
 
