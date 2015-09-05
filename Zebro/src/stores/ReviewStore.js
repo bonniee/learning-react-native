@@ -89,13 +89,16 @@ export default Reflux.createStore({
   _createReviews(cards) {
     var makeReviews = function(sideOne, sideTwo) {
       return cards.map((card) => {
+        let others = cards.filter((other) => {
+          return other.id !== card.id;
+        });
         return {
           orientation: sideOne,
           cardID: card.id,
           prompt: card[sideOne],
           correctAnswer: card[sideTwo],
-          answers: [card.sideTwo].concat(
-            _.sample(_.pluck(cards, sideTwo), 4))
+          answers: [card[sideTwo]].concat(
+            _.sample(_.pluck(others, sideTwo), 3))
         };
       });
     };

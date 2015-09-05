@@ -50,9 +50,6 @@ var Review = React.createClass({
   render() {
     return (
       <View>
-        <Text>
-          {this.props.deckID}
-        </Text>
         {
           this.state.reviews && this.state.reviews.length > 0
           ? <ViewCard

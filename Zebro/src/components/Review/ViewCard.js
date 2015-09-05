@@ -90,7 +90,9 @@ var ViewCard = React.createClass({
     var buttons = this._buttons();
     return (
       <View>
-        <Text>{this.props.prompt}</Text>
+        <Text style={styles.prompt}>
+          {this.props.prompt}
+        </Text>
         {buttons}
         {
           this.state.showingAnswer
@@ -117,6 +119,10 @@ var styles = StyleSheet.create({
   wrongAnswer: {
     borderColor: '#FF0000',
     borderWidth: 4
+  },
+  prompt: {
+    fontSize: 30,
+    alignSelf: 'center'
   }
 });
 
