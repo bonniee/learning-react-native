@@ -5,6 +5,8 @@ import {DeckActions} from './../actions';
 import CardsStore from './CardsStore';
 import DeckMetaStore from './DeckMetaStore';
 
+import CardReview from './../data/Review';
+
 /**
  * Emits current review batch
  **/
@@ -22,6 +24,11 @@ export default Reflux.createStore({
     // The actual reviews, which should be returned
     this._reviews = [];
 
+    // One object per card - tracks card-level correctness
+    // Mapping of cardID: cardReview
+    this._cardReviews = {};
+
+    // Listeners
     this.listenTo(CardsStore, this.cardUpdate);
     this.listenTo(DeckMetaStore, this.deckMetaUpdate);
     this.listenToMany(DeckActions);
@@ -34,7 +41,14 @@ export default Reflux.createStore({
   _recalculate() {
     // Assume that _currentDeckID, _cards, _currentDeckInfo all up-to-date
     this._updateCurrentDeckInfo();
-    this._reviews = this._createReviews(this._qualifyingCards());
+    let qualifyingCards = this._qualifyingCards();
+    this._reviews = this._createReviews(qualifyingCards);
+    let cardReviews = qualifyingCards.map((card) => {
+      return new CardReview(card);
+    });
+    cardReviews.forEach((cr) => {
+      this._cardReviews[cr.card.id] = cr;
+    });
     this.emit();
   },
 
@@ -72,9 +86,11 @@ export default Reflux.createStore({
   },
 
   _createReviews(cards) {
-    var makeReview = function(sideOne, sideTwo) {
+    var makeReviews = function(sideOne, sideTwo) {
       return cards.map((card) => {
         return {
+          orientation: sideOne,
+          cardID: card.id,
           prompt: card[sideOne],
           correctAnswer: card[sideTwo],
           answers: [card.sideTwo].concat(
@@ -83,7 +99,7 @@ export default Reflux.createStore({
       });
     };
 
-    let reviews = makeReview('front', 'back').concat(makeReview('back', 'front'));
+    let reviews = makeReviews('front', 'back').concat(makeReviews('back', 'front'));
     return _.shuffle(reviews);
   },
 
