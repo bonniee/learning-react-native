@@ -9,11 +9,17 @@ var Input = React.createClass({
   propTypes: {
     onEntry: React.PropTypes.func.isRequired,
     onChange: React.PropTypes.func,
-    style: View.propTypes.style
+    style: View.propTypes.style,
+    clearOnSubmit: React.PropTypes.bool
   },
   getInitialState() {
     return {
       text: ''
+    };
+  },
+  getDefaultProps() {
+    return {
+      clearOnSubmit: true
     };
   },
   _create() {
@@ -22,7 +28,9 @@ var Input = React.createClass({
   },
   _onSubmit(ev) {
     this.props.onEntry(ev.nativeEvent.text);
-    this.setState(this.getInitialState());
+    if (!!this.props.clearOnSubmit) {
+      this.setState(this.getInitialState());
+    }
   },
   _onChange(text) {
     this.setState({text: text});

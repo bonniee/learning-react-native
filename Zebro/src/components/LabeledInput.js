@@ -11,8 +11,10 @@ var Input = require('./Input');
 var LabeledInput = React.createClass({
   propTypes: {
     onEntry: React.PropTypes.func.isRequired,
+    onChange: React.PropTypes.func,
     inputStyle: View.propTypes.style,
-    label: React.PropTypes.string.isRequired
+    label: React.PropTypes.string.isRequired,
+    clearOnSubmit: React.PropTypes.func
   },
   render() {
     return (
@@ -22,6 +24,8 @@ var LabeledInput = React.createClass({
         </Text>
         <Input
           onEntry={this.props.onEntry}
+          onChange={this.props.onChange}
+          clearOnSubmit={this.props.clearOnSubmit}
           style={[this.props.inputStyle, styles.input]}/>
       </View>
     );

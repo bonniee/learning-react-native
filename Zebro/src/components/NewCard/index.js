@@ -52,10 +52,14 @@ var NewCard = React.createClass({
 
         <LabeledInput
           label="Front"
-          onEntry={this._handleFront}/>
+          clearOnSubmit={false}
+          onEntry={this._handleFront}
+          onChange={this._handleFront}/>
         <LabeledInput
           label="Back"
-          onEntry={this._handleBack}/>
+          clearOnSubmit={false}
+          onEntry={this._handleBack}
+          onChange={this._handleBack}/>
 
         <Button style={styles.createButton}
           onPress={this._createCard}>
