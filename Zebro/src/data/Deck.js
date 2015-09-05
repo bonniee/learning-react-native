@@ -8,9 +8,22 @@ class Deck {
     this.id = md5(name); // LOL temporary
   }
 
+  setFromObject(ob) {
+    this.name = ob.name;
+    this.totalCards = ob.totalCards;
+    this.dueCards = ob.dueCards;
+    this.id = ob.id;
+  }
+
   resetCounts() {
     this.totalCards = 0;
     this.dueCards = 0;
+  }
+
+  static fromObject(ob) {
+    let d = new Deck(ob.name);
+    d.setFromObject(ob);
+    return d;
   }
 }
 
