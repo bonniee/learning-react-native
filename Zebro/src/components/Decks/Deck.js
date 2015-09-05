@@ -8,6 +8,8 @@ var {
 var DeckModel = require('./../../data/Deck');
 
 var Button = require('./../Button');
+var NormalText = require('./../NormalText');
+import fonts from './../../styles/fonts';
 
 var Deck = React.createClass({
   displayName: 'Deck',
@@ -27,14 +29,14 @@ var Deck = React.createClass({
       <View style={styles.deckGroup}>
 
         <Button style={styles.deckButton} onPress={this._review}>
-          <Text style={styles.deckName}>
+          <NormalText style={styles.deckName}>
             {this.props.deck.name}: {this.props.deck.dueCards} due
-          </Text>
+          </NormalText>
         </Button>
 
         <Button style={styles.editButton}
           onPress={this._addCards}>
-          <Text>Add</Text>
+          <NormalText>Add</NormalText>
         </Button>
       </View>
       );

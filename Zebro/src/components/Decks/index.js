@@ -11,8 +11,11 @@ var CardsStore = require('./../../stores/CardsStore');
 var { DeckActions, CardActions } = require('./../../actions');
 import DeckModel from './../../data/Deck';
 
+import fonts from './../../styles/fonts';
+
 var Deck = require('./Deck');
 var Button = require('./../Button');
+var NormalText = require('./../NormalText');
 
 var DeckCreation = require('./DeckCreation');
 
@@ -65,11 +68,11 @@ var Decks = React.createClass({
   render() {
     return (
       <View style={styles.container}>
-        <Text>Decks</Text>
+        <Text style={[fonts.big, styles.heading]}>Zebreto</Text>
         {this._getDecks()}
         <DeckCreation newDeck={this._newDeck}/>
         <Button style={styles.buttons} onPress={this.deleteAll}>
-          <Text>Delete All the Things</Text>
+          <NormalText>Delete All the Things</NormalText>
         </Button>
       </View>
     );
@@ -82,6 +85,9 @@ var styles = StyleSheet.create({
   },
   buttons: {
     backgroundColor: '#FF88FF'
+  },
+  heading: {
+    padding: 10
   }
 });
 
