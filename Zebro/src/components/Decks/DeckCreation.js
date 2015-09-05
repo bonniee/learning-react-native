@@ -53,7 +53,6 @@ export default React.createClass({
     };
   },
   _newDeck(name) {
-    console.log(`newDeck with name ${name}`);
     this.props.newDeck(name);
     this.setState(this.getInitialState());
   },

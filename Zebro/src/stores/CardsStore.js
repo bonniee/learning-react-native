@@ -26,8 +26,6 @@ var cardsStore = Reflux.createStore({
         this._cards = JSON.parse(val).map((cardObj) => {
           return Card.fromObject(cardObj);
         });
-        console.log('emitting cards: ');
-        console.log(this._cards);
         this.emit();
       }
       else {
@@ -52,7 +50,6 @@ var cardsStore = Reflux.createStore({
   },
 
   createCard(front, back, deckID) {
-    console.log('creating card with front: ', front);
     this._cards.push(new Card(front, back, deckID));
     this.emit();
   },

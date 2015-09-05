@@ -12,6 +12,9 @@ var decksStore = Reflux.createStore({
   init() {
     this._decks = [];
     this._loadDecks().done();
+
+    // Track cards so that we can rebuilt deck metadata
+    this._cards = [];
     this.listenTo(CardsStore, this.cardUpdate);
     this.listenTo(DeckActions.createDeck, this.createDeck);
     this.listenTo(DeckActions.deleteAllDecks, this.deleteAllDecks);
@@ -44,14 +47,15 @@ var decksStore = Reflux.createStore({
 
   deleteAllDecks() {
     this._decks = [];
-    this._writeDecks().done();
+    this.emit();
   },
 
   emit() {
+    this._writeDecks().done();
     this.trigger(this._decks);
   },
 
-  cardUpdate(cards) {
+  _recalculateMetaData() {
     let deckMap = {};
     this._decks.forEach((d) => {
       d.resetCounts();
@@ -59,7 +63,7 @@ var decksStore = Reflux.createStore({
     });
 
     let now = new Date();
-    cards.forEach((card) => {
+    this._cards.forEach((card) => {
       if (card.deckID in deckMap) {
         deckMap[card.deckID].totalCards++;
         if (card.dueDate <= now) {
@@ -67,13 +71,17 @@ var decksStore = Reflux.createStore({
         }
       }
     });
+  },
+
+  cardUpdate(cards) {
+    this._cards = cards;
+    this._recalculateMetaData();
     this.emit();
   },
 
   createDeck(deck) {
     this._decks.push(deck);
-    this._writeDecks().done();
-    this.trigger(this._decks);
+    this.emit();
   }
 });
 

@@ -7,6 +7,7 @@ var {
 
 var Reflux = require('reflux');
 var DeckMetaStore = require('./../../stores/DeckMetaStore');
+var CardsStore = require('./../../stores/CardsStore');
 var { DeckActions, CardActions } = require('./../../actions');
 import DeckModel from './../../data/Deck';
 
@@ -25,6 +26,7 @@ var Decks = React.createClass({
   },
 
   componentDidMount() {
+    CardsStore.emit();
     DeckMetaStore.emit();
   },
 
