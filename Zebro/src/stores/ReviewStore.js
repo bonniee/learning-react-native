@@ -68,7 +68,7 @@ export default Reflux.createStore({
     let now = new Date();
     return this._cards.filter((c) => {
       return c.deckID === this._currentDeckID && now >= c.dueDate;
-    });
+    }, this);
   },
 
   _createReviews(cards) {

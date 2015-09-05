@@ -15,7 +15,7 @@ class Card {
     this.back = ob.back;
     this.deckID = ob.deckID;
     this.strength = ob.strength;
-    this.dueDate = ob.dueDate;
+    this.dueDate = new Date(ob.dueDate);
     this.id = ob.id;
   }
 
