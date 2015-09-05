@@ -1,16 +1,37 @@
 import React from 'react-native';
 var {
-  Stylesheet,
+  StyleSheet,
   Text,
   View
 } = React;
 
+import Button from './../Button';
+
 var ViewCard = React.createClass({
+  displayName: 'ViewCard',
+
   propTypes: {
+    onReview: React.PropTypes.func.isRequired,
     answers: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
     correctAnswer: React.PropTypes.string.isRequired,
     prompt: React.PropTypes.string.isRequired
   },
+
+  getInitialState() {
+    return {
+      showingAnswer: false,
+      wasCorrect: null
+    };
+  },
+
+  _selectAnswer(correct) {
+    this.props.onReview(correct);
+    this.setState({
+      showingAnswer: true,
+      wasCorrect: correct
+    });
+  },
+
   _buttons() {
     if (!this.props.answers) {
       return null;
@@ -18,9 +39,15 @@ var ViewCard = React.createClass({
 
     return this.props.answers.map((a) => {
       return (
-        <Text key={a}>
-          {a}
-        </Text>
+        <Button
+          key={a}
+          disabled={this.state.showingAnswer}
+          style={styles.options}
+          onPress={this._selectAnswer.bind(this, a === this.props.correctAnswer)}>
+          <Text>
+            {a}
+          </Text>
+        </Button>
         );
     });
   },
@@ -32,6 +59,12 @@ var ViewCard = React.createClass({
         {buttons}
       </View>
       );
+  }
+});
+
+var styles = StyleSheet.create({
+  options: {
+    backgroundColor: '#FF8888'
   }
 });
 

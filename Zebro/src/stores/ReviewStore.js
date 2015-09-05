@@ -1,7 +1,7 @@
 import Reflux from 'reflux';
 import _ from 'lodash';
 
-import {DeckActions} from './../actions';
+import {DeckActions, CardActions} from './../actions';
 import CardsStore from './CardsStore';
 import DeckMetaStore from './DeckMetaStore';
 
@@ -31,6 +31,7 @@ export default Reflux.createStore({
     // Listeners
     this.listenTo(CardsStore, this.cardUpdate);
     this.listenTo(DeckMetaStore, this.deckMetaUpdate);
+    this.listenTo(CardActions.review, this.onCardReview);
     this.listenToMany(DeckActions);
   },
 
@@ -101,6 +102,10 @@ export default Reflux.createStore({
 
     let reviews = makeReviews('front', 'back').concat(makeReviews('back', 'front'));
     return _.shuffle(reviews);
+  },
+
+  onCardReview() {
+    
   },
 
   onCreateDeck() {

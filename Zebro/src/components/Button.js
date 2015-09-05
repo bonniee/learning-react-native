@@ -2,23 +2,34 @@ var React = require('react-native');
 var {
   StyleSheet,
   View,
-  TouchableHighlight
+  TouchableOpacity
 } = React;
 
 var Button = React.createClass({
+  displayName: 'Button',
+
   propTypes: {
     onPress: React.PropTypes.func.isRequired,
     style: View.propTypes.style,
-    children: React.PropTypes.object
+    children: React.PropTypes.object,
+    disabled: React.PropTypes.bool
+  },
+
+  getDefaultProps() {
+    return {
+      disabled: false
+    };
   },
 
   render() {
+    let opacity = this.props.disabled ? 1 : 0.5;
     return (
-      <TouchableHighlight
+      <TouchableOpacity
+        activeOpacity={opacity}
         onPress={this.props.onPress}
         style={[styles.wideButton, this.props.style]}>
         {this.props.children}
-      </TouchableHighlight>
+      </TouchableOpacity>
       );
   }
 });

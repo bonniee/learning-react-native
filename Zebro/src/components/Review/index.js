@@ -8,10 +8,13 @@ var {
 import _ from 'lodash';
 import Reflux from 'reflux';
 import ReviewStore from './../../stores/ReviewStore';
+import { CardActions } from './../../actions';
 
 import ViewCard from './ViewCard';
 
 var Review = React.createClass({
+  displayName: 'Review',
+
   mixins: [Reflux.connect(ReviewStore, 'reviews')],
 
   propTypes: {
@@ -44,7 +47,9 @@ var Review = React.createClass({
         </Text>
         {
           this.state.reviews && this.state.reviews.length > 0
-          ? <ViewCard {...this.state.reviews[0]}/>
+          ? <ViewCard
+              onReview={this.onReview}
+              {...this.state.reviews[0]}/>
           : null
         }
       </View>

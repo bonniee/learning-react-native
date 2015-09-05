@@ -2,7 +2,6 @@ var React = require('react-native');
 var {
   StyleSheet,
   Text,
-  TouchableHighlight,
   View
 } = React;
 
@@ -27,11 +26,11 @@ var Deck = React.createClass({
     return (
       <View style={styles.deckGroup}>
 
-        <TouchableHighlight style={styles.deckButton} onPress={this._review}>
+        <Button style={styles.deckButton} onPress={this._review}>
           <Text style={styles.deckName}>
             {this.props.deck.name}: {this.props.deck.dueCards} due
           </Text>
-        </TouchableHighlight>
+        </Button>
 
         <Button style={styles.editButton}
           onPress={this._addCards}>
@@ -51,10 +50,9 @@ var styles = StyleSheet.create({
     padding: 10
   },
   deckButton: {
-    justifyContent: 'center',
-    flex: 1,
     backgroundColor: '#66FF66',
-    padding: 5
+    padding: 0,
+    margin: 0
   },
   deckname: {
 
