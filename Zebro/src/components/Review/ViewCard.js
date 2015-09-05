@@ -9,6 +9,7 @@ import Button from './../Button';
 
 var ContinueButton = React.createClass({
   propTypes: {
+    onPress: React.PropTypes.func.isRequired,
     wasCorrect: React.PropTypes.bool.isRequired
   },
   render() {
@@ -28,6 +29,7 @@ var ViewCard = React.createClass({
   displayName: 'ViewCard',
 
   propTypes: {
+    continue: React.PropTypes.func.isRequired,
     onReview: React.PropTypes.func.isRequired,
     answers: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
     correctAnswer: React.PropTypes.string.isRequired,
@@ -39,6 +41,11 @@ var ViewCard = React.createClass({
       showingAnswer: false,
       wasCorrect: null
     };
+  },
+
+  _continue() {
+    this.setState(this.getInitialState());
+    this.props.continue();
   },
 
   _selectAnswer(correct) {
@@ -87,7 +94,7 @@ var ViewCard = React.createClass({
         {buttons}
         {
           this.state.showingAnswer
-          ? <ContinueButton onPress={this._contine}
+          ? <ContinueButton onPress={this._continue}
                             wasCorrect={this.state.wasCorrect}/>
           : null
         }

@@ -104,8 +104,19 @@ export default Reflux.createStore({
     return _.shuffle(reviews);
   },
 
-  onCardReview() {
-    
+  onCardReview(cardID, orientation, correct) {
+    let cardReview = this._cardReviews[cardID];
+    if (orientation === 'front') {
+      cardReview.reviewFront(correct);
+    }
+    else {
+      cardReview.reviewBack(correct);
+    }
+
+    if (cardReview.done()) {
+      let change = cardReview.correct ? 1 : -1;
+      // TODO: persist
+    }
   },
 
   onCreateDeck() {

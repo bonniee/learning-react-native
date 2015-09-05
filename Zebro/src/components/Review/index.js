@@ -24,7 +24,8 @@ var Review = React.createClass({
   getInitialState() {
     return {
       numReviewed: 0,
-      numCorrect: 0
+      numCorrect: 0,
+      currentReview: 0
     }
   },
 
@@ -33,6 +34,13 @@ var Review = React.createClass({
       this.setState({numCorrect: this.state.numCorrect + 1});
     }
     this.setState({numReviewed: this.state.numReviewed + 1});
+  },
+
+  _nextReview() {
+    let newIndex = this.state.currentReview + 1;
+    if (this.state.reviews.length > newIndex) {
+      this.setState({ currentReview: newIndex });
+    }
   },
 
   componentWillMount() {
@@ -49,7 +57,8 @@ var Review = React.createClass({
           this.state.reviews && this.state.reviews.length > 0
           ? <ViewCard
               onReview={this.onReview}
-              {...this.state.reviews[0]}/>
+              continue={this._nextReview}
+              {...this.state.reviews[this.state.currentReview]}/>
           : null
         }
       </View>
