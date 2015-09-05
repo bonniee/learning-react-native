@@ -45,7 +45,7 @@ var decksStore = Reflux.createStore({
   deleteAllDecks() {
     this._decks = [];
     this._writeDecks().done();
-  }
+  },
 
   emit() {
     this.trigger(this._decks);

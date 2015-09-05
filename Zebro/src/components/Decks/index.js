@@ -7,10 +7,11 @@ var {
 
 var Reflux = require('reflux');
 var DeckMetaStore = require('./../../stores/DeckMetaStore');
-var { DeckActions } = require('./../../actions');
+var { DeckActions, CardActions } = require('./../../actions');
 import DeckModel from './../../data/Deck';
 
 var Deck = require('./Deck');
+var Button = require('./../Button');
 
 var DeckCreation = require('./DeckCreation');
 
@@ -53,12 +54,20 @@ var Decks = React.createClass({
     });
   },
 
+  deleteAll() {
+    DeckActions.deleteAllDecks();
+    CardActions.deleteAllCards();
+  },
+
   render() {
     return (
       <View style={styles.container}>
         <Text>Decks</Text>
         {this._getDecks()}
         <DeckCreation newDeck={this._newDeck}/>
+        <Button style={styles.buttons} onPress={this.deleteAll}>
+          <Text>Delete All the Things</Text>
+        </Button>
       </View>
     );
   }
@@ -67,6 +76,9 @@ var Decks = React.createClass({
 var styles = StyleSheet.create({
   container: {
     backgroundColor: '#EEEEDD'
+  },
+  buttons: {
+    backgroundColor: '#FF88FF'
   }
 });
 
