@@ -41,16 +41,16 @@ var Review = React.createClass({
 
   render() {
     console.log('rendering Review');
+    console.log(this.state.currentDeck);
 
-    var question = this.generateQuestion();
-    console.log(question);
+    // var question = this.generateQuestion();
+    // console.log(question);
 
     return (
       <View>
         <Text>
           {this.props.deckID}
         </Text>
-        <ViewCard {...question}/>
       </View>
       );
   }

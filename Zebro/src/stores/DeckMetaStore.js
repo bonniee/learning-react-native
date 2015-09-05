@@ -14,6 +14,7 @@ var decksStore = Reflux.createStore({
     this._loadDecks().done();
     this.listenTo(CardsStore, this.cardUpdate);
     this.listenTo(DeckActions.createDeck, this.createDeck);
+    this.listenTo(DeckActions.deleteAllDecks, this.deleteAllDecks);
   },
 
   async _loadDecks() {
@@ -40,6 +41,11 @@ var decksStore = Reflux.createStore({
       console.error('AsyncStorage error: ', error.message);
     }
   },
+
+  deleteAllDecks() {
+    this._decks = [];
+    this._writeDecks().done();
+  }
 
   emit() {
     this.trigger(this._decks);
