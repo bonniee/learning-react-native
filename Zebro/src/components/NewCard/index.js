@@ -17,7 +17,8 @@ var NewCard = React.createClass({
   propTypes: {
     deck: React.PropTypes.instanceOf(DeckModel),
     quit: React.PropTypes.func.isRequired,
-    nextCard: React.PropTypes.func.isRequired
+    nextCard: React.PropTypes.func.isRequired,
+    review: React.PropTypes.func.isRequired
   },
 
   getInitialState() {
@@ -43,7 +44,7 @@ var NewCard = React.createClass({
   },
 
   _reviewDeck() {
-    // TODO
+    this.props.review(this.props.deck.id);
   },
 
   render() {

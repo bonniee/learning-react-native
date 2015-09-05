@@ -53,6 +53,7 @@ var Zebro = React.createClass({
         createdDeck={this.createdDeck}/>;
     case 'createCards':
       return <NewCard
+        review={this.review}
         quit={this.goHome}
         nextCard={this.createdDeck}
         {...route.data}/>;
