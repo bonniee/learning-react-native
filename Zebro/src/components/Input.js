@@ -8,6 +8,7 @@ var {
 var Input = React.createClass({
   propTypes: {
     onEntry: React.PropTypes.func.isRequired,
+    onChange: React.PropTypes.func,
     style: View.propTypes.style
   },
   getInitialState() {
@@ -25,6 +26,9 @@ var Input = React.createClass({
   },
   _onChange(text) {
     this.setState({text: text});
+    if (this.props.onChange) {
+      this.props.onChange(text);
+    }
   },
   render() {
     return (

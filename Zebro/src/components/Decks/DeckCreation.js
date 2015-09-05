@@ -24,10 +24,19 @@ var EnterDeck = React.createClass({
   propTypes: {
     create: React.PropTypes.func.isRequired
   },
+  getInitialState() {
+    return {
+      text: ''
+    };
+  },
+  _create() {
+    this.props.create(this.state.text);
+  },
   render() {
     return (
       <View style={styles.enterDeck}>
-        <Input onEntry={this.props.create}/>
+        <Input onEntry={this.props.create}
+          onChange={(text) => {this.setState({text});}}/>
         <CreateDeckButton onPress={this._create}/>
       </View>
       );
@@ -44,6 +53,7 @@ export default React.createClass({
     };
   },
   _newDeck(name) {
+    console.log(`newDeck with name ${name}`);
     this.props.newDeck(name);
     this.setState(this.getInitialState());
   },
