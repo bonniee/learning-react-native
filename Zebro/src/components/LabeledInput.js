@@ -14,7 +14,7 @@ var LabeledInput = React.createClass({
     onChange: React.PropTypes.func,
     inputStyle: View.propTypes.style,
     label: React.PropTypes.string.isRequired,
-    clearOnSubmit: React.PropTypes.func
+    clearOnSubmit: React.PropTypes.bool
   },
   render() {
     return (
