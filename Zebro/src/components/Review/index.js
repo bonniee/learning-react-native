@@ -12,45 +12,41 @@ import ReviewStore from './../../stores/ReviewStore';
 import ViewCard from './ViewCard';
 
 var Review = React.createClass({
-  mixins: [Reflux.connect(ReviewStore, 'currentDeck')],
+  mixins: [Reflux.connect(ReviewStore, 'reviews')],
 
   propTypes: {
     deckID: React.PropTypes.string.isRequired
+  },
+
+  getInitialState() {
+    return {
+      numReviewed: 0,
+      numCorrect: 0
+    }
+  },
+
+  onReview(correct) {
+    if (correct) {
+      this.setState({numCorrect: this.state.numCorrect + 1});
+    }
+    this.setState({numReviewed: this.state.numReviewed + 1});
   },
 
   componentWillMount() {
     ReviewStore.emit();
   },
 
-  generateQuestion() {
-    if (!this.state.currentDeck || !this.state.currentDeck.cards) {
-      return {};
-    }
-
-    // TODO: support recall AND recognition modes
-    var card = this.state.currentDeck.cards[0];
-    var backs = _.sample(_.pluck(this.state.currentDeck.cards, 'back'), 4);
-
-    return {
-      answers: backs,
-      correctAnswer: card.back,
-      prompt: card.front
-    };
-
-  },
-
   render() {
-    console.log('rendering Review');
-    console.log(this.state.currentDeck);
-
-    // var question = this.generateQuestion();
-    // console.log(question);
-
     return (
       <View>
         <Text>
           {this.props.deckID}
         </Text>
+        {
+          this.state.reviews && this.state.reviews.length > 0
+          ? <ViewCard {...this.state.reviews[0]}/>
+          : null
+        }
       </View>
       );
   }
