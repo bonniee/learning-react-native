@@ -12,6 +12,7 @@ import { CardActions } from './../../actions';
 
 import ViewCard from './ViewCard';
 import NormalText from './../NormalText';
+import HeadingText from './../HeadingText';
 
 var Review = React.createClass({
   displayName: 'Review',
@@ -38,28 +39,46 @@ var Review = React.createClass({
   },
 
   _nextReview() {
-    let newIndex = this.state.currentReview + 1;
-    if (this.state.reviews.length > newIndex) {
-      this.setState({ currentReview: newIndex });
-    }
+    this.setState({
+      currentReview: this.state.currentReview + 1
+    });
   },
 
   componentWillMount() {
     ReviewStore.emit();
   },
 
+  _contents() {
+    if (!this.state.reviews || this.state.reviews.length === 0) {
+      return null;
+    }
+
+    if (this.state.currentReview < this.state.reviews.length) {
+      return (
+        <ViewCard
+          onReview={this.onReview}
+          continue={this._nextReview}
+          {...this.state.reviews[this.state.currentReview]}
+          />
+        );
+    }
+
+    else {
+      let percent = this.state.numCorrect / this.state.numReviewed;
+      return (
+        <View>
+          <HeadingText>Reviews cleared!</HeadingText>
+          <NormalText>{Math.round(percent * 100)}% correct</NormalText>
+        </View>
+        );
+    }
+  },
+
   render() {
     return (
       <View>
         <NormalText>{this.state.numReviewed}</NormalText>
-        {
-          this.state.reviews && this.state.reviews.length > 0
-          ? <ViewCard
-              onReview={this.onReview}
-              continue={this._nextReview}
-              {...this.state.reviews[this.state.currentReview]}/>
-          : null
-        }
+        {this._contents()}
       </View>
       );
   }
