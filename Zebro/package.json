@@ -8,6 +8,7 @@
   "dependencies": {
     "lodash": "^3.10.1",
     "md5": "^2.0.0",
+    "moment": "^2.10.6",
     "react": "^0.13.3",
     "react-native": "^0.10.1",
     "react-native-sqlite": "0.0.12",

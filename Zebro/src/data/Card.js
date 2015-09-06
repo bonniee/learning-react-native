@@ -1,4 +1,5 @@
-var md5 = require('md5');
+import md5 from 'md5';
+import moment from 'moment';
 
 class Card {
   constructor(front, back, deckID) {
@@ -6,7 +7,7 @@ class Card {
     this.back = back;
     this.deckID = deckID;
     this.strength = 0;
-    this.dueDate = new Date();
+    this.dueDate = moment();
     this.id = md5(front + back + deckID);
   }
 
@@ -15,7 +16,7 @@ class Card {
     this.back = ob.back;
     this.deckID = ob.deckID;
     this.strength = ob.strength;
-    this.dueDate = new Date(ob.dueDate);
+    this.dueDate = moment(ob.dueDate);
     this.id = ob.id;
   }
 

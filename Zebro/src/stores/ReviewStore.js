@@ -1,5 +1,6 @@
 import Reflux from 'reflux';
 import _ from 'lodash';
+import moment from 'moment';
 
 import {DeckActions, CardActions} from './../actions';
 import CardsStore from './CardsStore';
@@ -80,7 +81,7 @@ export default Reflux.createStore({
   },
 
   _qualifyingCards() {
-    let now = new Date();
+    let now = moment();
     return this._cards.filter((c) => {
       return c.deckID === this._currentDeckID && now >= c.dueDate;
     }, this);
@@ -92,6 +93,7 @@ export default Reflux.createStore({
         let others = cards.filter((other) => {
           return other.id !== card.id;
         });
+
         return {
           orientation: sideOne,
           cardID: card.id,
@@ -118,7 +120,12 @@ export default Reflux.createStore({
 
     if (cardReview.done()) {
       let change = cardReview.correct ? 1 : -1;
-      // TODO: persist
+      let card = cardReview.card;
+
+      card.strength = card.strength + change;
+      if (card.strength < 0) { card.strength = 0; }
+      card.dueDate = CardReview.newDueDate(card.strength);  
+      CardActions.editCard(card);
     }
   },
 

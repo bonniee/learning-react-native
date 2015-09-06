@@ -1,4 +1,5 @@
 import Reflux from 'reflux';
+import moment from 'moment';
 
 import {DeckActions} from './../actions';
 import Deck from './../data/Deck';
@@ -62,7 +63,7 @@ var decksStore = Reflux.createStore({
       deckMap[d.id] = d;
     });
 
-    let now = new Date();
+    let now = moment();
     this._cards.forEach((card) => {
       if (card.deckID in deckMap) {
         deckMap[card.deckID].totalCards++;

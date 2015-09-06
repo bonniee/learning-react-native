@@ -1,6 +1,7 @@
 import Card from './../data/Card';
 
 import Reflux from 'reflux';
+import _ from 'lodash';
 import {CardActions} from './../actions';
 
 import React from 'react-native';
@@ -15,6 +16,7 @@ var cardsStore = Reflux.createStore({
     this._loadCards().done();
     this.listenTo(CardActions.createCard, this.createCard);
     this.listenTo(CardActions.deleteAllCards, this.deleteAllCards);
+    this.listenTo(CardActions.editCard, this.editCard);
     this._cards = [];
     this.emit();
   },
@@ -38,6 +40,7 @@ var cardsStore = Reflux.createStore({
 
   async _writeCards() {
     try {
+      console.info(this._cards);
       await AsyncStorage.setItem(CARD_KEY, JSON.stringify(this._cards));
     } catch (error) {
       console.error('AsyncStorage error: ', error.message);
@@ -47,6 +50,16 @@ var cardsStore = Reflux.createStore({
   deleteAllCards() {
     this._cards = [];
     this.emit();
+  },
+
+  editCard(newCard) {
+    // Assume newCard.id corresponds to an existing card.
+    let match = _.find(this._cards, (card) => {
+      return card.id === newCard.id;
+    });
+    match.setFromObject(newCard);
+    this.emit();
+
   },
 
   createCard(front, back, deckID) {

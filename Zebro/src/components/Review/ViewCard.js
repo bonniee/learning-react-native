@@ -6,6 +6,9 @@ var {
 
 import Button from './../Button';
 import NormalText from './../NormalText';
+import HeadingText from './../HeadingText';
+
+import { CardActions } from './../../actions';
 
 var ContinueButton = React.createClass({
   propTypes: {
@@ -31,6 +34,8 @@ var ViewCard = React.createClass({
   propTypes: {
     continue: React.PropTypes.func.isRequired,
     onReview: React.PropTypes.func.isRequired,
+    orientation: React.PropTypes.string.isRequired,
+    cardID: React.PropTypes.string.isRequired,
     answers: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
     correctAnswer: React.PropTypes.string.isRequired,
     prompt: React.PropTypes.string.isRequired
@@ -54,10 +59,10 @@ var ViewCard = React.createClass({
       showingAnswer: true,
       wasCorrect: correct
     });
+    CardActions.review(this.props.cardID, this.props.orientation, correct)
   },
 
   _buttons() {
-    console.log('invoking _buttons');
     if (!this.props.answers) {
       return null;
     }
@@ -79,9 +84,9 @@ var ViewCard = React.createClass({
           disabled={this.state.showingAnswer}
           style={buttonStyle}
           onPress={this._selectAnswer.bind(this, a === this.props.correctAnswer)}>
-          <Text>
+          <NormalText>
             {a}
-          </Text>
+          </NormalText>
         </Button>
         );
     });
@@ -90,9 +95,9 @@ var ViewCard = React.createClass({
     var buttons = this._buttons();
     return (
       <View>
-        <Text style={styles.prompt}>
+        <HeadingText>
           {this.props.prompt}
-        </Text>
+        </HeadingText>
         {buttons}
         {
           this.state.showingAnswer
@@ -119,10 +124,6 @@ var styles = StyleSheet.create({
   wrongAnswer: {
     borderColor: '#FF0000',
     borderWidth: 4
-  },
-  prompt: {
-    fontSize: 30,
-    alignSelf: 'center'
   }
 });
 
