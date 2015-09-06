@@ -65,6 +65,7 @@ class Review {
       default:
         dueDate.add(3, 'year');
     }
+    return dueDate;
   }
 }
 
