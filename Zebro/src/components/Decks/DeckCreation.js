@@ -1,12 +1,12 @@
-var React = require('react-native');
+import React from 'react-native';
 var {
   StyleSheet,
   View
 } = React;
 
-var Button = require('./../Button');
-var NormalText = require('./../NormalText');
-var Input = require('./../Input');
+import Button from './../Button';
+import NormalText from './../NormalText';
+import Input from './../Input';
 
 var CreateDeckButton = React.createClass({
   render() {

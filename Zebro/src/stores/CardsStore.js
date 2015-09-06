@@ -73,4 +73,4 @@ var cardsStore = Reflux.createStore({
   }
 });
 
-module.exports = cardsStore;
+export default cardsStore;

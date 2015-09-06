@@ -1,14 +1,14 @@
-var React = require('react-native');
+import React from 'react-native';
 var {
   StyleSheet,
   Text,
   View
 } = React;
 
-var DeckModel = require('./../../data/Deck');
+import DeckModel from './../../data/Deck';
 
-var Button = require('./../Button');
-var NormalText = require('./../NormalText');
+import Button from './../Button';
+import NormalText from './../NormalText';
 import fonts from './../../styles/fonts';
 
 var Deck = React.createClass({

@@ -1,23 +1,23 @@
-var React = require('react-native');
+import React from 'react-native';
 var {
   StyleSheet,
   View
 } = React;
 
-var Reflux = require('reflux');
-var DeckMetaStore = require('./../../stores/DeckMetaStore');
-var CardsStore = require('./../../stores/CardsStore');
-var { DeckActions, CardActions } = require('./../../actions');
+import Reflux from 'reflux';
+import DeckMetaStore from './../../stores/DeckMetaStore';
+import CardsStore from './../../stores/CardsStore';
+import { DeckActions, CardActions } from './../../actions';
 import DeckModel from './../../data/Deck';
 
 import fonts from './../../styles/fonts';
 
-var Deck = require('./Deck');
-var Button = require('./../Button');
-var NormalText = require('./../NormalText');
-var HeadingText = require('./../HeadingText');
+import Deck from './Deck';
+import Button from './../Button';
+import NormalText from './../NormalText';
+import HeadingText from './../HeadingText';
 
-var DeckCreation = require('./DeckCreation');
+import DeckCreation from './DeckCreation';
 
 var Decks = React.createClass({
   mixins: [Reflux.listenTo(DeckMetaStore, 'onDecksChange')],

@@ -1,4 +1,4 @@
-var React = require('react-native');
+import React from 'react-native';
 var {
   AppRegistry,
   StyleSheet,
@@ -7,14 +7,15 @@ var {
 } = React;
 
 import Reflux from 'reflux';
-var {DeckActions} = require('./src/actions');
 
-var Decks = require('./src/components/Decks');
-var Review = require('./src/components/Review');
-var NewCard = require('./src/components/NewCard');
+import {DeckActions} from './src/actions';
 
-var CardsStore = require('./src/stores/CardsStore');
-var DeckMetaStore = require('./src/stores/DeckMetaStore');
+import Decks from './src/components/Decks';
+import Review from './src/components/Review';
+import NewCard from './src/components/NewCard';
+
+import CardsStore from './src/stores/CardsStore';
+import DeckMetaStore from './src/stores/DeckMetaStore';
 
 var Zebro = React.createClass({
   mixins: [Reflux.connect(DeckMetaStore, 'deckMetas')],

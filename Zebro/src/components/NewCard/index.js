@@ -1,4 +1,4 @@
-var React = require('react-native');
+import React from 'react-native';
 var {
   StyleSheet,
   View
@@ -9,8 +9,8 @@ import { CardActions } from './../../actions';
 
 import DeckModel from './../../data/Deck';
 
-var Button = require('../Button');
-var LabeledInput = require('../LabeledInput');
+import Button from '../Button';
+import LabeledInput from '../LabeledInput';
 import NormalText from '../NormalText';
 
 var NewCard = React.createClass({

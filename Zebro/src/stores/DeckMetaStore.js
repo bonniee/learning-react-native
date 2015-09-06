@@ -7,7 +7,7 @@ import Deck from './../data/Deck';
 import { AsyncStorage } from 'react-native';
 const DECK_KEY = 'zebreto-decks';
 
-var CardsStore = require('./CardsStore');
+import CardsStore from './CardsStore';
 
 var decksStore = Reflux.createStore({
   init() {

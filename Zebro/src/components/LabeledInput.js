@@ -1,12 +1,12 @@
-var React = require('react-native');
+import React from 'react-native';
 
 var {
   StyleSheet,
   View
 } = React;
 
-var Input = require('./Input');
-var NormalText = require('./NormalText');
+import Input from './Input';
+import NormalText from './NormalText';
 
 var LabeledInput = React.createClass({
   propTypes: {
