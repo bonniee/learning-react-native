@@ -1,11 +1,11 @@
 import React from 'react-native';
 var {
   StyleSheet,
-  Text,
   View
 } = React;
 
 import Button from './../Button';
+import NormalText from './../NormalText';
 
 var ContinueButton = React.createClass({
   propTypes: {
@@ -19,7 +19,7 @@ var ContinueButton = React.createClass({
       ;
     return (
       <Button onPress={this.props.onPress} style={styles.continueButton}>
-        <Text>{text}</Text>
+        <NormalText>{text}</NormalText>
       </Button>
       );
   }

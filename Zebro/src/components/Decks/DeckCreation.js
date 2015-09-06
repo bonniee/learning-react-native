@@ -1,11 +1,11 @@
 var React = require('react-native');
 var {
   StyleSheet,
-  Text,
   View
 } = React;
 
 var Button = require('./../Button');
+var NormalText = require('./../NormalText');
 var Input = require('./../Input');
 
 var CreateDeckButton = React.createClass({
@@ -14,7 +14,7 @@ var CreateDeckButton = React.createClass({
       <Button
         style={styles.createDeck}
         onPress={this.props.onPress}>
-        <Text>Create Deck</Text>
+        <NormalText>Create Deck</NormalText>
       </Button>
       );
   }

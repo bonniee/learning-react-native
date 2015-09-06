@@ -1,7 +1,6 @@
 var React = require('react-native');
 var {
   StyleSheet,
-  Text,
   View
 } = React;
 
@@ -16,6 +15,7 @@ import fonts from './../../styles/fonts';
 var Deck = require('./Deck');
 var Button = require('./../Button');
 var NormalText = require('./../NormalText');
+var HeadingText = require('./../HeadingText');
 
 var DeckCreation = require('./DeckCreation');
 
@@ -68,7 +68,7 @@ var Decks = React.createClass({
   render() {
     return (
       <View style={styles.container}>
-        <Text style={[fonts.big, styles.heading]}>Zebreto</Text>
+        <HeadingText style={styles.heading}>Zebreto</HeadingText>
         {this._getDecks()}
         <DeckCreation newDeck={this._newDeck}/>
         <Button style={styles.buttons} onPress={this.deleteAll}>

@@ -1,8 +1,7 @@
 var React = require('react-native');
 var {
   StyleSheet,
-  View,
-  Text
+  View
 } = React;
 
 import Reflux from 'reflux';
@@ -12,6 +11,7 @@ import DeckModel from './../../data/Deck';
 
 var Button = require('../Button');
 var LabeledInput = require('../LabeledInput');
+import NormalText from '../NormalText';
 
 var NewCard = React.createClass({
   propTypes: {
@@ -64,18 +64,18 @@ var NewCard = React.createClass({
 
         <Button style={styles.createButton}
           onPress={this._createCard}>
-          <Text>Create Card</Text>
+          <NormalText>Create Card</NormalText>
         </Button>
 
         <View style={styles.buttonRow}>
           <Button style={styles.createButton}
             onPress={this.props.quit}>
-            <Text>Done</Text>
+            <NormalText>Done</NormalText>
           </Button>
 
           <Button style={styles.createButton}
             onPress={this._reviewDeck}>
-            <Text>Review Deck</Text>
+            <NormalText>Review Deck</NormalText>
           </Button>
         </View>
 

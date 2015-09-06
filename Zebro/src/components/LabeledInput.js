@@ -2,11 +2,11 @@ var React = require('react-native');
 
 var {
   StyleSheet,
-  View,
-  Text
+  View
 } = React;
 
 var Input = require('./Input');
+var NormalText = require('./NormalText');
 
 var LabeledInput = React.createClass({
   propTypes: {
@@ -19,9 +19,9 @@ var LabeledInput = React.createClass({
   render() {
     return (
       <View style={styles.wrapper}>
-        <Text style={styles.label}>
+        <NormalText style={styles.label}>
           {this.props.label}:
-        </Text>
+        </NormalText>
         <Input
           onEntry={this.props.onEntry}
           onChange={this.props.onChange}
