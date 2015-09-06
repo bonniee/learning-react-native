@@ -11,6 +11,7 @@ import ReviewStore from './../../stores/ReviewStore';
 import { CardActions } from './../../actions';
 
 import ViewCard from './ViewCard';
+import NormalText from './../NormalText';
 
 var Review = React.createClass({
   displayName: 'Review',
@@ -50,6 +51,7 @@ var Review = React.createClass({
   render() {
     return (
       <View>
+        <NormalText>{this.state.numReviewed}</NormalText>
         {
           this.state.reviews && this.state.reviews.length > 0
           ? <ViewCard

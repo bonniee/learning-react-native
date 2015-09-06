@@ -77,7 +77,6 @@ export default Reflux.createStore({
 
   cardUpdate(cards) {
     this._cards = cards;
-    this._recalculate();
   },
 
   _qualifyingCards() {
