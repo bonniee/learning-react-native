@@ -10,15 +10,17 @@ import HeadingText from './../HeadingText';
 
 import { CardActions } from './../../actions';
 
+import colors from './../../styles/colors';
+
 var ContinueButton = React.createClass({
   propTypes: {
     onPress: React.PropTypes.func.isRequired,
     wasCorrect: React.PropTypes.bool.isRequired
   },
   render() {
-    text = this.props.wasCorrect
-      ? 'Correct!'
-      : 'Oops, not quite.'
+    let text = this.props.wasCorrect
+      ? 'Correct! Next card?'
+      : 'Oops, not quite. Next card?'
       ;
     return (
       <Button onPress={this.props.onPress} style={styles.continueButton}>
@@ -33,6 +35,7 @@ var ViewCard = React.createClass({
 
   propTypes: {
     continue: React.PropTypes.func.isRequired,
+    quit: React.PropTypes.func.isRequired,
     onReview: React.PropTypes.func.isRequired,
     orientation: React.PropTypes.string.isRequired,
     cardID: React.PropTypes.string.isRequired,
@@ -103,7 +106,9 @@ var ViewCard = React.createClass({
           this.state.showingAnswer
           ? <ContinueButton onPress={this._continue}
                             wasCorrect={this.state.wasCorrect}/>
-          : null
+          : <Button onPress={this.props.quit} style={styles.continueButton}>
+              <NormalText>Stop Reviewing</NormalText>
+            </Button>
         }
       </View>
       );
@@ -112,18 +117,16 @@ var ViewCard = React.createClass({
 
 var styles = StyleSheet.create({
   options: {
-    backgroundColor: '#AAAAAA'
+    backgroundColor: '#FFFFFF'
   },
   continueButton: {
-    backgroundColor: '#DDDDFF'
+    backgroundColor: colors.tan
   },
   rightAnswer: {
-    borderColor: '#00FF00',
-    borderWidth: 4
+    backgroundColor: colors.green
   },
   wrongAnswer: {
-    borderColor: '#FF0000',
-    borderWidth: 4
+    backgroundColor: colors.pink
   }
 });
 

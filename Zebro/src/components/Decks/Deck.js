@@ -48,7 +48,8 @@ var styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'stretch',
-    padding: 10
+    padding: 10,
+    marginBottom: 5
   },
   deckButton: {
     backgroundColor: colors.pink,

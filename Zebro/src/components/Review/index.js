@@ -1,18 +1,18 @@
 import React from 'react-native';
 var {
   StyleSheet,
-  View,
-  Text
+  View
 } = React;
 
-import _ from 'lodash';
 import Reflux from 'reflux';
 import ReviewStore from './../../stores/ReviewStore';
-import { CardActions } from './../../actions';
 
 import ViewCard from './ViewCard';
 import NormalText from './../NormalText';
 import HeadingText from './../HeadingText';
+import Button from './../Button';
+
+import colors from './../../styles/colors';
 
 var Review = React.createClass({
   displayName: 'Review',
@@ -20,7 +20,8 @@ var Review = React.createClass({
   mixins: [Reflux.connect(ReviewStore, 'reviews')],
 
   propTypes: {
-    deckID: React.PropTypes.string.isRequired
+    deckID: React.PropTypes.string.isRequired,
+    quit: React.PropTypes.func.isRequired
   },
 
   getInitialState() {
@@ -28,7 +29,7 @@ var Review = React.createClass({
       numReviewed: 0,
       numCorrect: 0,
       currentReview: 0
-    }
+    };
   },
 
   onReview(correct) {
@@ -58,17 +59,24 @@ var Review = React.createClass({
         <ViewCard
           onReview={this.onReview}
           continue={this._nextReview}
+          quit={this.props.quit}
           {...this.state.reviews[this.state.currentReview]}
           />
         );
     }
-
     else {
       let percent = this.state.numCorrect / this.state.numReviewed;
       return (
-        <View>
-          <HeadingText>Reviews cleared!</HeadingText>
-          <NormalText>{Math.round(percent * 100)}% correct</NormalText>
+        <View style={styles.done}>
+          <HeadingText style={styles.alternate}>
+            Reviews cleared!
+          </HeadingText>
+          <NormalText style={styles.alternate}>
+            {Math.round(percent * 100)}% correct
+          </NormalText>
+          <Button onPress={this.props.quit} style={styles.doneButton}>
+            <NormalText>Done</NormalText>
+          </Button>
         </View>
         );
     }
@@ -76,8 +84,7 @@ var Review = React.createClass({
 
   render() {
     return (
-      <View>
-        <NormalText>{this.state.numReviewed}</NormalText>
+      <View style={styles.container}>
         {this._contents()}
       </View>
       );
@@ -85,7 +92,20 @@ var Review = React.createClass({
 });
 
 var styles = StyleSheet.create({
-
+  container: {
+    backgroundColor: colors.blue,
+    flex: 1,
+    paddingTop: 24
+  },
+  alternate: {
+    color: '#FFFFFF'
+  },
+  done: {
+    alignItems: 'center'
+  },
+  doneButton: {
+    backgroundColor: colors.tan
+  }
 });
 
 export default Review;

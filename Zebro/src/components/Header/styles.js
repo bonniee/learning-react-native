@@ -8,7 +8,8 @@ export default StyleSheet.create({
     padding: 5
   },
   logo: {
-    height: 50,
-    width: 50
+    marginRight: 8,
+    height: 40,
+    width: 40
   }
 });
