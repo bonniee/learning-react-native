@@ -5,6 +5,9 @@ var {
   View
 } = React;
 
+import colors from './../styles/colors';
+import fonts from './../styles/fonts';
+
 var Input = React.createClass({
   propTypes: {
     onEntry: React.PropTypes.func.isRequired,
@@ -40,7 +43,7 @@ var Input = React.createClass({
   },
   render() {
     return (
-      <TextInput style={[styles.nameField, styles.wideButton, this.props.style]}
+      <TextInput style={[styles.nameField, styles.wideButton, fonts.normal, this.props.style]}
         ref="newDeckInput"
         multiline={false}
         value={this.state.text}
@@ -55,16 +58,13 @@ export default Input;
 
 var styles = StyleSheet.create({
   nameField: {
-    backgroundColor: '#FF7777',
-    height: 40
+    backgroundColor: colors.tan,
+    height: 60
   },
   wideButton: {
     justifyContent: 'center',
     flex: 1,
     padding: 10,
     margin: 10
-  },
-  createDeck: {
-    backgroundColor: '#7777FF'
   }
 });

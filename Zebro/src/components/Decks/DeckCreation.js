@@ -8,6 +8,8 @@ import Button from './../Button';
 import NormalText from './../NormalText';
 import Input from './../Input';
 
+import colors from './../../styles/colors';
+
 var CreateDeckButton = React.createClass({
   render() {
     return (
@@ -70,7 +72,7 @@ export default React.createClass({
 
 var styles = StyleSheet.create({
   nameField: {
-    backgroundColor: '#FF7777',
+    backgroundColor: colors.tan,
     height: 40
   },
   wideButton: {
@@ -80,6 +82,6 @@ var styles = StyleSheet.create({
     margin: 10
   },
   createDeck: {
-    backgroundColor: '#7777FF'
+    backgroundColor: colors.green
   }
 });

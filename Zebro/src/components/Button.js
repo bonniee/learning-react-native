@@ -5,6 +5,8 @@ var {
   TouchableOpacity
 } = React;
 
+import colors from './../styles/colors';
+
 var Button = React.createClass({
   displayName: 'Button',
 
@@ -42,6 +44,7 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
     padding: 10,
-    margin: 10
+    margin: 10,
+    backgroundColor: colors.pink
   }
 });

@@ -4,7 +4,6 @@ var {
   View
 } = React;
 
-import Reflux from 'reflux';
 import { CardActions } from './../../actions';
 
 import DeckModel from './../../data/Deck';
@@ -12,6 +11,8 @@ import DeckModel from './../../data/Deck';
 import Button from '../Button';
 import LabeledInput from '../LabeledInput';
 import NormalText from '../NormalText';
+
+import colors from './../../styles/colors';
 
 var NewCard = React.createClass({
   propTypes: {
@@ -68,12 +69,12 @@ var NewCard = React.createClass({
         </Button>
 
         <View style={styles.buttonRow}>
-          <Button style={styles.createButton}
+          <Button style={styles.secondaryButton}
             onPress={this.props.quit}>
             <NormalText>Done</NormalText>
           </Button>
 
-          <Button style={styles.createButton}
+          <Button style={styles.secondaryButton}
             onPress={this._reviewDeck}>
             <NormalText>Review Deck</NormalText>
           </Button>
@@ -86,7 +87,10 @@ var NewCard = React.createClass({
 
 var styles = StyleSheet.create({
   createButton: {
-    backgroundColor: '#88FFFF'
+    backgroundColor: colors.green
+  },
+  secondaryButton: {
+    backgroundColor: colors.blue
   },
   buttonRow: {
     flexDirection: 'row'

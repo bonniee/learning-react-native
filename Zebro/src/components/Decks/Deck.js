@@ -9,6 +9,8 @@ import DeckModel from './../../data/Deck';
 import Button from './../Button';
 import NormalText from './../NormalText';
 
+import colors from './../../styles/colors';
+
 var Deck = React.createClass({
   displayName: 'Deck',
   propTypes: {
@@ -34,7 +36,7 @@ var Deck = React.createClass({
 
         <Button style={styles.editButton}
           onPress={this._addCards}>
-          <NormalText>Add</NormalText>
+          <NormalText>+</NormalText>
         </Button>
       </View>
       );
@@ -45,21 +47,24 @@ var styles = StyleSheet.create({
   deckGroup: {
     flex: 1,
     flexDirection: 'row',
-    height: 60,
     alignItems: 'stretch',
     padding: 10
   },
   deckButton: {
-    backgroundColor: '#66FF66',
-    padding: 0,
-    margin: 0
+    backgroundColor: colors.pink,
+    padding: 10,
+    margin: 0,
+    flex: 1
   },
   editButton: {
     width: 60,
-    backgroundColor: '#00ffff',
+    backgroundColor: colors.pink2,
     justifyContent: 'center',
     alignItems: 'center',
+    alignSelf: 'center',
     padding: 0,
+    paddingTop: 10,
+    paddingBottom: 10,
     margin: 0,
     flex: 0
   }

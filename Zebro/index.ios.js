@@ -85,7 +85,6 @@ var Zebro = React.createClass({
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5FCFF',
     marginTop: 30
   }
 });

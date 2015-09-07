@@ -13,7 +13,6 @@ import DeckModel from './../../data/Deck';
 import Deck from './Deck';
 import Button from './../Button';
 import NormalText from './../NormalText';
-import HeadingText from './../HeadingText';
 
 import DeckCreation from './DeckCreation';
 
@@ -75,24 +74,17 @@ var Decks = React.createClass({
       <View style={styles.container}>
         {this._getDecks()}
         <DeckCreation newDeck={this._newDeck}/>
-        <Button style={styles.buttons} onPress={this.deleteAll}>
+        {/*
+        <Button onPress={this.deleteAll}>
           <NormalText>Delete All the Things</NormalText>
         </Button>
+        */}
       </View>
     );
   }
 });
 
 var styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#EEEEDD'
-  },
-  buttons: {
-    backgroundColor: '#FF88FF'
-  },
-  heading: {
-    padding: 10
-  }
 });
 
 module.exports = Decks;
