@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "Zebro.app"
-               BlueprintName = "Zebro"
-               ReferencedContainer = "container:Zebro.xcodeproj">
+               BuildableName = "Zebreto.app"
+               BlueprintName = "Zebreto"
+               ReferencedContainer = "container:Zebreto.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "ZebroTests.xctest"
-               BlueprintName = "ZebroTests"
-               ReferencedContainer = "container:Zebro.xcodeproj">
+               BuildableName = "ZebretoTests.xctest"
+               BlueprintName = "ZebretoTests"
+               ReferencedContainer = "container:Zebreto.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "ZebroTests.xctest"
-               BlueprintName = "ZebroTests"
-               ReferencedContainer = "container:Zebro.xcodeproj">
+               BuildableName = "ZebretoTests.xctest"
+               BlueprintName = "ZebretoTests"
+               ReferencedContainer = "container:Zebreto.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Zebro.app"
-            BlueprintName = "Zebro"
-            ReferencedContainer = "container:Zebro.xcodeproj">
+            BuildableName = "Zebreto.app"
+            BlueprintName = "Zebreto"
+            ReferencedContainer = "container:Zebreto.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -77,9 +77,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Zebro.app"
-            BlueprintName = "Zebro"
-            ReferencedContainer = "container:Zebro.xcodeproj">
+            BuildableName = "Zebreto.app"
+            BlueprintName = "Zebreto"
+            ReferencedContainer = "container:Zebreto.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -96,9 +96,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Zebro.app"
-            BlueprintName = "Zebro"
-            ReferencedContainer = "container:Zebro.xcodeproj">
+            BuildableName = "Zebreto.app"
+            BlueprintName = "Zebreto"
+            ReferencedContainer = "container:Zebreto.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
