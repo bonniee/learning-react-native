@@ -13,6 +13,7 @@ import {DeckActions} from './src/actions';
 import Decks from './src/components/Decks';
 import Review from './src/components/Review';
 import NewCard from './src/components/NewCard';
+import Heading from './src/components/Header';
 
 import CardsStore from './src/stores/CardsStore';
 import DeckMetaStore from './src/stores/DeckMetaStore';
@@ -71,6 +72,7 @@ var Zebro = React.createClass({
   render() {
     return (
       <View style={styles.container}>
+        <Heading/>
         <Navigator
           ref='navigator'
           initialRoute={{name: 'decks'}}

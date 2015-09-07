@@ -73,7 +73,6 @@ var Decks = React.createClass({
   render() {
     return (
       <View style={styles.container}>
-        <HeadingText style={styles.heading}>Zebreto</HeadingText>
         {this._getDecks()}
         <DeckCreation newDeck={this._newDeck}/>
         <Button style={styles.buttons} onPress={this.deleteAll}>
