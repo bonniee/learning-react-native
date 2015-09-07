@@ -231,7 +231,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* Zebro */ = {
+		13B07FAE1A68108700A75B9A /* Zebreto */ = {
 			isa = PBXGroup;
 			children = (
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -241,6 +241,7 @@
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
+			name = Zebreto;
 			path = Zebro;
 			sourceTree = "<group>";
 		};
@@ -289,7 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				FAE6DE7B1B98E33D00AE94E7 /* libsqlite3.dylib */,
-				13B07FAE1A68108700A75B9A /* Zebro */,
+				13B07FAE1A68108700A75B9A /* Zebreto */,
 				00E356EF1AD99517003FC87E /* ZebroTests */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
