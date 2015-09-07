@@ -41,7 +41,6 @@ var cardsStore = Reflux.createStore({
 
   async _writeCards() {
     try {
-      console.info(this._cards);
       await AsyncStorage.setItem(CARD_KEY, JSON.stringify(this._cards));
     }
     catch (error) {

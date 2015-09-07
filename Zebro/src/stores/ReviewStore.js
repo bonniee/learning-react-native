@@ -33,7 +33,8 @@ export default Reflux.createStore({
     this.listenTo(CardsStore, this.cardUpdate);
     this.listenTo(DeckMetaStore, this.deckMetaUpdate);
     this.listenTo(CardActions.review, this.onCardReview);
-    this.listenToMany(DeckActions);
+
+    this.listenTo(DeckActions.reviewDeck, this.onReviewDeck);
   },
 
   emit() {
@@ -126,14 +127,6 @@ export default Reflux.createStore({
       card.dueDate = CardReview.newDueDate(card.strength);
       CardActions.editCard(card);
     }
-  },
-
-  onCreateDeck() {
-    console.log('onCreateDeck');
-  },
-
-  onDeleteDeck() {
-    console.log('onDeleteDeck');
   },
 
   onReviewDeck(deckID) {
