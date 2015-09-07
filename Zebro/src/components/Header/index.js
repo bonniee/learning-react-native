@@ -1,7 +1,8 @@
 import React from 'react-native';
 var {
   Text,
-  View
+  View,
+  Image
 } = React;
 
 import styles from './styles';
@@ -11,7 +12,8 @@ export default React.createClass({
   displayName: 'Header',
   render() {
     return (
-      <View>
+      <View style={styles.header}>
+        <Image source={require('image!iTunesArtwork')} style={styles.logo}/>
         <Text style={fonts.big}>ZEBRETO</Text>
       </View>
       );
