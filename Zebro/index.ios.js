@@ -18,6 +18,8 @@ import CardsStore from './src/stores/CardsStore';
 import DeckMetaStore from './src/stores/DeckMetaStore';
 
 var Zebro = React.createClass({
+  displayName: 'Zebreto',
+
   mixins: [Reflux.connect(DeckMetaStore, 'deckMetas')],
 
   componentWillMount() {

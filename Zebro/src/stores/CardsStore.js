@@ -33,7 +33,8 @@ var cardsStore = Reflux.createStore({
       else {
         console.info(`${CARD_KEY} not found on disk.`);
       }
-    } catch (error) {
+    }
+    catch (error) {
       console.error('AsyncStorage error: ', error.message);
     }
   },
@@ -42,7 +43,8 @@ var cardsStore = Reflux.createStore({
     try {
       console.info(this._cards);
       await AsyncStorage.setItem(CARD_KEY, JSON.stringify(this._cards));
-    } catch (error) {
+    }
+    catch (error) {
       console.error('AsyncStorage error: ', error.message);
     }
   },

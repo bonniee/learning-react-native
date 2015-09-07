@@ -5,7 +5,7 @@ class Deck {
     this.name = name;
     this.totalCards = 0;
     this.dueCards = 0;
-    this.id = md5(name); // LOL temporary
+    this.id = md5(name);
   }
 
   setFromObject(ob) {

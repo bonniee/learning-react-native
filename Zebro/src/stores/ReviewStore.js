@@ -123,7 +123,7 @@ export default Reflux.createStore({
 
       card.strength = card.strength + change;
       if (card.strength < 0) { card.strength = 0; }
-      card.dueDate = CardReview.newDueDate(card.strength);  
+      card.dueDate = CardReview.newDueDate(card.strength);
       CardActions.editCard(card);
     }
   },

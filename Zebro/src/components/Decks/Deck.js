@@ -1,7 +1,6 @@
 import React from 'react-native';
 var {
   StyleSheet,
-  Text,
   View
 } = React;
 
@@ -9,7 +8,6 @@ import DeckModel from './../../data/Deck';
 
 import Button from './../Button';
 import NormalText from './../NormalText';
-import fonts from './../../styles/fonts';
 
 var Deck = React.createClass({
   displayName: 'Deck',
@@ -29,7 +27,7 @@ var Deck = React.createClass({
       <View style={styles.deckGroup}>
 
         <Button style={styles.deckButton} onPress={this._review}>
-          <NormalText style={styles.deckName}>
+          <NormalText>
             {this.props.deck.name}: {this.props.deck.dueCards} due
           </NormalText>
         </Button>
@@ -56,9 +54,6 @@ var styles = StyleSheet.create({
     padding: 0,
     margin: 0
   },
-  deckname: {
-
-  },
   editButton: {
     width: 60,
     backgroundColor: '#00ffff',
@@ -66,10 +61,7 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     padding: 0,
     margin: 0,
-    flex: 0,
-  },
-  edit: {
-
+    flex: 0
   }
 });
 

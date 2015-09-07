@@ -10,8 +10,6 @@ import CardsStore from './../../stores/CardsStore';
 import { DeckActions, CardActions } from './../../actions';
 import DeckModel from './../../data/Deck';
 
-import fonts from './../../styles/fonts';
-
 import Deck from './Deck';
 import Button from './../Button';
 import NormalText from './../NormalText';
@@ -20,12 +18,19 @@ import HeadingText from './../HeadingText';
 import DeckCreation from './DeckCreation';
 
 var Decks = React.createClass({
+  displayName: 'Decks',
+
   mixins: [Reflux.listenTo(DeckMetaStore, 'onDecksChange')],
 
   getInitialState() {
     return {
       decks: []
     };
+  },
+
+  propTypes: {
+    createdDeck: React.PropTypes.func.isRequired,
+    review: React.PropTypes.func.isRequired
   },
 
   componentDidMount() {

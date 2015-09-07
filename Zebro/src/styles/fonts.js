@@ -1,16 +1,16 @@
 import { StyleSheet } from 'react-native';
 
-var fonts = {
+var fonts = StyleSheet.create({
   normal: {
     fontSize: 16,
-    fontFamily: 'Verdana'
+    fontFamily: 'Avenir'
   },
 
   big: {
     fontSize: 24,
     alignSelf: 'center',
-    fontFamily: 'Helvetica'
+    fontFamily: 'Avenir Medium'
   }
-};
+});
 
 module.exports = fonts;
