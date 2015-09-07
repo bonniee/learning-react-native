@@ -22,7 +22,7 @@
 
   "rules": {
     "block-scoped-var": 2,
-    "brace-style": [2, "Stroustrup", { "allowSingleLine": true }],
+    "brace-style": [2, "stroustrup", { "allowSingleLine": true }],
     "camelcase": 1,
     "comma-spacing": [2, { "before": false, "after": true }],
     "comma-style": [2, "last"],
