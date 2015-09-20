@@ -331,7 +331,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
@@ -539,6 +539,7 @@
 				INFOPLIST_FILE = ZebroTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = ZebretoTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Zebro.app/Zebro";
 			};
@@ -556,6 +557,7 @@
 				INFOPLIST_FILE = ZebroTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = ZebretoTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Zebro.app/Zebro";
 			};
@@ -575,6 +577,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Zebro/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.zebreto.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Zebreto;
 			};
 			name = Debug;
@@ -593,6 +596,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Zebro/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.zebreto.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Zebreto;
 			};
 			name = Release;
@@ -617,6 +621,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
