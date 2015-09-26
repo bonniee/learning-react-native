@@ -1,13 +1,10 @@
 import Card from './../data/Card';
-
 import Reflux from 'reflux';
 import _ from 'lodash';
 import {CardActions} from './../actions';
 
 import React from 'react-native';
-var {
-  AsyncStorage
-} = React;
+var { AsyncStorage } = React;
 
 const CARD_KEY = 'zebreto-cards';
 
