@@ -6,7 +6,7 @@ var {
 } = React;
 
 import colors from './../styles/colors';
-import fonts from './../styles/fonts';
+import {fonts} from './../styles/fonts';
 
 var Input = React.createClass({
   propTypes: {

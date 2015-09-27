@@ -19,4 +19,9 @@ var fonts = StyleSheet.create({
   }
 });
 
-module.exports = fonts;
+var scalingFactors = {
+  normal: 15,
+  big: 7
+};
+
+module.exports = {fonts, scalingFactors};

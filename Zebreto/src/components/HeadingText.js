@@ -5,7 +5,9 @@ var {
   View
 } = React;
 
-import fonts from './../styles/fonts';
+import {fonts, scalingFactors} from './../styles/fonts';
+import Dimensions from 'Dimensions';
+let {width} = Dimensions.get('window');
 
 var HeadingText = React.createClass({
   displayName: 'HeadingText',
@@ -16,12 +18,19 @@ var HeadingText = React.createClass({
 
   render() {
     return (
-      <Text style={[this.props.style, fonts.big]}>
+      <Text style={[this.props.style, fonts.big, scaled.big]}>
         {this.props.children}
       </Text>
       );
   }
 });
+
+var scaled = StyleSheet.create({
+  big: {
+    fontSize: width / scalingFactors.big
+  }
+});
+
 
 export default HeadingText;
 

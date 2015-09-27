@@ -5,7 +5,9 @@ var {
   View
 } = React;
 
-import fonts from './../styles/fonts';
+import {fonts, scalingFactors} from './../styles/fonts';
+import Dimensions from 'Dimensions';
+let {width} = Dimensions.get('window');
 
 var NormalText = React.createClass({
   displayName: 'NormalText',
@@ -16,10 +18,16 @@ var NormalText = React.createClass({
 
   render() {
     return (
-      <Text style={[this.props.style, fonts.normal]}>
+      <Text style={[this.props.style, fonts.normal, scaled.normal]}>
         {this.props.children}
       </Text>
       );
+  }
+});
+
+var scaled = StyleSheet.create({
+  normal: {
+    fontSize: width / scalingFactors.normal
   }
 });
 
