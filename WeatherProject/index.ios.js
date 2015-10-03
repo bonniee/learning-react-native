@@ -10,6 +10,8 @@ var {
   Image
 } = React;
 
+var WeatherProject = require('./WeatherProject');
+
 var Forecast = React.createClass({
   render: function() {
     return (
@@ -28,6 +30,7 @@ var Forecast = React.createClass({
   }
 });
 
+/*
 var WeatherProject = React.createClass({
   getInitialState: function() {
     return {
@@ -88,6 +91,7 @@ var WeatherProject = React.createClass({
     );
   }
 });
+*/
 
 var baseFontSize = 16;
 
