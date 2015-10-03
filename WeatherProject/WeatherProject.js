@@ -58,7 +58,6 @@ var WeatherProject = React.createClass({
              <View style={styles.zipContainer}>
                <TextInput
                  style={[styles.zipCode, styles.mainText]}
-                 returnKeyType='go'
                  onSubmitEditing={this._handleTextChange}/>
              </View>
            </View>
@@ -110,7 +109,6 @@ var styles = StyleSheet.create({
   mainText: {
     flex: 1,
     fontSize: baseFontSize,
-    textAlign: 'center',
     color: '#FFFFFF'
   }
 });
