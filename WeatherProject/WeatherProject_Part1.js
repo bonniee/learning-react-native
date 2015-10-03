@@ -3,8 +3,7 @@ var {
   StyleSheet,
   Text,
   View,
-  TextInput,
-  Image
+  TextInput
 } = React;
 
 

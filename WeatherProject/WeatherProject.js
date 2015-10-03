@@ -7,12 +7,18 @@ var {
   Image
 } = React;
 
+var Forecast = require('./Forecast');
 
 var WeatherProject = React.createClass({
   getInitialState() {
-    return ({
-      zip: ''
-    });
+    return {
+      zip: '',
+      forecast: {
+        main: 'Clouds',
+        description: 'few clouds',
+        temp: 45.7
+      }
+    }
   },
   _handleTextChange(event) {
     console.log(event.nativeEvent.text);
@@ -26,10 +32,14 @@ var WeatherProject = React.createClass({
         <Text style={styles.welcome}>
           You input {this.state.zip}.
         </Text>
+        <Forecast 
+          main={this.state.forecast.main}
+          description={this.state.forecast.description}
+          temp={this.state.forecast.temp}/>
         <TextInput
-              style={styles.input}
-              returnKeyType='go'
-              onSubmitEditing={this._handleTextChange}/>
+          style={styles.input}
+          returnKeyType='go'
+          onSubmitEditing={this._handleTextChange}/>
       </View>
     );
   }
@@ -40,7 +50,7 @@ var styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#4D4D4D',
   },
   welcome: {
     fontSize: 20,
