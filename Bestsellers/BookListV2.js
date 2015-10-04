@@ -11,6 +11,9 @@ var {
 
 var BookItem = require('./BookItem');
 var API_KEY = '73b19491b83909c7e07016f4bb4644f9:2:60667290';
+var QUERY_TYPE = 'hardcover-fiction';
+var API_STEM = 'http://api.nytimes.com/svc/books/v3/lists'
+var ENDPOINT = `${API_STEM}/${QUERY_TYPE}?response-format=json&api-key=${API_KEY}`;
 
 var BookList = React.createClass({
   getInitialState: function() {
@@ -45,8 +48,7 @@ var BookList = React.createClass({
   },
 
   _refreshData: function() {
-    var endpoint = 'http://api.nytimes.com/svc/books/v3/lists/hardcover-fiction?response-format=json&api-key=' + API_KEY;
-    fetch(endpoint)
+    fetch(ENDPOINT)
       .then((response) => response.json())
       .then((rjson) => {
         this.setState({

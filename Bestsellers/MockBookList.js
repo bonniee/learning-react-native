@@ -10,12 +10,12 @@ var {
 } = React;
 
 var BookItem = require('./BookItem');
-var API_KEY = '73b19491b83909c7e07016f4bb4644f9:2:60667290';
-
 
 var BookList = React.createClass({
   getInitialState: function() {
-    var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    var ds = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2
+    });
     return {
       dataSource: ds.cloneWithRows([])
     };
@@ -26,7 +26,10 @@ var BookList = React.createClass({
   },
 
   _renderRow: function(rowData) {
-    return <BookItem coverURL={rowData.book_image} title={rowData.title} author={rowData.author}/>;
+    return (<BookItem
+              coverURL={rowData.book_image}
+              title={rowData.title}
+              author={rowData.author}/>);
   },
 
   _refreshData: function() {
