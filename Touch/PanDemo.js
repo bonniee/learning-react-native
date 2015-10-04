@@ -16,16 +16,12 @@ var CIRCLE_HIGHLIGHT_COLOR = 'green';
 
 var PanResponderExample = React.createClass({
 
-  statics: {
-    title: 'PanResponder Sample',
-    description: 'Basic gesture handling example',
-  },
-
+  // Set some initial values.
   _panResponder: {},
   _previousLeft: 0,
   _previousTop: 0,
   _circleStyles: {},
-  circle: (null : ?{ setNativeProps(props: Object): void }),
+  circle: null,
 
   getInitialState: function() {
     return {
@@ -64,21 +60,26 @@ var PanResponderExample = React.createClass({
 
   render: function() {
     return (
-      <View
-        style={styles.container}
-        {...this._panResponder.panHandlers}>
+      <View style={styles.container}>
         <View
           ref={(circle) => {
             this.circle = circle;
           }}
           style={styles.circle}
-        />
-        <Text>{this.state.numberActiveTouches} touches, dx: {this.state.dx},
-        dy: {this.state.dy}, vx: {this.state.vx}, vy: {this.state.vy}</Text>
+          {...this._panResponder.panHandlers}/>
+        <Text>
+          {this.state.numberActiveTouches} touches,
+          dx: {this.state.dx},
+          dy: {this.state.dy},
+          vx: {this.state.vx},
+          vy: {this.state.vy}
+        </Text>
       </View>
     );
   },
 
+  // _highlight and _unHighlight get called by PanResponder methods,
+  // providing visual feedback to the user.
   _highlight: function() {
     this.circle && this.circle.setNativeProps({
       backgroundColor: CIRCLE_HIGHLIGHT_COLOR
@@ -91,6 +92,7 @@ var PanResponderExample = React.createClass({
     });
   },
 
+  // We're controlling the circle's position directly with setNativeProps.
   _updatePosition: function() {
     this.circle && this.circle.setNativeProps(this._circleStyles);
   },
@@ -123,6 +125,7 @@ var PanResponderExample = React.createClass({
       numberActiveTouches: gestureState.numberActiveTouches
     });
 
+    // Calculate current position using deltas
     this._circleStyles.left = this._previousLeft + gestureState.dx;
     this._circleStyles.top = this._previousTop + gestureState.dy;
     this._updatePosition();
