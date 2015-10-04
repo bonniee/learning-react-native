@@ -12,7 +12,7 @@ var {
   View,
 } = React;
 
-var Bestsellers = React.createClass({
+var Touch = React.createClass({
   render: function() {
     return (
       <View style={styles.container}>
@@ -20,11 +20,10 @@ var Bestsellers = React.createClass({
           Welcome to React Native!
         </Text>
         <Text style={styles.instructions}>
-          To get started, edit index.ios.js
+          To get started, edit index.android.js
         </Text>
         <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
+          Shake or press menu button for dev menu
         </Text>
       </View>
     );
@@ -50,4 +49,4 @@ var styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('Bestsellers', () => Bestsellers);
+AppRegistry.registerComponent('Touch', () => Touch);
