@@ -1,8 +1,5 @@
 var React = require('react-native');
-var {
-  StyleSheet,
-  SwitchAndroid
-} = React;
+var { SwitchAndroid } = React;
 
 var Switch = React.createClass({
   getInitialState() {

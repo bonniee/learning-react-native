@@ -1,7 +1,5 @@
 var React = require('react-native');
-var {
-  SwitchIOS
-} = React;
+var { SwitchIOS } = React;
 
 var Switch = React.createClass({
   getInitialState() {
