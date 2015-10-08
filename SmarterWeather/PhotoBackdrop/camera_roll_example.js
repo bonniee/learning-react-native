@@ -3,26 +3,25 @@
 var React = require('react-native');
 var {
   Image,
-  ImagePickerIOS
+  CameraRoll
 } = React;
 var styles = require('./style.js');
 
 var PhotoBackdrop = React.createClass({
   getInitialState() {
     return {
-      photoSource: require('image!flowers')
+      photoSource: null
     }
   },
   componentDidMount() {
-    ImagePickerIOS.openSelectDialog(
-      {},
+    CameraRoll.getPhotos(
+      {first: 5},
       (data) => {
         this.setState({
-          photoSource: {uri: data}
-        });
-      },
-      () => {
-        console.log('User canceled the action');
+          photoSource: {uri: data.edges[3].node.image.uri}
+        })},
+      (error) => {
+        console.warn(error);
       });
   },
   render() {

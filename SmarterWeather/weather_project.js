@@ -11,8 +11,14 @@ var {
 } = React;
 
 var Forecast = require('./Forecast');
-var PhotoBackdrop = require('./PhotoBackdrop');
 var LocationButton = require('./LocationButton');
+
+// This version gets you to pick a photo
+// var PhotoBackdrop = require('./PhotoBackdrop');
+
+// This version pulls a specified photo from the camera roll
+var PhotoBackdrop = require('./PhotoBackdrop/camera_roll_example');
+
 
 var STORAGE_KEY = '@SmarterWeather:zip';
 
