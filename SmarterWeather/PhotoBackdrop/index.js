@@ -10,9 +10,11 @@ var {
 var styles = require('./style.js');
 
 var PhotoBackdrop = React.createClass({
+  //      photoSource: require('image!flowers')
+
   getInitialState() {
     return {
-      photoSource: require('image!flowers')
+      photoSource: null
     }
   },
   componentDidMount() {
