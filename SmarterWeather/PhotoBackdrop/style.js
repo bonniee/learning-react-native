@@ -6,15 +6,15 @@ var {
 } = React;
 
 var styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    paddingTop: 30
+  },
   backdrop: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-    paddingTop: 30,
+    flex: 1,
     flexDirection: 'column'
-  }
+  },
 });
 
 module.exports = styles;

@@ -18,7 +18,6 @@ var styles = StyleSheet.create({
   mainText: {
     flex: 1,
     fontSize: baseFontSize,
-    textAlign: 'center',
     color: '#FFFFFF'
   }
 });

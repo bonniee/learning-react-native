@@ -12,11 +12,14 @@ var Forecast = require('./Forecast');
 var LocationButton = require('./LocationButton');
 var STORAGE_KEY = '@SmarterWeather:zip';
 
-// This version gets you to pick a photo
+// This version uses flowers.png from local assets
+var PhotoBackdrop = require('./PhotoBackdrop/local_image');
+
+// This version has you to pick a photo
 // var PhotoBackdrop = require('./PhotoBackdrop');
 
 // This version pulls a specified photo from the camera roll
-var PhotoBackdrop = require('./PhotoBackdrop/camera_roll_example');
+// var PhotoBackdrop = require('./PhotoBackdrop/camera_roll_example');
 
 var WeatherProject = React.createClass({
   getInitialState() {
