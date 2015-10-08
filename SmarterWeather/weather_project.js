@@ -1,5 +1,3 @@
-'use strict';
-
 var React = require('react-native');
 var {
   StyleSheet,
@@ -12,15 +10,13 @@ var {
 
 var Forecast = require('./Forecast');
 var LocationButton = require('./LocationButton');
+var STORAGE_KEY = '@SmarterWeather:zip';
 
 // This version gets you to pick a photo
 // var PhotoBackdrop = require('./PhotoBackdrop');
 
 // This version pulls a specified photo from the camera roll
 var PhotoBackdrop = require('./PhotoBackdrop/camera_roll_example');
-
-
-var STORAGE_KEY = '@SmarterWeather:zip';
 
 var WeatherProject = React.createClass({
   getInitialState() {
@@ -113,7 +109,6 @@ var WeatherProject = React.createClass({
 });
 
 var textStyles = require('./styles/typography.js');
-
 var styles = StyleSheet.create({
   overlay: {
     paddingTop: 5,
