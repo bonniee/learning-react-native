@@ -1,10 +1,5 @@
-'use strict';
-
 var React = require('react-native');
-var {
-  Image,
-  CameraRoll
-} = React;
+var { Image, CameraRoll } = React;
 var styles = require('./style.js');
 
 var PhotoBackdrop = React.createClass({

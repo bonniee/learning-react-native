@@ -1,14 +1,5 @@
-'use strict';
-
 var React = require('react-native');
-var {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
-  Image
-} = React;
-
+var { Text, View } = React;
 var styles = require('../styles/typography.js');
 
 var Forecast = React.createClass({
