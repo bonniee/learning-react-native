@@ -1,10 +1,7 @@
 var React = require('react-native');
-var {
-  Text,
-  View,
-  TouchableHighlight
-} = React;
+
 var styles = require('./style.js');
+var Button = require('./../Button');
 
 var LocationButton = React.createClass({
   propTypes: {
@@ -24,13 +21,9 @@ var LocationButton = React.createClass({
 
   render: function() {
     return (
-      <TouchableHighlight onPress={this._onPress}>
-        <View style={styles.locationButton}>
-          <Text>
-            Use Current Location
-          </Text>
-        </View>
-      </TouchableHighlight>
+      <Button label="Use CurrentLocation"
+        style={styles.locationButton}
+        onPress={this._onPress}/>
       );
   }
 });

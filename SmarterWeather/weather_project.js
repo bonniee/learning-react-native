@@ -11,12 +11,14 @@ var {
 var Forecast = require('./Forecast');
 var LocationButton = require('./LocationButton');
 var STORAGE_KEY = '@SmarterWeather:zip';
+var WEATHER_API_KEY = 'bbeb34ebf60ad50f7893e7440a1e2b0b';
+var API_STEM = 'http://api.openweathermap.org/data/2.5/weather?';
 
 // This version uses flowers.png from local assets
-var PhotoBackdrop = require('./PhotoBackdrop/local_image');
+// var PhotoBackdrop = require('./PhotoBackdrop/local_image');
 
 // This version has you to pick a photo
-// var PhotoBackdrop = require('./PhotoBackdrop');
+var PhotoBackdrop = require('./PhotoBackdrop');
 
 // This version pulls a specified photo from the camera roll
 // var PhotoBackdrop = require('./PhotoBackdrop/camera_roll_example');
@@ -46,13 +48,13 @@ var WeatherProject = React.createClass({
       .catch((error) => console.log('AsyncStorage error: ' + error.message))
       .done();
 
-    this._getForecast('http://api.openweathermap.org/data/2.5/weather?q='
-      + zip + '&units=imperial');
+    this._getForecast(
+      `${API_STEM}q=${zip}&units=imperial&APPID=${WEATHER_API_KEY}`);
   },
 
   _getForecastForCoords: function(lat, lon) {
-    this._getForecast('http://api.openweathermap.org/data/2.5/weather?lat='
-      + lat + '&lon=' + lon + '&units=imperial');
+    this._getForecast(
+      `${API_STEM}lat=${lat}&lon=${lon}&units=imperial&APPID=${WEATHER_API_KEY}`);
   },
 
   _getForecast: function(url, cb) {
@@ -81,10 +83,13 @@ var WeatherProject = React.createClass({
   render: function() {
     var content = null;
     if (this.state.forecast !== null) {
-      content = <Forecast 
-                  main={this.state.forecast.main}
-                  description={this.state.forecast.description}
-                  temp={this.state.forecast.temp}/>;
+      content = (
+        <View style={styles.row}>
+          <Forecast 
+            main={this.state.forecast.main}
+            description={this.state.forecast.description}
+            temp={this.state.forecast.temp}/>
+        </View>);
     }
 
     return (
@@ -96,7 +101,7 @@ var WeatherProject = React.createClass({
              </Text>
              <View style={styles.zipContainer}>
                <TextInput
-                 style={[styles.zipCode, textStyles.mainText]}
+                 style={[textStyles.mainText, styles.zipCode]}
                  returnKeyType='go'
                  onSubmitEditing={this._handleTextChange}/>
              </View>
@@ -117,29 +122,27 @@ var styles = StyleSheet.create({
     paddingTop: 5,
     backgroundColor: '#000000',
     opacity: 0.5,
-    flexDirection: 'column',
-    alignItems: 'center',
   },
   row: {
+    width: 400,
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'nowrap',
-    alignItems: 'flex-start',
-    padding: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 30
   },
   zipContainer: {
     flex: 1,
     borderBottomColor: '#DDDDDD',
     borderBottomWidth: 1,
     marginLeft: 5,
-    marginTop: 3
+    marginTop: 3,
+    width: 10
   },
   zipCode: {
     width: 50,
     height: textStyles.baseFontSize,
-  },
-  placeHolder: {
-    flex: 1
   }
 });
 

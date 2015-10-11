@@ -5,13 +5,15 @@ var {
 } = React;
 var styles = require('./style.js');
 
+var Button = require('./../Button');
+
 var PhotoBackdrop = React.createClass({
   getInitialState() {
     return {
       photoSource: require('image!flowers')
     }
   },
-  componentDidMount() {
+  _pickImage() {
     ImagePickerIOS.openSelectDialog(
       {},
       (data) => {
@@ -30,6 +32,10 @@ var PhotoBackdrop = React.createClass({
         source={ this.state.photoSource }
         resizeMode='cover'>
         {this.props.children}
+        <Button
+          style={styles.button}
+          label="Load Image"
+          onPress={this._pickImage}/>
       </Image>
       );
   }
