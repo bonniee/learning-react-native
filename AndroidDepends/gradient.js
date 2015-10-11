@@ -1,7 +1,7 @@
 var React = require('react-native');
 var {
   StyleSheet,
-  Text,
+  Text
 } = React;
 var LinearGradient = require('react-native-linear-gradient');
 

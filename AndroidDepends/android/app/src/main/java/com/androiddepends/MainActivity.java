@@ -11,8 +11,9 @@ import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 
-// Add this!
+// Add extra packages here
 import com.BV.LinearGradient.LinearGradientPackage;
+import com.androiddepends.HelloWorldPackage;
 
 public class MainActivity extends Activity implements DefaultHardwareBackBtnHandler {
 
@@ -29,7 +30,8 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
                 .setBundleAssetName("index.android.bundle")
                 .setJSMainModuleName("index.android")
                 .addPackage(new MainReactPackage())
-                .addPackage(new LinearGradientPackage()) // And this!
+                .addPackage(new LinearGradientPackage()) // Add packages here!
+                .addPackage(new HelloWorldPackage()) // <-- and here
                 .setUseDeveloperSupport(BuildConfig.DEBUG)
                 .setInitialLifecycleState(LifecycleState.RESUMED)
                 .build();
