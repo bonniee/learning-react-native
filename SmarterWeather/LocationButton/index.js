@@ -1,5 +1,4 @@
 var React = require('react-native');
-
 var styles = require('./style.js');
 var Button = require('./../Button');
 

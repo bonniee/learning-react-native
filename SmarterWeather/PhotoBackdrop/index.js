@@ -14,7 +14,7 @@ var PhotoBackdrop = React.createClass({
     }
   },
   _pickImage() {
-    ImagePickerIOS.openSelectDialog(
+    ImagePickerIOS.openCameraDialog(
       {},
       (data) => {
         this.setState({
