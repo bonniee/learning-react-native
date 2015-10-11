@@ -14,7 +14,7 @@ var {
 var Video = require('react-native-video');
 var _ = require('lodash');
 
-var HelloWorld = require('react-native').NativeModules.HelloWorld;
+var HelloWorld = require('./HelloWorld');
 
 
 var Depends = React.createClass({

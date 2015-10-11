@@ -7,7 +7,7 @@ RCT_EXPORT_MODULE();
 
 RCT_EXPORT_METHOD(greeting:(NSString *)name)
 {
-  RCTLogInfo(@"Saluton, %@", name);
+  RCTLogInfo(@"Hi, %@", name);
 }
 
 @end
