@@ -49,8 +49,10 @@ var PanResponderExample = React.createClass({
     this._previousLeft = 20;
     this._previousTop = 84;
     this._circleStyles = {
-      left: this._previousLeft,
-      top: this._previousTop,
+      style: {
+        left: this._previousLeft,
+        top: this._previousTop,
+      }
     };
   },
 
@@ -82,13 +84,17 @@ var PanResponderExample = React.createClass({
   // providing visual feedback to the user.
   _highlight: function() {
     this.circle && this.circle.setNativeProps({
-      backgroundColor: CIRCLE_HIGHLIGHT_COLOR
+      style: {
+        backgroundColor: CIRCLE_HIGHLIGHT_COLOR 
+      }
     });
   },
 
   _unHighlight: function() {
     this.circle && this.circle.setNativeProps({
-      backgroundColor: CIRCLE_COLOR
+      style: {
+        backgroundColor: CIRCLE_COLOR
+      }
     });
   },
 
@@ -126,8 +132,8 @@ var PanResponderExample = React.createClass({
     });
 
     // Calculate current position using deltas
-    this._circleStyles.left = this._previousLeft + gestureState.dx;
-    this._circleStyles.top = this._previousTop + gestureState.dy;
+    this._circleStyles.style.left = this._previousLeft + gestureState.dx;
+    this._circleStyles.style.top = this._previousTop + gestureState.dy;
     this._updatePosition();
   },
   _handlePanResponderEnd: function(e: Object, gestureState: Object) {
