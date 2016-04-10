@@ -4,7 +4,9 @@ var { StyleSheet } = React;
 var styles = StyleSheet.create({
   backdrop: {
     flex: 1,
-    flexDirection: 'column'
+    flexDirection: 'column',
+    height: null,
+    width: null,
   },
   button: {
     flex: 1,
