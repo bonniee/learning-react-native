@@ -1,9 +1,0 @@
-{
-  "stage": 1,
-  "optional": ["runtime"],
-  "loose": "all",
-  "whitelist": [
-    "es6.modules"
-  ]
-}
-

@@ -1,27 +1,33 @@
-var React = require('react-native');
-var {
+import React, {
+  Component,
+} from 'react';
+
+import {
   StyleSheet,
   Text,
   View,
   TextInput,
-  Image
-} = React;
+  Image,
+} from 'react-native';
 
-var Forecast = require('./Forecast');
+import Forecast from './Forecast';
 
-var WeatherProject = React.createClass({
-  getInitialState: function() {
-    return {
+const API_KEY = 'bbeb34ebf60ad50f7893e7440a1e2b0b';
+
+class WeatherProject extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       zip: '',
       forecast: null
     };
-  },
+  }
 
-  _handleTextChange: function(event) {
+  _handleTextChange(event) {
     var zip = event.nativeEvent.text;
     this.setState({zip: zip});
     fetch('http://api.openweathermap.org/data/2.5/weather?q='
-      + zip + '&units=imperial')
+      + zip + '&units=imperial&APPID=' + API_KEY)
       .then((response) => response.json())
       .then((responseJSON) => {
         this.setState({
@@ -35,9 +41,9 @@ var WeatherProject = React.createClass({
       .catch((error) => {
         console.warn(error);
       });
-  },
+  }
 
-  render: function() {
+  render() {
     var content = null;
     if (this.state.forecast !== null) {
       content = <Forecast 
@@ -47,7 +53,7 @@ var WeatherProject = React.createClass({
     }
     return (
       <View style={styles.container}>
-        <Image source={require('image!flowers')}
+        <Image source={require('./flowers.png')}
                resizeMode='cover'
                style={styles.backdrop}>
           <View style={styles.overlay}>
@@ -58,7 +64,7 @@ var WeatherProject = React.createClass({
              <View style={styles.zipContainer}>
                <TextInput
                  style={[styles.zipCode, styles.mainText]}
-                 onSubmitEditing={this._handleTextChange}/>
+                 onSubmitEditing={(event) => this._handleTextChange(event)}/>
              </View>
            </View>
            {content}
@@ -67,11 +73,11 @@ var WeatherProject = React.createClass({
       </View>
     );
   }
-});
+}
 
-var baseFontSize = 16;
+const baseFontSize = 16;
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
@@ -113,4 +119,5 @@ var styles = StyleSheet.create({
   }
 });
 
-module.exports = WeatherProject;
+export default WeatherProject;
+

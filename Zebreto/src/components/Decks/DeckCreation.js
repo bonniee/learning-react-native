@@ -1,8 +1,8 @@
-import React from 'react-native';
-var {
+import React, { Component } from 'react';
+import {
   StyleSheet,
   View
-} = React;
+} from 'react-native';
 
 import Button from './../Button';
 import NormalText from './../NormalText';
@@ -10,7 +10,7 @@ import Input from './../Input';
 
 import colors from './../../styles/colors';
 
-var CreateDeckButton = React.createClass({
+class CreateDeckButton extends Component {
   render() {
     return (
       <Button
@@ -20,20 +20,18 @@ var CreateDeckButton = React.createClass({
       </Button>
       );
   }
-});
+}
 
-var EnterDeck = React.createClass({
-  propTypes: {
-    create: React.PropTypes.func.isRequired
-  },
-  getInitialState() {
-    return {
-      text: ''
-    };
-  },
-  _create() {
+class EnterDeck extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { text: '' };
+  }
+
+  _create = () => {
     this.props.create(this.state.text);
-  },
+  }
+
   render() {
     return (
       <View style={styles.enterDeck}>
@@ -43,24 +41,27 @@ var EnterDeck = React.createClass({
       </View>
       );
   }
-});
+}
 
-export default React.createClass({
-  propTypes: {
-    newDeck: React.PropTypes.func.isRequired
-  },
-  getInitialState() {
-    return {
-      showingNameField: false
-    };
-  },
-  _newDeck(name) {
+EnterDeck.propTypes = {
+  create: React.PropTypes.func.isRequired
+}
+
+class DeckCreation extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { showingNameField: false };
+  }
+
+  _newDeck = (name) => {
     this.props.newDeck(name);
-    this.setState(this.getInitialState());
-  },
-  _showField() {
+    this.setState({ showingNameField: false });
+  }
+
+  _showField = () => {
     this.setState({showingNameField: true});
-  },
+  }
+
   render() {
     var contents = this.state.showingNameField
       ? <EnterDeck create={this._newDeck}/>
@@ -68,9 +69,15 @@ export default React.createClass({
       ;
     return contents;
   }
-});
+}
 
-var styles = StyleSheet.create({
+DeckCreation.propTypes = {
+  newDeck: React.PropTypes.func.isRequired
+}
+
+export default DeckCreation;
+
+const styles = StyleSheet.create({
   nameField: {
     backgroundColor: colors.tan,
     height: 40

@@ -1,4 +1,4 @@
-var { AppRegistry } = require('react-native');;
-var Gradient = require('./gradient');
+import { AppRegistry } from 'react-native';
+import Gradient from './gradient';
 
 AppRegistry.registerComponent('AndroidDepends', () => Gradient);

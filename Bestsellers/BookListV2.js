@@ -1,53 +1,56 @@
-'use strict';
+import React, {
+  Component,
+} from 'react';
 
-var React = require('react-native');
-var {
+import {
   StyleSheet,
   Text,
   View,
   Image,
   ListView,
-} = React;
+} from 'react-native';
 
-var BookItem = require('./BookItem');
-var API_KEY = '73b19491b83909c7e07016f4bb4644f9:2:60667290';
-var QUERY_TYPE = 'hardcover-fiction';
-var API_STEM = 'http://api.nytimes.com/svc/books/v3/lists'
-var ENDPOINT = `${API_STEM}/${QUERY_TYPE}?response-format=json&api-key=${API_KEY}`;
+import BookItem from './BookItem';
 
-var BookList = React.createClass({
-  getInitialState: function() {
+const API_KEY = '73b19491b83909c7e07016f4bb4644f9:2:60667290';
+const QUERY_TYPE = 'hardcover-fiction';
+const API_STEM = 'http://api.nytimes.com/svc/books/v3/lists'
+const ENDPOINT = `${API_STEM}/${QUERY_TYPE}?response-format=json&api-key=${API_KEY}`;
+
+class BookList extends Component {
+  constructor(props) {
+    super(props);
     var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    return {
+    this.state = {
       dataSource: ds.cloneWithRows([])
     };
-  },
+  }
 
-  componentDidMount: function() {
+  componentDidMount() {
     this._refreshData();
-  },
+  }
 
-  _renderRow: function(rowData) {
+  _renderRow(rowData) {
     return <BookItem coverURL={rowData.book_image} title={rowData.title} author={rowData.author}/>;
-  },
+  }
 
-  _renderHeader: function() {
+  _renderHeader() {
     return (<View style={styles.sectionDivider}>
       <Text style={styles.headingText}>
         Bestsellers in Hardcover Fiction
       </Text>
       </View>);
-  },
+  }
 
-  _renderFooter: function() {
+  _renderFooter() {
     return(
       <View style={styles.sectionDivider}>
         <Text>Data from the New York Times bestsellers list.</Text>
       </View>
       );
-  },
+  }
 
-  _refreshData: function() {
+  _refreshData() {
     fetch(ENDPOINT)
       .then((response) => response.json())
       .then((rjson) => {
@@ -55,9 +58,9 @@ var BookList = React.createClass({
           dataSource: this.state.dataSource.cloneWithRows(rjson.results.books)
         });
       });
-  },
+  }
 
-  render: function() {
+  render() {
     return (
         <ListView
           style={{marginTop: 24}}
@@ -68,9 +71,9 @@ var BookList = React.createClass({
           />
     );
   }
-});
+}
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -105,4 +108,4 @@ var styles = StyleSheet.create({
   }
 });
 
-module.exports = BookList;
+export default BookList;

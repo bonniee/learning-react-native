@@ -1,9 +1,8 @@
-'use strict';
+import {
+  AppRegistry,
+} from 'react-native';
 
-var React = require('react-native');
-var {
-  AppRegistry
-} = React;
+import WeatherProjectPart1 from './WeatherProject_Part1';
+import WeatherProject from './WeatherProject';
 
-var WeatherProject = require('./WeatherProject');
 AppRegistry.registerComponent('WeatherProject', () => WeatherProject);

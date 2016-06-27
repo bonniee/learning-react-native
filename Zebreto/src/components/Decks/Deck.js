@@ -1,8 +1,8 @@
-import React from 'react-native';
-var {
+import React, { Component } from 'react';
+import {
   StyleSheet,
   View
-} = React;
+} from 'react-native';
 
 import DeckModel from './../../data/Deck';
 
@@ -11,19 +11,17 @@ import NormalText from './../NormalText';
 
 import colors from './../../styles/colors';
 
-var Deck = React.createClass({
-  displayName: 'Deck',
-  propTypes: {
-    onReview: React.PropTypes.func.isRequired,
-    deck: React.PropTypes.instanceOf(DeckModel),
-    addCards: React.PropTypes.func.isRequired
-  },
-  _review() {
+class Deck extends Component {
+  static displayName = 'Deck';
+
+  _review = () => {
     this.props.onReview(this.props.deck.id);
-  },
-  _addCards() {
+  }
+
+  _addCards = () => {
     this.props.addCards(this.props.deck);
-  },
+  }
+
   render() {
     return (
       <View style={styles.deckGroup}>
@@ -41,9 +39,15 @@ var Deck = React.createClass({
       </View>
       );
   }
-});
+}
 
-var styles = StyleSheet.create({
+Deck.propTypes = {
+  onReview: React.PropTypes.func.isRequired,
+  deck: React.PropTypes.instanceOf(DeckModel),
+  addCards: React.PropTypes.func.isRequired
+};
+
+const styles = StyleSheet.create({
   deckGroup: {
     flex: 1,
     flexDirection: 'row',
@@ -71,4 +75,4 @@ var styles = StyleSheet.create({
   }
 });
 
-module.exports = Deck;
+export default Deck;

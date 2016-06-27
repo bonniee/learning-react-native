@@ -1,9 +1,17 @@
-var React = require('react-native');
-var { Text, View, StyleSheet } = React;
-var styles = require('../styles/typography.js');
+import React, {
+  Component,
+} from 'react';
 
-var Forecast = React.createClass({
-  render: function() {
+import {
+  Text,
+  View,
+  StyleSheet
+} from 'react-native';
+
+import styles from '../styles/typography';
+
+class Forecast extends Component {
+  render() {
     return (
       <View style={forecastStyles.forecast}>
         <Text style={styles.bigText}>
@@ -18,12 +26,12 @@ var Forecast = React.createClass({
       </View>
     );
   }
-});
+}
 
-var forecastStyles = StyleSheet.create({
+const forecastStyles = StyleSheet.create({
   forecast: {
     alignItems: 'center'
   }
 });
 
-module.exports = Forecast;
+export default Forecast;

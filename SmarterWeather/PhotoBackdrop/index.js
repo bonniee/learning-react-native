@@ -1,30 +1,61 @@
-var React = require('react-native');
-var {
+import React, {
+  Component,
+} from 'react';
+
+import {
   Image,
-  ImagePickerIOS
-} = React;
-var styles = require('./style.js');
+  Platform
+} from 'react-native';
 
-var Button = require('./../Button');
+import ImagePicker from 'react-native-image-picker';
+import styles from './style.js';
+import Button from './../Button';
 
-var PhotoBackdrop = React.createClass({
-  getInitialState() {
-    return {
-      photoSource: require('image!flowers')
-    }
-  },
+class PhotoBackdrop extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      photoSource: require('./flowers.png')
+    };
+  }
+
   _pickImage() {
-    ImagePickerIOS.openCameraDialog(
-      {},
-      (data) => {
-        this.setState({
-          photoSource: {uri: data}
-        });
-      },
-      () => {
-        console.log('User canceled the action');
-      });
-  },
+    // See https://github.com/marcshilling/react-native-image-picker#usage
+
+    var options = {
+      title: 'Select Image',
+      cancelButtonTitle: 'Cancel',
+      chooseFromLibraryButtonTitle: 'Choose From Library...',
+      takePhotoButtonTitle: 'Take Photo...',
+      cameraType: 'back', // 'front' or 'back'
+      mediaType: 'photo' // 'photo' or 'video'
+    };
+
+    ImagePicker.showImagePicker(
+      options,
+      (response) => {
+        console.log('response = ', response);
+
+        if (response.didCancel) {
+          console.log('Canceled ImagePicker');
+        }
+        else if (response.error) {
+          console.log('ImagePicker error: ', response.error);
+        }
+        else {
+          var source;
+          if (Platform.OS === 'ios') {
+            source = {uri: response.uri.replace('file://', ''), isStatic: true};
+          }
+          else {
+            source = {uri: response.uri, isStatic: true};
+          }
+          this.setState({ photoSource: source });
+        }
+      }
+    );
+  }
+
   render() {
     return (
       <Image
@@ -35,10 +66,10 @@ var PhotoBackdrop = React.createClass({
         <Button
           style={styles.button}
           label="Load Image"
-          onPress={this._pickImage}/>
+          onPress={this._pickImage.bind(this)}/>
       </Image>
       );
   }
-});
+}
 
-module.exports = PhotoBackdrop;
+export default PhotoBackdrop;

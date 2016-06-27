@@ -1,18 +1,24 @@
-var React = require('react-native');
-var { Image } = React;
-var styles = require('./style.js');
+import React, {
+  Component,
+} from 'react';
 
-var PhotoBackdrop = React.createClass({
+import {
+  Image
+} from 'react-native';
+
+import styles from './style.js';
+
+class PhotoBackdrop extends Component {
   render() {
     return (
         <Image
           style={styles.backdrop}
-          source={require('image!flowers')}
+          source={require('./flowers.png')}
           resizeMode='cover'>
           {this.props.children}
         </Image>
       );
   }
-});
+}
 
-module.exports = PhotoBackdrop;
+export default PhotoBackdrop;

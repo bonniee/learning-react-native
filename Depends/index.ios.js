@@ -1,49 +1,43 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
-'use strict';
-
-var React = require('react-native');
-var {
+import React, { Component } from 'react';
+import {
   AppRegistry,
   StyleSheet,
   Text,
-  View,
-} = React;
-var Video = require('react-native-video');
-var _ = require('lodash');
+  View
+} from 'react-native';
 
-var HelloWorld = require('./HelloWorld');
+import _ from 'lodash';
+import Video from 'react-native-video';
+import HelloWorld from './HelloWorld';
 
-
-var Depends = React.createClass({
-  componentDidMount: function() {
+class Depends extends Component {
+  componentDidMount() {
     HelloWorld.greeting('Bonnie');
     console.log('Random number: ' + _.random(0, 5));
-  },
-  render: function() {
+  }
+
+  render() {
     return (
       <View style={styles.backgroundVideo}>
-      <Video source={{uri: "PianoStairs"}} // Can be a URL or a local file.
-             rate={1.0}                   // 0 is paused, 1 is normal.
-             volume={1.0}                 // 0 is muted, 1 is normal.
-             muted={false}                // Mutes the audio entirely.
-             paused={false}               // Pauses playback entirely.
-             resizeMode="cover"           // Fill the whole screen at aspect ratio.
-             repeat={true}                // Repeat forever.
+        <Video source={{uri: "PianoStairs"}}
+             rate={1.0}
+             volume={1.0}
+             muted={false}
+             paused={false}
+             resizeMode="cover"
+             repeat={true}
              style={styles.backgroundVideo} />
 
        <Text style={styles.overlay}>
           Read more: http://bit.ly/makepianostairs
        </Text>
 
-       </View>
+      </View>
     );
   }
-});
+}
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   backgroundVideo: {
     position: 'absolute',
     top: 0,

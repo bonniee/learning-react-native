@@ -1,18 +1,22 @@
-var React = require('react-native');
-var {
+import React, {
+  Component,
+} from 'react';
+
+import {
   Text,
   View,
   TouchableHighlight
-} = React;
-var styles = require('./style.js');
+} from 'react-native';
 
-var Button = React.createClass({
+import styles from './style';
+
+class Button extends Component {
   propTypes: {
     onPress: React.PropTypes.func,
     label: React.PropTypes.string
-  },
+  }
 
-  render: function() {
+  render() {
     return (
       <TouchableHighlight onPress={this.props.onPress}>
         <View style={[styles.button, this.props.style]}>
@@ -23,6 +27,6 @@ var Button = React.createClass({
       </TouchableHighlight>
       );
   }
-});
+}
 
-module.exports = Button;
+export default Button;

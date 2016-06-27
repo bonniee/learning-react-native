@@ -1,5 +1,4 @@
-var React = require('react-native');
-var { AppRegistry } = React;
+import { AppRegistry } from 'react-native';
+import SmarterWeather from './weather_project';
 
-var SmarterWeather = require('./weather_project');
 AppRegistry.registerComponent('SmarterWeather', () => SmarterWeather);

@@ -1,12 +1,13 @@
 {
   "name": "AndroidDepends",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "node_modules/react-native/packager/packager.sh"
+    "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
-    "react-native": "^0.12.0",
-    "react-native-linear-gradient": "1.1.0-alpha"
+    "react": "15.0.2",
+    "react-native": "^0.26.3",
+    "react-native-linear-gradient": "^1.5.9"
   }
 }

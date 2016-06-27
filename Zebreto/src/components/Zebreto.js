@@ -1,9 +1,9 @@
-import React from 'react-native';
-var {
+import React, { Component } from 'react';
+import {
   StyleSheet,
   View,
   Navigator
-} = React;
+} from 'react-native';
 
 import Reflux from 'reflux';
 
