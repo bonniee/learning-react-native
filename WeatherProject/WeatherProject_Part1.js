@@ -1,24 +1,27 @@
-var React = require('react-native');
-var {
+import React, {
+  Component,
+} from 'react';
+
+import {
   StyleSheet,
   Text,
   View,
-  TextInput
-} = React;
+  TextInput,  
+} from 'react-native';
 
+class WeatherProject extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { zip: '' };
+  }
 
-var WeatherProject = React.createClass({
-  getInitialState() {
-    return ({
-      zip: ''
-    });
-  },
   _handleTextChange(event) {
     console.log(event.nativeEvent.text);
     this.setState({
       zip: event.nativeEvent.text
     });
-  },
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -28,13 +31,13 @@ var WeatherProject = React.createClass({
         <TextInput
               style={styles.input}
               returnKeyType='go'
-              onSubmitEditing={this._handleTextChange}/>
+              onSubmitEditing={(event) => this._handleTextChange(event)}/>
       </View>
     );
   }
-});
+}
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -53,4 +56,4 @@ var styles = StyleSheet.create({
     }
 });
 
-module.exports = WeatherProject;
+export default WeatherProject;

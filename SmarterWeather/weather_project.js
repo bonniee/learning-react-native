@@ -1,36 +1,41 @@
-var React = require('react-native');
-var {
+import React, {Component} from 'react';
+import {
   StyleSheet,
   Text,
   View,
   TextInput,
   AsyncStorage,
   Image
-} = React;
+} from 'react-native';
 
-var Forecast = require('./Forecast');
-var LocationButton = require('./LocationButton');
-var STORAGE_KEY = '@SmarterWeather:zip';
-var WEATHER_API_KEY = 'bbeb34ebf60ad50f7893e7440a1e2b0b';
-var API_STEM = 'http://api.openweathermap.org/data/2.5/weather?';
+import Forecast from './Forecast';
+import LocationButton from './LocationButton';
+const STORAGE_KEY = '@SmarterWeather:zip';
+const WEATHER_API_KEY = 'bbeb34ebf60ad50f7893e7440a1e2b0b';
+const API_STEM = 'http://api.openweathermap.org/data/2.5/weather?';
 
 // This version uses flowers.png from local assets
-// var PhotoBackdrop = require('./PhotoBackdrop/local_image');
+// import PhotoBackdrop from './PhotoBackdrop/local_image';
 
 // This version has you to pick a photo
-var PhotoBackdrop = require('./PhotoBackdrop');
+import PhotoBackdrop from './PhotoBackdrop';
 
 // This version pulls a specified photo from the camera roll
-// var PhotoBackdrop = require('./PhotoBackdrop/camera_roll_example');
+// import PhotoBackdrop from './PhotoBackdrop/camera_roll_example';
 
-var WeatherProject = React.createClass({
-  getInitialState() {
-    return {
-      forecast: null
-    };
-  },
+class WeatherProject extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { forecast: null };
 
-  componentDidMount: function() {
+    // Bind event handlers, since we're using a ES2015 class.
+    this._getForecastForZip = this._getForecastForZip.bind(this);
+    this._getForecastForCoords = this._getForecastForCoords.bind(this);
+    this._handleTextChange = this._handleTextChange.bind(this);
+    this._getForecast = this._getForecast.bind(this);
+  }
+
+  componentDidMount() {
     AsyncStorage.getItem(STORAGE_KEY)
       .then((value) => {
         if (value !== null) {
@@ -39,9 +44,9 @@ var WeatherProject = React.createClass({
       })
       .catch((error) => console.log('AsyncStorage error: ' + error.message))
       .done();
-  },
+  }
 
-  _getForecastForZip: function(zip) {
+  _getForecastForZip(zip) {
     // Store zip code
     AsyncStorage.setItem(STORAGE_KEY, zip)
       .then(() => console.log('Saved selection to disk: ' + zip))
@@ -50,18 +55,17 @@ var WeatherProject = React.createClass({
 
     this._getForecast(
       `${API_STEM}q=${zip}&units=imperial&APPID=${WEATHER_API_KEY}`);
-  },
+  }
 
-  _getForecastForCoords: function(lat, lon) {
+  _getForecastForCoords(lat, lon) {
     this._getForecast(
       `${API_STEM}lat=${lat}&lon=${lon}&units=imperial&APPID=${WEATHER_API_KEY}`);
-  },
+  }
 
-  _getForecast: function(url, cb) {
+  _getForecast(url, cb) {
     fetch(url)
       .then((response) => response.json())
       .then((responseJSON) => {
-        console.log(responseJSON);
         this.setState({
           forecast: {
             main: responseJSON.weather[0].main,
@@ -73,14 +77,14 @@ var WeatherProject = React.createClass({
       .catch((error) => {
         console.warn(error);
       });
-  },
+  }
 
-  _handleTextChange: function(event) {
+  _handleTextChange(event) {
     var zip = event.nativeEvent.text;
     this._getForecastForZip(zip);
-  },
+  }
 
-  render: function() {
+  render() {
     var content = null;
     if (this.state.forecast !== null) {
       content = (
@@ -114,10 +118,10 @@ var WeatherProject = React.createClass({
         </PhotoBackdrop>
     );
   }
-});
+}
 
-var textStyles = require('./styles/typography.js');
-var styles = StyleSheet.create({
+import textStyles from './styles/typography.js';
+const styles = StyleSheet.create({
   overlay: {
     paddingTop: 5,
     backgroundColor: '#000000',
@@ -146,4 +150,4 @@ var styles = StyleSheet.create({
   }
 });
 
-module.exports = WeatherProject;
+export default WeatherProject;

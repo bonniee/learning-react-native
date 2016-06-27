@@ -1,2 +1,2 @@
-var HelloWorld = require('react-native').NativeModules.HelloWorld;
-module.exports = HelloWorld;
+import { NativeModules } from 'react-native';
+export default NativeModules.HelloWorld;

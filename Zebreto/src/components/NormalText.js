@@ -1,20 +1,16 @@
-import React from 'react-native';
-var {
+import React, { Component } from 'react';
+import {
   StyleSheet,
   Text,
   View
-} = React;
+} from 'react-native';
 
 import {fonts, scalingFactors} from './../styles/fonts';
 import Dimensions from 'Dimensions';
 let {width} = Dimensions.get('window');
 
-var NormalText = React.createClass({
-  displayName: 'NormalText',
-
-  propTypes: {
-    style: View.propTypes.style
-  },
+class NormalText extends Component {
+  static displayName = 'NormalText';
 
   render() {
     return (
@@ -23,9 +19,13 @@ var NormalText = React.createClass({
       </Text>
       );
   }
-});
+}
 
-var scaled = StyleSheet.create({
+NormalText.propTypes = {
+  style: Text.propTypes.style
+};
+
+const scaled = StyleSheet.create({
   normal: {
     fontSize: width / scalingFactors.normal
   }

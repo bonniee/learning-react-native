@@ -1,12 +1,16 @@
-var React = require('react-native');
-var {
+import React, {
+  Component,
+} from 'react';
+
+import {
   StyleSheet,
   Text
-} = React;
-var LinearGradient = require('react-native-linear-gradient');
+} from 'react-native';
 
-var Gradient = React.createClass({
-  render: function() {
+import LinearGradient from 'react-native-linear-gradient';
+
+class Gradient extends Component {
+  render() {
     return (
         <LinearGradient colors={['#FFFFFF', '#00A8A8']} style={styles.container}>
           <Text style={styles.welcome}>
@@ -15,9 +19,9 @@ var Gradient = React.createClass({
         </LinearGradient>
     );
   }
-});
+}
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -32,4 +36,4 @@ var styles = StyleSheet.create({
   }
 });
 
-module.exports = Gradient;
+export default Gradient;

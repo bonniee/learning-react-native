@@ -1,13 +1,16 @@
-var React = require('react-native');
-var styles = require('./style.js');
-var Button = require('./../Button');
+import React, {
+  Component,
+} from 'react';
 
-var LocationButton = React.createClass({
+import Button from './../Button';
+import styles from './style.js';
+
+class LocationButton extends Component {
   propTypes: {
     onGetCoords: React.PropTypes.func.isRequired
-  },
+  }
 
-  _onPress: function() {
+  _onPress() {
     navigator.geolocation.getCurrentPosition(
       (initialPosition) => {
         this.props.onGetCoords(initialPosition.coords.latitude,
@@ -16,15 +19,15 @@ var LocationButton = React.createClass({
       (error) => {alert(error.message)},
       {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
     );
-  },
+  }
 
-  render: function() {
+  render() {
     return (
       <Button label="Use CurrentLocation"
         style={styles.locationButton}
-        onPress={this._onPress}/>
+        onPress={this._onPress.bind(this)}/>
       );
   }
-});
+}
 
-module.exports = LocationButton;
+export default LocationButton;

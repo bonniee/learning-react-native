@@ -1,6 +1,13 @@
-var React = require('react-native');
-var { Image, CameraRoll } = React;
-var styles = require('./style.js');
+import React, {
+  Component,
+} from 'react';
+
+import {
+  Image,
+  CameraRoll
+} from 'react-native';
+
+import styles from './style';
 
 var PhotoBackdrop = React.createClass({
   getInitialState() {
@@ -8,6 +15,7 @@ var PhotoBackdrop = React.createClass({
       photoSource: null
     }
   },
+
   componentDidMount() {
     CameraRoll.getPhotos(
       {first: 5},
@@ -19,6 +27,7 @@ var PhotoBackdrop = React.createClass({
         console.warn(error);
       });
   },
+
   render() {
     return (
       <Image
@@ -31,4 +40,4 @@ var PhotoBackdrop = React.createClass({
   }
 });
 
-module.exports = PhotoBackdrop;
+export default PhotoBackdrop;

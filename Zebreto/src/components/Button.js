@@ -1,27 +1,14 @@
-import React from 'react-native';
-var {
+import React, { Component } from 'react';
+import {
   StyleSheet,
   View,
   TouchableOpacity
-} = React;
+} from 'react-native';
 
 import colors from './../styles/colors';
 
-var Button = React.createClass({
-  displayName: 'Button',
-
-  propTypes: {
-    onPress: React.PropTypes.func.isRequired,
-    style: View.propTypes.style,
-    children: React.PropTypes.object,
-    disabled: React.PropTypes.bool
-  },
-
-  getDefaultProps() {
-    return {
-      disabled: false
-    };
-  },
+class Button extends Component {
+  static displayName = 'Button';
 
   render() {
     let opacity = this.props.disabled ? 1 : 0.5;
@@ -34,11 +21,22 @@ var Button = React.createClass({
       </TouchableOpacity>
       );
   }
-});
+}
+
+Button.propTypes = {
+  onPress: React.PropTypes.func.isRequired,
+  style: View.propTypes.style,
+  children: React.PropTypes.object,
+  disabled: React.PropTypes.bool
+};
+
+Button.defaultProps = {
+  disabled: false
+};
 
 export default Button;
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   wideButton: {
     justifyContent: 'center',
     alignItems: 'center',

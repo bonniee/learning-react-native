@@ -1,8 +1,7 @@
-import React from 'react-native';
-var {
-  StyleSheet,
+import React, { Component } from 'react';
+import {
   View
-} = React;
+} from 'react-native';
 
 import Reflux from 'reflux';
 import DeckMetaStore from './../../stores/DeckMetaStore';
@@ -71,20 +70,17 @@ var Decks = React.createClass({
 
   render() {
     return (
-      <View style={styles.container}>
+      <View>
         {this._getDecks()}
         <DeckCreation newDeck={this._newDeck}/>
-        {/*
+        { /*
         <Button onPress={this.deleteAll}>
           <NormalText>Delete All the Things</NormalText>
         </Button>
-        */}
+        */ }
       </View>
     );
   }
-});
-
-var styles = StyleSheet.create({
 });
 
 module.exports = Decks;

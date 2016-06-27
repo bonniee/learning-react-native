@@ -1,8 +1,8 @@
-import React from 'react-native';
-var {
+import React, { Component } from 'react';
+import {
   StyleSheet,
   View
-} = React;
+} from 'react-native';
 
 import Reflux from 'reflux';
 import ReviewStore from './../../stores/ReviewStore';
@@ -91,7 +91,7 @@ var Review = React.createClass({
   }
 });
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.blue,
     flex: 1,

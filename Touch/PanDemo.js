@@ -2,29 +2,30 @@
 
 'use strict';
 
-var React = require('react-native');
-var {
+import React, { Component } from 'react';
+import {
   StyleSheet,
   PanResponder,
   View,
   Text
-} = React;
+} from 'react-native';
 
-var CIRCLE_SIZE = 40;
-var CIRCLE_COLOR = 'blue';
-var CIRCLE_HIGHLIGHT_COLOR = 'green';
+const CIRCLE_SIZE = 40;
+const CIRCLE_COLOR = 'blue';
+const CIRCLE_HIGHLIGHT_COLOR = 'green';
 
-var PanResponderExample = React.createClass({
+class PanResponderExample extends Component {
 
   // Set some initial values.
-  _panResponder: {},
-  _previousLeft: 0,
-  _previousTop: 0,
-  _circleStyles: {},
-  circle: null,
+  _panResponder = {}
+  _previousLeft = 0
+  _previousTop = 0
+  _circleStyles = {}
+  circle = null
 
-  getInitialState: function() {
-    return {
+  constructor(props) {
+    super(props);
+    this.state = {
       numberActiveTouches: 0,
       moveX: 0,
       moveY: 0,
@@ -33,11 +34,11 @@ var PanResponderExample = React.createClass({
       dx: 0,
       dy: 0,
       vx: 0,
-      vy: 0,
-    }
-  },
+      vy: 0
+    };
+  }
 
-  componentWillMount: function() {
+  componentWillMount() {
     this._panResponder = PanResponder.create({
       onStartShouldSetPanResponder: this._handleStartShouldSetPanResponder,
       onMoveShouldSetPanResponder: this._handleMoveShouldSetPanResponder,
@@ -54,13 +55,13 @@ var PanResponderExample = React.createClass({
         top: this._previousTop,
       }
     };
-  },
+  }
 
-  componentDidMount: function() {
+  componentDidMount() {
     this._updatePosition();
-  },
+  }
 
-  render: function() {
+  render() {
     return (
       <View style={styles.container}>
         <View
@@ -78,46 +79,46 @@ var PanResponderExample = React.createClass({
         </Text>
       </View>
     );
-  },
+  }
 
   // _highlight and _unHighlight get called by PanResponder methods,
   // providing visual feedback to the user.
-  _highlight: function() {
+  _highlight = () => {
     this.circle && this.circle.setNativeProps({
       style: {
         backgroundColor: CIRCLE_HIGHLIGHT_COLOR 
       }
     });
-  },
+  }
 
-  _unHighlight: function() {
+  _unHighlight = () => {
     this.circle && this.circle.setNativeProps({
       style: {
         backgroundColor: CIRCLE_COLOR
       }
     });
-  },
+  }
 
   // We're controlling the circle's position directly with setNativeProps.
-  _updatePosition: function() {
+  _updatePosition = () => {
     this.circle && this.circle.setNativeProps(this._circleStyles);
-  },
+  }
 
-  _handleStartShouldSetPanResponder: function(e: Object, gestureState: Object): boolean {
+  _handleStartShouldSetPanResponder = (e: Object, gestureState: Object) => {
     // Should we become active when the user presses down on the circle?
     return true;
-  },
+  }
 
-  _handleMoveShouldSetPanResponder: function(e: Object, gestureState: Object): boolean {
+  _handleMoveShouldSetPanResponder = (e: Object, gestureState: Object) => {
     // Should we become active when the user moves a touch over the circle?
     return true;
-  },
+  }
 
-  _handlePanResponderGrant: function(e: Object, gestureState: Object) {
+  _handlePanResponderGrant = (e: Object, gestureState: Object) => {
     this._highlight();
-  },
+  }
 
-  _handlePanResponderMove: function(e: Object, gestureState: Object) {
+  _handlePanResponderMove = (e: Object, gestureState: Object) => {
     this.setState({
       stateID: gestureState.stateID,
       moveX: gestureState.moveX,
@@ -135,15 +136,16 @@ var PanResponderExample = React.createClass({
     this._circleStyles.style.left = this._previousLeft + gestureState.dx;
     this._circleStyles.style.top = this._previousTop + gestureState.dy;
     this._updatePosition();
-  },
-  _handlePanResponderEnd: function(e: Object, gestureState: Object) {
+  }
+
+  _handlePanResponderEnd = (e: Object, gestureState: Object) => {
     this._unHighlight();
     this._previousLeft += gestureState.dx;
     this._previousTop += gestureState.dy;
-  },
-});
+  }
+}
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   circle: {
     width: CIRCLE_SIZE,
     height: CIRCLE_SIZE,
@@ -159,4 +161,4 @@ var styles = StyleSheet.create({
   },
 });
 
-module.exports = PanResponderExample;
+export default PanResponderExample;

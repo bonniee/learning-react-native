@@ -1,16 +1,14 @@
-'use strict';
-
-var React = require('react-native');
-var {
-  AppRegistry,
+import React, { Component } from 'react';
+import {
   StyleSheet,
   Text,
-  View,
-} = React;
-var styles = require('./style');
+  View
+} from 'react-native';
 
-var Mondrian = React.createClass({
-  render: function() {
+import styles from './style';
+
+class Mondrian extends Component {
+  render() {
     return (
       <View style={styles.parent}>
         <View style={styles.topBlock}>
@@ -31,6 +29,6 @@ var Mondrian = React.createClass({
       </View>
     );
   }
-});
+}
 
-module.exports = Mondrian;
+export default Mondrian;

@@ -1,16 +1,17 @@
-'use strict';
+import React, {
+  Component,
+} from 'react';
 
-var React = require('react-native');
-var {
+import {
   StyleSheet,
   Text,
   View,
   Image,
   ListView,
-} = React;
+} from 'react-native';
 
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   bookItem: {
     flex: 1,
     flexDirection: 'row',
@@ -40,14 +41,14 @@ var styles = StyleSheet.create({
   }
 });
 
-var BookItem = React.createClass({
+class BookItem extends Component {
   propTypes: {
     coverURL: React.PropTypes.string.isRequired,
     author: React.PropTypes.string.isRequired,
     title: React.PropTypes.string.isRequired
-  },
+  }
 
-  render: function() {
+  render() {
     return (
       <View style={styles.bookItem}>
         <Image style={styles.cover} source={{uri: this.props.coverURL}}/>
@@ -58,6 +59,6 @@ var BookItem = React.createClass({
       </View>
       );
   }
-});
+}
 
-module.exports = BookItem;
+export default BookItem;

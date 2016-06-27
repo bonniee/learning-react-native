@@ -1,11 +1,9 @@
-'use strict';
+import React from 'react';
+import {
+  StyleSheet,
+} from 'react-native';
 
-var React = require('react-native');
-var {
-  StyleSheet
-} = React;
-
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   parent: {
     flex: 1,
     flexDirection: 'row',
@@ -24,4 +22,4 @@ var styles = StyleSheet.create({
   }
 });
 
-module.exports = styles;
+export default styles;

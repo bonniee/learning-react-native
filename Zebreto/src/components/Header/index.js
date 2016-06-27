@@ -1,20 +1,23 @@
-import React from 'react-native';
-var {
+import React, { Component } from 'react';
+import {
   View,
   Image
-} = React;
+} from 'react-native';
 
 import styles from './styles';
 import HeadingText from './../HeadingText';
 
-export default React.createClass({
-  displayName: 'Header',
+class Header extends Component {
+  static displayName = 'Header';
+  
   render() {
     return (
       <View style={styles.header}>
-        <Image source={require('image!iTunesArtwork')} style={styles.logo}/>
+        <Image source={require('../../../icon.png')} style={styles.logo}/>
         <HeadingText>ZEBRETO</HeadingText>
       </View>
       );
   }
-});
+}
+
+export default Header;

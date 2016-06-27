@@ -1,7 +1,6 @@
-var React = require('react-native');
-var { StyleSheet } = React;
+import { StyleSheet } from 'react-native';
 
-var baseFontSize = 18;
+const baseFontSize = 18;
 
 var styles = StyleSheet.create({
   bigText: {
@@ -17,4 +16,4 @@ var styles = StyleSheet.create({
 // For use elsewhere...
 styles['baseFontSize'] = baseFontSize;
 
-module.exports = styles;
+export default styles;

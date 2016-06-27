@@ -1,38 +1,40 @@
-'use strict';
+import React, {
+  Component,
+} from 'react';
 
-var React = require('react-native');
-var {
+import {
   StyleSheet,
   Text,
   View,
   Image,
   ListView,
-} = React;
+} from 'react-native';
 
-var BookItem = require('./BookItem');
+import BookItem from './BookItem';
 
-var BookList = React.createClass({
-  getInitialState: function() {
+class BookList extends Component {
+  constructor(props) {
+    super(props);
     var ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
     });
-    return {
+    this.state = {
       dataSource: ds.cloneWithRows([])
-    };
-  },
+    }
+  }
 
-  componentDidMount: function() {
+  componentDidMount() {
     this._refreshData();
-  },
+  }
 
-  _renderRow: function(rowData) {
+  _renderRow(rowData) {
     return (<BookItem
               coverURL={rowData.book_image}
               title={rowData.title}
               author={rowData.author}/>);
-  },
+  }
 
-  _refreshData: function() {
+  _refreshData() {
     var books = [
       {
         rank: 1,
@@ -53,9 +55,9 @@ var BookList = React.createClass({
       dataSource: this.state.dataSource.cloneWithRows(books)
     });
 
-  },
+  }
 
-  render: function() {
+  render() {
     return (
       <View style={styles.container}>
         <ListView
@@ -67,9 +69,9 @@ var BookList = React.createClass({
       </View>
     );
   }
-});
+}
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -94,4 +96,4 @@ var styles = StyleSheet.create({
   }
 });
 
-module.exports = BookList;
+export default BookList;

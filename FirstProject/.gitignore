@@ -4,7 +4,9 @@
 
 # Xcode
 #
-build/
+ios/build/*
+!ios/build/Build
+!Project.app
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -21,6 +23,12 @@ DerivedData
 *.ipa
 *.xcuserstate
 project.xcworkspace
+
+# Android/IJ
+#
+.idea
+.gradle
+local.properties
 
 # node.js
 #

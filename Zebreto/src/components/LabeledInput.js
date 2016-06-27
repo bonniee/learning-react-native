@@ -1,21 +1,14 @@
-import React from 'react-native';
+import React, { Component } from 'react';
 
-var {
+import {
   StyleSheet,
   View
-} = React;
+} from 'react-native';
 
 import Input from './Input';
 import NormalText from './NormalText';
 
-var LabeledInput = React.createClass({
-  propTypes: {
-    onEntry: React.PropTypes.func.isRequired,
-    onChange: React.PropTypes.func,
-    inputStyle: View.propTypes.style,
-    label: React.PropTypes.string.isRequired,
-    clearOnSubmit: React.PropTypes.bool
-  },
+class LabeledInput extends Component {
   render() {
     return (
       <View style={styles.wrapper}>
@@ -30,9 +23,17 @@ var LabeledInput = React.createClass({
       </View>
     );
   }
-});
+}
 
-var styles = StyleSheet.create({
+LabeledInput.propTypes = {
+  onEntry: React.PropTypes.func.isRequired,
+  onChange: React.PropTypes.func,
+  inputStyle: View.propTypes.style,
+  label: React.PropTypes.string.isRequired,
+  clearOnSubmit: React.PropTypes.bool
+};
+
+const styles = StyleSheet.create({
   label: {
     paddingLeft: 10
   },
