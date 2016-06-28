@@ -9,9 +9,9 @@ You can get the book here:
 
 ## Versions
 
-Release 0.0.1 is the version published in the printed book (first edition). The versions of React Native used in each project vary; most use React Native `0.11.x`.
+[Release 0.0.1](https://github.com/bonniee/learning-react-native/releases/tag/0.0.1) is the version published in the printed book (first edition). The versions of React Native used in each project vary; most use React Native `0.11.x`.
 
-Release 1.0.0 is the next version, updated to use React Native version `0.26.3`. This version also uses more ES2015-style JavaScript idioms, when appropriate; most notably consistent ES6-style classes and module definitions. The `PlatformSpecific` project remains at version `0.0.1`, due to the example's incompatibility with React Native `0.26.3`.
+[Release 1.0.0](https://github.com/bonniee/learning-react-native/releases/tag/1.0.0) is the next version, updated to use React Native version `0.26.3`. This version also uses more ES2015-style JavaScript idioms, when appropriate; most notably consistent ES6-style classes and module definitions. The `PlatformSpecific` project remains at version `0.0.1`, due to the example's incompatibility with React Native `0.26.3`.
 
 ## Errors & Pull Requests
 
