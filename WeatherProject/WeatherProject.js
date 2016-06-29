@@ -102,7 +102,6 @@ const styles = StyleSheet.create({
     padding: 30
   },
   zipContainer: {
-    flex: 1,
     borderBottomColor: '#DDDDDD',
     borderBottomWidth: 1,
     marginLeft: 5,
@@ -113,11 +112,9 @@ const styles = StyleSheet.create({
     height: baseFontSize,
   },
   mainText: {
-    flex: 1,
     fontSize: baseFontSize,
     color: '#FFFFFF'
   }
 });
 
 export default WeatherProject;
-
