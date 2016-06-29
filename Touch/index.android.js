@@ -6,4 +6,4 @@ import {
 import PressDemo from './PressDemo';
 import PanDemo from './PanDemo';
 
-AppRegistry.registerComponent('Touch', () => PanDemo);
+AppRegistry.registerComponent('Touch', () => PressDemo);
