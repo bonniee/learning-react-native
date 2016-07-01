@@ -1,34 +1,39 @@
-var React = require('react-native');
-var {
+import React, {
+  Component,
+} from 'react';
+
+import {
   StyleSheet,
   Text,
-  View,
-} = React;
-var Switch = require('./switch');
+  View
+} from 'react-native';
 
-var CrossPlatform = React.createClass({
-  getInitialState() {
-    return {val: false};
-  },
+import Switch from './switch';
+
+class CrossPlatform extends Component{
+  constructor(props) {
+    super(props);
+    this.state = {val: false};
+  }
 
   _onValueChange(val) {
     this.setState({val: val});
-  },
+  }
 
-  render: function() {
+  render() {
     var colorClass = this.state.val ? styles.blueContainer : styles.redContainer;
     return (
       <View style={[styles.container, colorClass]}>
         <Text style={styles.welcome}>
           Make me blue!
         </Text>
-        <Switch onValueChange={this._onValueChange}/>
+        <Switch onValueChange={this._onValueChange.bind(this)}/>
       </View>
     );
   }
-});
+}
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -47,4 +52,4 @@ var styles = StyleSheet.create({
   }
 });
 
-module.exports = CrossPlatform;
+export default CrossPlatform;
