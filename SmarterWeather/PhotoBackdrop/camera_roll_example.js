@@ -9,13 +9,14 @@ import {
 
 import styles from './style';
 
-var PhotoBackdrop = React.createClass({
-  getInitialState() {
-    return {
-      photoSource: null
+class PhotoBackdrop extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      photoSource: {}
     }
-  },
-
+  }
+  
   componentDidMount() {
     CameraRoll.getPhotos(
       {first: 5},
@@ -26,18 +27,18 @@ var PhotoBackdrop = React.createClass({
       (error) => {
         console.warn(error);
       });
-  },
+  }
 
   render() {
     return (
       <Image
         style={styles.backdrop}
-        source={ this.state.photoSource }
+        source={this.state.photoSource}
         resizeMode='cover'>
         {this.props.children}
       </Image>
       );
   }
-});
+}
 
 export default PhotoBackdrop;

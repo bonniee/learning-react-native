@@ -137,16 +137,15 @@ const styles = StyleSheet.create({
     padding: 30
   },
   zipContainer: {
-    flex: 1,
     borderBottomColor: '#DDDDDD',
     borderBottomWidth: 1,
     marginLeft: 5,
-    marginTop: 3,
-    width: 10
+    marginTop: 3
   },
   zipCode: {
     width: 50,
     height: textStyles.baseFontSize,
+    padding : 0
   }
 });
 
