@@ -110,6 +110,7 @@ const styles = StyleSheet.create({
   zipCode: {
     width: 50,
     height: baseFontSize,
+    padding: 0
   },
   mainText: {
     fontSize: baseFontSize,
