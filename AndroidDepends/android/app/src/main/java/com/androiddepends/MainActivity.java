@@ -1,9 +1,10 @@
 package com.androiddepends;
 
 import com.facebook.react.ReactActivity;
-import com.BV.LinearGradient.LinearGradientPackage;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
+import com.BV.LinearGradient.LinearGradientPackage;
+import com.androiddepends.HelloWorldPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -36,7 +37,8 @@ public class MainActivity extends ReactActivity {
     protected List<ReactPackage> getPackages() {
         return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
-            new LinearGradientPackage()
+            new LinearGradientPackage(),
+            new HelloWorldPackage()
         );
     }
 }

@@ -4,13 +4,16 @@ import React, {
 
 import {
   StyleSheet,
-  Text
+  Text,
+  NativeModules
 } from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
 
 class Gradient extends Component {
   render() {
+    NativeModules.HelloWorld.greeting("Bonnie");
+    
     return (
         <LinearGradient colors={['#FFFFFF', '#00A8A8']} style={styles.container}>
           <Text style={styles.welcome}>
