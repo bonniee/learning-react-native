@@ -11,7 +11,9 @@ let {width} = Dimensions.get('window');
 
 class NormalText extends Component {
   static displayName = 'NormalText';
-
+  static propTypes = {
+    style: Text.propTypes.style
+  };
   render() {
     return (
       <Text style={[this.props.style, fonts.normal, scaled.normal]}>
@@ -21,10 +23,6 @@ class NormalText extends Component {
   }
 }
 
-NormalText.propTypes = {
-  style: Text.propTypes.style
-};
-
 const scaled = StyleSheet.create({
   normal: {
     fontSize: width / scalingFactors.normal
@@ -32,4 +30,3 @@ const scaled = StyleSheet.create({
 });
 
 export default NormalText;
-

@@ -24,4 +24,4 @@ var scalingFactors = {
   big: 7
 };
 
-module.exports = {fonts, scalingFactors};
+export {fonts, scalingFactors};
