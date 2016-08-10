@@ -45,6 +45,7 @@ class Input extends Component {
         ref="newDeckInput"
         multiline={false}
         value={this.state.text}
+        autoCapitalize='none'
         autoCorrect={false}
         onChangeText={this._onChange}
         onSubmitEditing={this._onSubmit}/>
