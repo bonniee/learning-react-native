@@ -34,7 +34,7 @@ ContinueButton.propTypes = {
 class ViewCard extends Component {
   static displayName = 'ViewCard';
 
-  getInitialState() {
+  _getInitialState() {
     return {
       showingAnswer: false,
       wasCorrect: null
@@ -43,11 +43,11 @@ class ViewCard extends Component {
 
   constructor(props) {
     super(props);
-    this.state = this.getInitialState();
+    this.state = this._getInitialState();
   }
 
   _continue = () => {
-    this.setState(this.getInitialState());
+    this.setState(this._getInitialState());
     this.props.continue();
   }
 
@@ -89,7 +89,7 @@ class ViewCard extends Component {
         );
     });
   }
-  
+
   render() {
     var buttons = this._buttons();
     return (
