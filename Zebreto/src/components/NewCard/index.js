@@ -18,7 +18,7 @@ class NewCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      font: '',
+      front: '',
       back: ''
     };
   }
