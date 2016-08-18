@@ -99,8 +99,8 @@ export default Reflux.createStore({
           cardID: card.id,
           prompt: card[sideOne],
           correctAnswer: card[sideTwo],
-          answers: [card[sideTwo]].concat(
-            _.sample(_.pluck(others, sideTwo), 3))
+          answers: _.shuffle([card[sideTwo]].concat(
+            _.sample(_.pluck(others, sideTwo), 3)))
         };
       });
     };
