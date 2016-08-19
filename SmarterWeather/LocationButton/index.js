@@ -6,7 +6,7 @@ import Button from './../Button';
 import styles from './style.js';
 
 class LocationButton extends Component {
-  propTypes: {
+  static propTypes = {
     onGetCoords: React.PropTypes.func.isRequired
   }
 

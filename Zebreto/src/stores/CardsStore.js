@@ -3,8 +3,7 @@ import Reflux from 'reflux';
 import _ from 'lodash';
 import {CardActions} from './../actions';
 
-import React from 'react-native';
-var { AsyncStorage } = React;
+import { AsyncStorage } from 'react-native';
 
 const CARD_KEY = 'zebreto-cards';
 

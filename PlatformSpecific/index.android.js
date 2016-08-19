@@ -1,5 +1,7 @@
-var React = require('react-native');
-var { AppRegistry } = React;
-var CrossPlatform = require('./crossplatform');
+import {
+  AppRegistry,
+} from 'react-native';
+
+import CrossPlatform from './crossplatform';
 
 AppRegistry.registerComponent('PlatformSpecific', () => CrossPlatform);
