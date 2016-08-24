@@ -11,10 +11,10 @@ class Button extends Component {
   static displayName = 'Button';
 
   render() {
-    let opacity = this.props.disabled ? 1 : 0.5;
     return (
       <TouchableOpacity
-        activeOpacity={opacity}
+        activeOpacity={0.5}
+        disabled={this.props.disabled}
         onPress={this.props.onPress}
         style={[styles.wideButton, this.props.style]}>
         {this.props.children}

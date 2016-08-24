@@ -18,9 +18,13 @@ class NewCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      font: '',
+      front: '',
       back: ''
     };
+  }
+
+  _createDisabled() {
+    return this.state.front === '' || this.state.back === '';
   }
 
   _handleFront = (text) => {
@@ -58,6 +62,7 @@ class NewCard extends Component {
           onChange={this._handleBack}/>
 
         <Button style={styles.createButton}
+          disabled={this._createDisabled()}
           onPress={this._createCard}>
           <NormalText>Create Card</NormalText>
         </Button>
