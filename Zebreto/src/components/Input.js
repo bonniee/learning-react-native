@@ -71,8 +71,6 @@ const styles = StyleSheet.create({
     height: 60
   },
   wideButton: {
-    justifyContent: 'center',
-    flex: 1,
     padding: 10,
     margin: 10
   }

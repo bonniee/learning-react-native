@@ -91,9 +91,11 @@ const styles = StyleSheet.create({
     backgroundColor: colors.green
   },
   secondaryButton: {
+    flex: 1,
     backgroundColor: colors.blue
   },
   buttonRow: {
+    flex: 1,
     flexDirection: 'row'
   }
 });

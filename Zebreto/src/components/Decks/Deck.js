@@ -64,9 +64,6 @@ const styles = StyleSheet.create({
   editButton: {
     width: 60,
     backgroundColor: colors.pink2,
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'center',
     padding: 0,
     paddingTop: 10,
     paddingBottom: 10,
