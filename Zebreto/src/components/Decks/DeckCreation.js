@@ -78,16 +78,6 @@ DeckCreation.propTypes = {
 export default DeckCreation;
 
 const styles = StyleSheet.create({
-  nameField: {
-    backgroundColor: colors.tan,
-    height: 40
-  },
-  wideButton: {
-    justifyContent: 'center',
-    flex: 1,
-    padding: 10,
-    margin: 10
-  },
   createDeck: {
     backgroundColor: colors.green
   }

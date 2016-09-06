@@ -14,7 +14,7 @@ class NormalText extends Component {
 
   render() {
     return (
-      <Text style={[this.props.style, fonts.normal, scaled.normal]}>
+      <Text style={[styles.alignment, this.props.style, fonts.normal, styles.normal]}>
         {this.props.children}
       </Text>
       );
@@ -25,11 +25,13 @@ NormalText.propTypes = {
   style: Text.propTypes.style
 };
 
-const scaled = StyleSheet.create({
+const styles = StyleSheet.create({
+  alignment: {
+    textAlign: 'center'
+  },
   normal: {
     fontSize: width / scalingFactors.normal
   }
 });
 
 export default NormalText;
-

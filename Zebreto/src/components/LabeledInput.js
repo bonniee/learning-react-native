@@ -35,6 +35,7 @@ LabeledInput.propTypes = {
 
 const styles = StyleSheet.create({
   label: {
+    textAlign: 'left',
     paddingLeft: 10
   },
   wrapper: {
