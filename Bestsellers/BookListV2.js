@@ -8,6 +8,7 @@ import {
   View,
   Image,
   ListView,
+  RecyclerViewBackedScrollView,
 } from 'react-native';
 
 import BookItem from './BookItem';
@@ -68,6 +69,7 @@ class BookList extends Component {
           renderRow={this._renderRow}
           renderHeader={this._renderHeader}
           renderFooter={this._renderFooter}
+          renderScrollComponent={props => <RecyclerViewBackedScrollView {...props} />}
           />
     );
   }
