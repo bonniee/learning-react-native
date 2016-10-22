@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 const baseFontSize = 18;
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   bigText: {
     fontSize: baseFontSize + 8,
     color: '#FFFFFF'
@@ -10,10 +10,8 @@ var styles = StyleSheet.create({
   mainText: {
     fontSize: baseFontSize,
     color: '#FFFFFF'
-  }
+  },
+  baseFontSize
 });
-
-// For use elsewhere...
-styles['baseFontSize'] = baseFontSize;
 
 export default styles;
