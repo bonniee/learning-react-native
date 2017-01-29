@@ -97,14 +97,9 @@ const styles = StyleSheet.create({
     borderBottomColor: "#DDDDDD",
     borderBottomWidth: 1,
     marginLeft: 5,
-    marginTop: 3,
+    marginTop: 3
   },
-  zipCode: { 
-    flex: 1,
-    flexBasis: 1,
-    width: 50,
-    height: baseFontSize,
-  },
+  zipCode: { flex: 1, flexBasis: 1, width: 50, height: baseFontSize },
   mainText: { fontSize: baseFontSize, color: "#FFFFFF" }
 });
 
