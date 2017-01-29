@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 
-import { StyleSheet, Text,
-  View, TextInput, Image } from "react-native";
+import { StyleSheet, Text, View, TextInput, Image } from "react-native";
 
-
-// adding a fake comment
 import Forecast from "./Forecast";
 
 const API_KEY = "bbeb34ebf60ad50f7893e7440a1e2b0b";
