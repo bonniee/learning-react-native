@@ -29,9 +29,9 @@ class WeatherProject extends Component {
           You input {this.state.zip}.
         </Text>
         <TextInput
-              style={styles.input}
-              returnKeyType='go'
-              onSubmitEditing={(event) => this._handleTextChange(event)}/>
+          style={styles.input}
+          returnKeyType='go'
+          onSubmitEditing={(event) => this._handleTextChange(event)}/>
       </View>
     );
   }
