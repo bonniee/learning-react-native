@@ -87,21 +87,25 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   row: {
-    flex: 1,
     flexDirection: "row",
     flexWrap: "nowrap",
     alignItems: "flex-start",
     padding: 30
   },
   zipContainer: {
-    flex: 1,
+    height: baseFontSize + 10,
     borderBottomColor: "#DDDDDD",
     borderBottomWidth: 1,
     marginLeft: 5,
-    marginTop: 3
+    marginTop: 3,
   },
-  zipCode: { width: 50, height: baseFontSize },
-  mainText: { flex: 1, fontSize: baseFontSize, color: "#FFFFFF" }
+  zipCode: { 
+    flex: 1,
+    flexBasis: 1,
+    width: 50,
+    height: baseFontSize,
+  },
+  mainText: { fontSize: baseFontSize, color: "#FFFFFF" }
 });
 
 export default WeatherProject;
