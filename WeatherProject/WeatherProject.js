@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { StyleSheet, 
+import { StyleSheet,
   Text, View, TextInput, Image } from "react-native";
 
 import Forecast from "./Forecast";
