@@ -16,7 +16,6 @@ class WeatherProject extends Component {
     var zip = event.nativeEvent.text;
     this.setState({ zip: zip });
     var url = `http://api.openweathermap.org/data/2.5/weather?zip=${zip},us&APPID=${API_KEY}`
-    console.log(url)
     fetch(
       url
     )
