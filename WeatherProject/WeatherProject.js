@@ -15,11 +15,10 @@ class WeatherProject extends Component {
   _handleTextChange(event) {
     var zip = event.nativeEvent.text;
     this.setState({ zip: zip });
+    var url = `http://api.openweathermap.org/data/2.5/weather?zip=${zip},us&APPID=${API_KEY}`
+    console.log(url)
     fetch(
-      "http://api.openweathermap.org/data/2.5/weather?q=" +
-        zip +
-        "&units=imperial&APPID=" +
-        API_KEY
+      url
     )
       .then(response => response.json())
       .then(responseJSON => {
