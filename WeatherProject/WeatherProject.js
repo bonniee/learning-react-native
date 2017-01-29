@@ -2,10 +2,8 @@ import React, { Component } from "react";
 
 import { StyleSheet, Text, View, TextInput, Image } from "react-native";
 
-import Forecast from "./Forecast"
+import Forecast from "./Forecast";
 
-
-// another fake fcomment
 const API_KEY = "bbeb34ebf60ad50f7893e7440a1e2b0b";
 
 class WeatherProject extends Component {
