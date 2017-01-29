@@ -5,7 +5,7 @@ import { StyleSheet, Text, View } from "react-native";
 class Forecast extends Component {
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Text style={styles.bigText}>
           {this.props.main}
         </Text>
@@ -21,6 +21,7 @@ class Forecast extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: { height: 130 },
   bigText: {
     flex: 2,
     fontSize: 20,

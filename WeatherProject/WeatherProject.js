@@ -15,12 +15,9 @@ class WeatherProject extends Component {
   _handleTextChange(event) {
     var zip = event.nativeEvent.text;
     this.setState({ zip: zip });
-    fetch(
-      "http://api.openweathermap.org/data/2.5/weather?q=" +
-        zip +
-        "&units=imperial&APPID=" +
-        API_KEY
-    )
+    var url = `http://api.openweathermap.org/data/2.5/weather?` +
+      `zip=${zip},us&APPID=${API_KEY}&units=imperial`;
+    fetch(url)
       .then(response => response.json())
       .then(responseJSON => {
         this.setState({
