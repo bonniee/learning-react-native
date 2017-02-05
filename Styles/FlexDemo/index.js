@@ -1,11 +1,7 @@
-import React, { Component } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import React, { Component } from "react";
+import { StyleSheet, Text, View } from "react-native";
 
-import styles from './style';
+import styles from "./style";
 
 class FlexDemo extends Component {
   render() {
@@ -13,9 +9,9 @@ class FlexDemo extends Component {
       <View style={styles.parent}>
         <Text style={styles.child}> Child One </Text>
         <Text style={styles.child}> Child Two </Text>
-        <Text style={styles.child}> Child Three </Text>  
+        <Text style={styles.child}> Child Three </Text>
       </View>
-      );
+    );
   }
 }
 
