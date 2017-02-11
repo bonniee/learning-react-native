@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 
 import _ from 'lodash';
+import Video from 'react-native-video';
 
 export default class Depends extends Component {
   render() {
@@ -16,9 +17,15 @@ export default class Depends extends Component {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Your lucky number is: {number}
-        </Text>
+        <Video 
+          source={require('./warbler.mp4')}
+          rate={1.0}                     // 0 is paused, 1 is normal.
+           muted={true}                  // Mutes the audio entirely.
+           paused={false}                 // Pauses playback entirely.
+           resizeMode="cover"             // Fill the whole screen at aspect ratio.
+           repeat={true}                  // Repeat forever.
+           style={styles.backgroundVideo}
+          />
       </View>
     );
   }
@@ -36,10 +43,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     margin: 10,
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  backgroundVideo: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0
   },
 });
 
