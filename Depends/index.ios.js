@@ -1,8 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
 
 import React, { Component } from 'react';
 import {
@@ -12,19 +7,17 @@ import {
   View
 } from 'react-native';
 
+import _ from 'lodash';
+
 export default class Depends extends Component {
   render() {
+    var number = _.random(0, 100);
+    console.log("Your lucky number is: " + number);
+
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
+          Your lucky number is: {number}
         </Text>
       </View>
     );
