@@ -1,27 +1,21 @@
 // Adapted from https://github.com/facebook/react-native/blob/master/Examples/UIExplorer/PanResponderExample.js
 
-'use strict';
+"use strict";
 
-import React, { Component } from 'react';
-import {
-  StyleSheet,
-  PanResponder,
-  View,
-  Text
-} from 'react-native';
+import React, { Component } from "react";
+import { StyleSheet, PanResponder, View, Text } from "react-native";
 
 const CIRCLE_SIZE = 40;
-const CIRCLE_COLOR = 'blue';
-const CIRCLE_HIGHLIGHT_COLOR = 'green';
+const CIRCLE_COLOR = "blue";
+const CIRCLE_HIGHLIGHT_COLOR = "green";
 
 class PanResponderExample extends Component {
-
   // Set some initial values.
-  _panResponder = {}
-  _previousLeft = 0
-  _previousTop = 0
-  _circleStyles = {}
-  circle = null
+  _panResponder = {};
+  _previousLeft = 0;
+  _previousTop = 0;
+  _circleStyles = {};
+  circle = null;
 
   constructor(props) {
     super(props);
@@ -45,14 +39,14 @@ class PanResponderExample extends Component {
       onPanResponderGrant: this._handlePanResponderGrant,
       onPanResponderMove: this._handlePanResponderMove,
       onPanResponderRelease: this._handlePanResponderEnd,
-      onPanResponderTerminate: this._handlePanResponderEnd,
+      onPanResponderTerminate: this._handlePanResponderEnd
     });
     this._previousLeft = 20;
     this._previousTop = 84;
     this._circleStyles = {
       style: {
         left: this._previousLeft,
-        top: this._previousTop,
+        top: this._previousTop
       }
     };
   }
@@ -65,11 +59,12 @@ class PanResponderExample extends Component {
     return (
       <View style={styles.container}>
         <View
-          ref={(circle) => {
+          ref={circle => {
             this.circle = circle;
           }}
           style={styles.circle}
-          {...this._panResponder.panHandlers}/>
+          {...this._panResponder.panHandlers}
+        />
         <Text>
           {this.state.numberActiveTouches} touches,
           dx: {this.state.dx},
@@ -85,38 +80,38 @@ class PanResponderExample extends Component {
   // providing visual feedback to the user.
   _highlight = () => {
     this.circle && this.circle.setNativeProps({
-      style: {
-        backgroundColor: CIRCLE_HIGHLIGHT_COLOR 
-      }
-    });
-  }
+        style: {
+          backgroundColor: CIRCLE_HIGHLIGHT_COLOR
+        }
+      });
+  };
 
   _unHighlight = () => {
     this.circle && this.circle.setNativeProps({
-      style: {
-        backgroundColor: CIRCLE_COLOR
-      }
-    });
-  }
+        style: {
+          backgroundColor: CIRCLE_COLOR
+        }
+      });
+  };
 
   // We're controlling the circle's position directly with setNativeProps.
   _updatePosition = () => {
     this.circle && this.circle.setNativeProps(this._circleStyles);
-  }
+  };
 
   _handleStartShouldSetPanResponder = (e: Object, gestureState: Object) => {
     // Should we become active when the user presses down on the circle?
     return true;
-  }
+  };
 
   _handleMoveShouldSetPanResponder = (e: Object, gestureState: Object) => {
     // Should we become active when the user moves a touch over the circle?
     return true;
-  }
+  };
 
   _handlePanResponderGrant = (e: Object, gestureState: Object) => {
     this._highlight();
-  }
+  };
 
   _handlePanResponderMove = (e: Object, gestureState: Object) => {
     this.setState({
@@ -136,13 +131,13 @@ class PanResponderExample extends Component {
     this._circleStyles.style.left = this._previousLeft + gestureState.dx;
     this._circleStyles.style.top = this._previousTop + gestureState.dy;
     this._updatePosition();
-  }
+  };
 
   _handlePanResponderEnd = (e: Object, gestureState: Object) => {
     this._unHighlight();
     this._previousLeft += gestureState.dx;
     this._previousTop += gestureState.dy;
-  }
+  };
 }
 
 const styles = StyleSheet.create({
@@ -151,14 +146,14 @@ const styles = StyleSheet.create({
     height: CIRCLE_SIZE,
     borderRadius: CIRCLE_SIZE / 2,
     backgroundColor: CIRCLE_COLOR,
-    position: 'absolute',
+    position: "absolute",
     left: 0,
-    top: 0,
+    top: 0
   },
   container: {
     flex: 1,
-    paddingTop: 64,
-  },
+    paddingTop: 64
+  }
 });
 
 export default PanResponderExample;
