@@ -5,14 +5,8 @@ import { StyleSheet, Text, View, Image, ListView } from "react-native";
 import BookItem from "./BookItem";
 import NYT from './NYT';
 
-const API_KEY = "73b19491b83909c7e07016f4bb4644f9:2:60667290";
-const QUERY_TYPE = "hardcover-fiction";
-const API_STEM = "http://api.nytimes.com/svc/books/v3/lists";
-const ENDPOINT = `${API_STEM}/${QUERY_TYPE}?response-format=json&api-key=${API_KEY}`;
-
 class BookList extends Component {
   constructor(props) {
-    console.log(NYT.getBooks());
     super(props);
     var ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
@@ -53,9 +47,9 @@ class BookList extends Component {
   }
 
   _refreshData() {
-    fetch(ENDPOINT).then(response => response.json()).then(rjson => {
+    NYT.fetchBooks().then(books => {
       this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(rjson.results.books)
+        dataSource: this.state.dataSource.cloneWithRows(books)
       });
     });
   }
