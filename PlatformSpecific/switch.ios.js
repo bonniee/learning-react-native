@@ -1,24 +1,20 @@
-var React = require('react-native');
+var React = require("react-native");
 var { SwitchIOS } = React;
 
 var Switch = React.createClass({
   getInitialState() {
-    return {value: false};
+    return { value: false };
   },
-
   _onValueChange(value) {
-    this.setState({value: value});
+    this.setState({ value: value });
     if (this.props.onValueChange) {
-      this.props.onValueChange(value);      
+      this.props.onValueChange(value);
     }
   },
-
   render() {
     return (
-      <SwitchIOS
-        onValueChange={this._onValueChange}
-        value={this.state.value}/>
-      );
+      <SwitchIOS onValueChange={this._onValueChange} value={this.state.value} />
+    );
   }
 });
 

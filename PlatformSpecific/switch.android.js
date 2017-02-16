@@ -1,24 +1,23 @@
-var React = require('react-native');
+var React = require("react-native");
 var { SwitchAndroid } = React;
 
 var Switch = React.createClass({
   getInitialState() {
-    return {value: false};
+    return { value: false };
   },
-
   _onValueChange(value) {
-    this.setState({value: value});
+    this.setState({ value: value });
     if (this.props.onValueChange) {
-      this.props.onValueChange(value);      
+      this.props.onValueChange(value);
     }
   },
-
   render() {
     return (
       <SwitchAndroid
         onValueChange={this._onValueChange}
-        value={this.state.value}/>
-      );
+        value={this.state.value}
+      />
+    );
   }
 });
 
