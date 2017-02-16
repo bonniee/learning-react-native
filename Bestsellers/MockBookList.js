@@ -1,16 +1,8 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from "react";
 
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  ListView,
-} from 'react-native';
+import { StyleSheet, Text, View, Image, ListView } from "react-native";
 
-import BookItem from './BookItem';
+import BookItem from "./BookItem";
 
 class BookList extends Component {
   constructor(props) {
@@ -20,7 +12,7 @@ class BookList extends Component {
     });
     this.state = {
       dataSource: ds.cloneWithRows([])
-    }
+    };
   }
 
   componentDidMount() {
@@ -28,25 +20,28 @@ class BookList extends Component {
   }
 
   _renderRow(rowData) {
-    return (<BookItem
-              coverURL={rowData.book_image}
-              title={rowData.title}
-              author={rowData.author}/>);
+    return (
+      <BookItem
+        coverURL={rowData.book_image}
+        title={rowData.title}
+        author={rowData.author}
+      />
+    );
   }
 
   _refreshData() {
     var books = [
       {
         rank: 1,
-        title: 'GATHERING PREY',
-        author: 'John Sandford',
-        book_image: 'http://du.ec2.nytimes.com.s3.amazonaws.com/prd/books/9780399168796.jpg'
+        title: "GATHERING PREY",
+        author: "John Sandford",
+        book_image: "http://du.ec2.nytimes.com.s3.amazonaws.com/prd/books/9780399168796.jpg"
       },
       {
         rank: 2,
-        title: 'MEMORY MAN',
-        author: 'David Baldacci',
-        book_image: 'http://du.ec2.nytimes.com.s3.amazonaws.com/prd/books/9781455586387.jpg'
+        title: "MEMORY MAN",
+        author: "David Baldacci",
+        book_image: "http://du.ec2.nytimes.com.s3.amazonaws.com/prd/books/9781455586387.jpg"
       }
     ];
 
@@ -54,7 +49,6 @@ class BookList extends Component {
       books: books,
       dataSource: this.state.dataSource.cloneWithRows(books)
     });
-
   }
 
   render() {
@@ -65,7 +59,7 @@ class BookList extends Component {
           renderRow={this._renderRow}
           contentContainerStyle={styles.listContent}
           style={styles.list}
-          />
+        />
       </View>
     );
   }
@@ -74,25 +68,25 @@ class BookList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#FFFFFF',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#FFFFFF",
     paddingTop: 24
   },
   list: {
     flex: 1,
-    flexDirection: 'row'
+    flexDirection: "row"
   },
   listContent: {
     flex: 1,
-    flexDirection: 'column'
+    flexDirection: "column"
   },
   row: {
     flex: 1,
     fontSize: 24,
     padding: 42,
     borderWidth: 1,
-    borderColor: '#DDDDDD'
+    borderColor: "#DDDDDD"
   }
 });
 
