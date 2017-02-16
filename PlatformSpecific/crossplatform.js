@@ -4,25 +4,28 @@ var {
   Text,
   View
 } = React;
-var Switch = require("./switch");
+
+import ColorButton from './colorbutton';
 
 var CrossPlatform = React.createClass({
   getInitialState() {
-    return { val: false };
+    return { bgcolor: "#FFFFEA" };
   },
-  _onValueChange(val) {
-    this.setState({ val: val });
+  _changeColor(val) {
+    this.setState({ bgcolor: val });
   },
   render: function() {
     var colorClass = this.state.val
       ? styles.blueContainer
       : styles.redContainer;
+
+      var bgcolorStyle = { backgroundColor: this.state.bgcolor };
     return (
-      <View style={[styles.container, colorClass]}>
+      <View style={[styles.container, bgcolor]}>
         <Text style={styles.welcome}>
           Make me blue!
         </Text>
-        <Switch onValueChange={this._onValueChange} />
+        <ColorButton onPress={this._changeColor} />
       </View>
     );
   }
