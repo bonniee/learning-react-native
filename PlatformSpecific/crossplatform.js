@@ -1,47 +1,36 @@
-var React = require("react-native");
-var {
-  StyleSheet,
-  Text,
-  View
-} = React;
+import React, { Component } from 'react';
+import { Text, View, StyleSheet } from 'react-native';
+import TextButton from './TextButton';
 
-import ColorButton from './colorbutton';
+class CrossPlatform extends Component {
 
-var CrossPlatform = React.createClass({
-  getInitialState() {
-    return { bgcolor: "#FFFFEA" };
-  },
-  _changeColor(val) {
-    this.setState({ bgcolor: val });
-  },
-  render: function() {
-    var colorClass = this.state.val
-      ? styles.blueContainer
-      : styles.redContainer;
+  constructor(props) {
+    super(props)
+    this.state = { text: "Hello, world" };
+  }
 
-      var bgcolorStyle = { backgroundColor: this.state.bgcolor };
+  _changeText = (val) => {
+    this.setState({ text: val });
+  }
+
+  render() {
+    var bgcolorStyle = { backgroundColor: this.state.bgcolor };
     return (
-      <View style={[styles.container, bgcolor]}>
+      <View style={[styles.container, bgcolorStyle]}>
         <Text style={styles.welcome}>
-          Make me blue!
+          {this.state.text}
         </Text>
-        <ColorButton onPress={this._changeColor} />
+        <TextButton onPress={this._changeText} />
       </View>
     );
   }
-});
+}
 
 var styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center"
-  },
-  blueContainer: {
-    backgroundColor: "#5555FF"
-  },
-  redContainer: {
-    backgroundColor: "#FF5555"
   },
   welcome: {
     fontSize: 20,
