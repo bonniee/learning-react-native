@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View, Image, ListView } from "react-native";
 
 import BookItem from "./BookItem";
+import NYT from './NYT';
 
 const API_KEY = "73b19491b83909c7e07016f4bb4644f9:2:60667290";
 const QUERY_TYPE = "hardcover-fiction";
@@ -11,6 +12,7 @@ const ENDPOINT = `${API_STEM}/${QUERY_TYPE}?response-format=json&api-key=${API_K
 
 class BookList extends Component {
   constructor(props) {
+    console.log(NYT.getBooks());
     super(props);
     var ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
