@@ -3,8 +3,7 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View, TextInput, Image } from "react-native";
 
 import Forecast from "./Forecast";
-
-const API_KEY = "bbeb34ebf60ad50f7893e7440a1e2b0b";
+import OpenWeatherMap from "./open_weather_map";
 
 class WeatherProject extends Component {
   constructor(props) {
@@ -14,23 +13,9 @@ class WeatherProject extends Component {
 
   _handleTextChange(event) {
     var zip = event.nativeEvent.text;
-    this.setState({ zip: zip });
-    var url = `http://api.openweathermap.org/data/2.5/weather?` +
-      `zip=${zip},us&APPID=${API_KEY}&units=imperial`;
-    fetch(url)
-      .then(response => response.json())
-      .then(responseJSON => {
-        this.setState({
-          forecast: {
-            main: responseJSON.weather[0].main,
-            description: responseJSON.weather[0].description,
-            temp: responseJSON.main.temp
-          }
-        });
-      })
-      .catch(error => {
-        console.warn(error);
-      });
+    OpenWeatherMap.fetchForecast(zip).then(forecast => {
+      this.setState({ forecast: forecast });
+    });
   }
 
   render() {
