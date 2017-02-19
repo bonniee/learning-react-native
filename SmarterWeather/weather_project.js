@@ -12,6 +12,8 @@ import Forecast from './Forecast';
 import LocationButton from './LocationButton';
 const STORAGE_KEY = '@SmarterWeather:zip';
 
+import OpenWeatherMap from './open_weather_map';
+
 // This version uses flowers.png from local assets
 import PhotoBackdrop from './PhotoBackdrop/local_image';
 
@@ -34,7 +36,7 @@ class WeatherProject extends Component {
           this._getForecastForZip(value);
         }
       })
-      .catch((error) => console.log('AsyncStorage error: ' + error.message))
+      .catch((error) => console.error('AsyncStorage error: ' + error.message))
       .done();
   }
 
@@ -42,33 +44,18 @@ class WeatherProject extends Component {
     // Store zip code
     AsyncStorage.setItem(STORAGE_KEY, zip)
       .then(() => console.log('Saved selection to disk: ' + zip))
-      .catch((error) => console.log('AsyncStorage error: ' + error.message))
+      .catch((error) => console.error('AsyncStorage error: ' + error.message))
       .done();
 
-    this._getForecast(
-      `${API_STEM}q=${zip}&units=imperial&APPID=${WEATHER_API_KEY}`);
+    OpenWeatherMap.fetchZipForecast(zip).then(forecast => {
+      this.setState({ forecast: forecast });
+    });
   }
 
   _getForecastForCoords = (lat, lon) => {
-    this._getForecast(
-      `${API_STEM}lat=${lat}&lon=${lon}&units=imperial&APPID=${WEATHER_API_KEY}`);
-  }
-
-  _getForecast = (url, cb) => {
-    fetch(url)
-      .then((response) => response.json())
-      .then((responseJSON) => {
-        this.setState({
-          forecast: {
-            main: responseJSON.weather[0].main,
-            description: responseJSON.weather[0].description,
-            temp: responseJSON.main.temp
-          }
-        });
-      })
-      .catch((error) => {
-        console.warn(error);
-      });
+    OpenWeatherMap.fetchLatLonForecast(lat, lon).then(forecast => {
+      this.setState({ forecast: forecast });
+    });
   }
 
   _handleTextChange = (event) => {
@@ -91,7 +78,6 @@ class WeatherProject extends Component {
     return (
         <PhotoBackdrop>
           <View style={styles.overlay}>
-          {/*}
            <View style={styles.row}>
              <Text style={textStyles.mainText}>
                Current weather for 
@@ -107,7 +93,6 @@ class WeatherProject extends Component {
              <LocationButton onGetCoords={this._getForecastForCoords}/>
            </View>
            {content}
-         */}
          </View>
         </PhotoBackdrop>
     );
