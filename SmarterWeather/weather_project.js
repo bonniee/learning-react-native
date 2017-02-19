@@ -11,14 +11,12 @@ import {
 import Forecast from './Forecast';
 import LocationButton from './LocationButton';
 const STORAGE_KEY = '@SmarterWeather:zip';
-const WEATHER_API_KEY = 'bbeb34ebf60ad50f7893e7440a1e2b0b';
-const API_STEM = 'http://api.openweathermap.org/data/2.5/weather?';
 
 // This version uses flowers.png from local assets
-// import PhotoBackdrop from './PhotoBackdrop/local_image';
+import PhotoBackdrop from './PhotoBackdrop/local_image';
 
 // This version has you to pick a photo
-import PhotoBackdrop from './PhotoBackdrop';
+// import PhotoBackdrop from './PhotoBackdrop';
 
 // This version pulls a specified photo from the camera roll
 // import PhotoBackdrop from './PhotoBackdrop/camera_roll_example';
@@ -27,12 +25,6 @@ class WeatherProject extends Component {
   constructor(props) {
     super(props);
     this.state = { forecast: null };
-
-    // Bind event handlers, since we're using a ES2015 class.
-    this._getForecastForZip = this._getForecastForZip.bind(this);
-    this._getForecastForCoords = this._getForecastForCoords.bind(this);
-    this._handleTextChange = this._handleTextChange.bind(this);
-    this._getForecast = this._getForecast.bind(this);
   }
 
   componentDidMount() {
@@ -46,7 +38,7 @@ class WeatherProject extends Component {
       .done();
   }
 
-  _getForecastForZip(zip) {
+  _getForecastForZip = (zip) => {
     // Store zip code
     AsyncStorage.setItem(STORAGE_KEY, zip)
       .then(() => console.log('Saved selection to disk: ' + zip))
@@ -57,12 +49,12 @@ class WeatherProject extends Component {
       `${API_STEM}q=${zip}&units=imperial&APPID=${WEATHER_API_KEY}`);
   }
 
-  _getForecastForCoords(lat, lon) {
+  _getForecastForCoords = (lat, lon) => {
     this._getForecast(
       `${API_STEM}lat=${lat}&lon=${lon}&units=imperial&APPID=${WEATHER_API_KEY}`);
   }
 
-  _getForecast(url, cb) {
+  _getForecast = (url, cb) => {
     fetch(url)
       .then((response) => response.json())
       .then((responseJSON) => {
@@ -79,7 +71,7 @@ class WeatherProject extends Component {
       });
   }
 
-  _handleTextChange(event) {
+  _handleTextChange = (event) => {
     var zip = event.nativeEvent.text;
     this._getForecastForZip(zip);
   }
@@ -99,6 +91,7 @@ class WeatherProject extends Component {
     return (
         <PhotoBackdrop>
           <View style={styles.overlay}>
+          {/*}
            <View style={styles.row}>
              <Text style={textStyles.mainText}>
                Current weather for 
@@ -114,6 +107,7 @@ class WeatherProject extends Component {
              <LocationButton onGetCoords={this._getForecastForCoords}/>
            </View>
            {content}
+         */}
          </View>
         </PhotoBackdrop>
     );
