@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-const baseFontSize = 18;
+const baseFontSize = 24;
 
 var styles = StyleSheet.create({
   bigText: {

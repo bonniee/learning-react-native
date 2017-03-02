@@ -4,10 +4,10 @@ import React, {
 
 import {
   Image,
-  Platform
+  Platform,
+  CameraRoll
 } from 'react-native';
 
-import ImagePicker from 'react-native-image-picker';
 import styles from './style.js';
 import Button from './../Button';
 
@@ -31,29 +31,29 @@ class PhotoBackdrop extends Component {
       mediaType: 'photo' // 'photo' or 'video'
     };
 
-    ImagePicker.showImagePicker(
-      options,
-      (response) => {
-        console.log('response = ', response);
+    // ImagePicker.showImagePicker(
+    //   options,
+    //   (response) => {
+    //     console.log('response = ', response);
 
-        if (response.didCancel) {
-          console.log('Canceled ImagePicker');
-        }
-        else if (response.error) {
-          console.log('ImagePicker error: ', response.error);
-        }
-        else {
-          var source;
-          if (Platform.OS === 'ios') {
-            source = {uri: response.uri.replace('file://', ''), isStatic: true};
-          }
-          else {
-            source = {uri: response.uri, isStatic: true};
-          }
-          this.setState({ photoSource: source });
-        }
-      }
-    );
+    //     if (response.didCancel) {
+    //       console.log('Canceled ImagePicker');
+    //     }
+    //     else if (response.error) {
+    //       console.log('ImagePicker error: ', response.error);
+    //     }
+    //     else {
+    //       var source;
+    //       if (Platform.OS === 'ios') {
+    //         source = {uri: response.uri.replace('file://', ''), isStatic: true};
+    //       }
+    //       else {
+    //         source = {uri: response.uri, isStatic: true};
+    //       }
+    //       this.setState({ photoSource: source });
+    //     }
+    //   }
+    // );
   }
 
   render() {

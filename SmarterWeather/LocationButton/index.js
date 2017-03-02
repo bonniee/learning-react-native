@@ -23,11 +23,14 @@ class LocationButton extends Component {
 
   render() {
     return (
-      <Button label="Use CurrentLocation"
-        style={styles.locationButton}
+      <Button
+        label="Use Current Location"
+        style={{backgroundColor: '#DDDDDD'}}
         onPress={this._onPress.bind(this)}/>
       );
   }
 }
 
 export default LocationButton;
+
+

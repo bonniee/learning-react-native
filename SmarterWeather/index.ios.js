@@ -1,4 +1,11 @@
-import { AppRegistry } from 'react-native';
-import SmarterWeather from './weather_project';
+import React, { Component } from 'react';
+import {
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View
+} from 'react-native';
 
-AppRegistry.registerComponent('SmarterWeather', () => SmarterWeather);
+import WeatherProject from './weather_project';
+
+AppRegistry.registerComponent('SmarterWeather', () => WeatherProject);
