@@ -70,7 +70,6 @@ class WeatherProject extends Component {
         <View style={styles.row}>
           <Forecast 
             main={this.state.forecast.main}
-            description={this.state.forecast.description}
             temp={this.state.forecast.temp}/>
         </View>);
     }
@@ -80,7 +79,7 @@ class WeatherProject extends Component {
         <View style={styles.overlay}>
            <View style={styles.row}>
              <Text style={textStyles.mainText}>
-               Weather forecast for 
+               Forecast for 
              </Text>
 
              <View style={styles.zipContainer}>
@@ -92,7 +91,7 @@ class WeatherProject extends Component {
            </View>
 
            <View style={styles.row}>
-             <LocationButton onGetCoords={this._getForecastForCoords}/>
+           <LocationButton onGetCoords={this._getForecastForCoords}/>
            </View>
 
            {content}
@@ -106,27 +105,24 @@ class WeatherProject extends Component {
 import textStyles from './styles/typography.js';
 const styles = StyleSheet.create({
   overlay: {
-    backgroundColor: '#000000',
-    opacity: 0.5
+    backgroundColor: 'rgba(0,0,0,0.1)',
     },
   row: {
     flexDirection: 'row',
     flexWrap: 'nowrap',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 30,
-    borderWidth: 5,
+    padding: 24,
   },
   zipContainer: {
-    flex: 1,
     borderBottomColor: '#DDDDDD',
     borderBottomWidth: 1,
     marginLeft: 5,
     marginTop: 3,
-    width: 10
+    width: 80,
   },
   zipCode: {
-    width: 50,
+    width: 80,
     height: textStyles.baseFontSize,
   }
 });

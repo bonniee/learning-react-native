@@ -8,30 +8,26 @@ import {
   StyleSheet
 } from 'react-native';
 
-import styles from '../styles/typography';
 
 class Forecast extends Component {
   render() {
     return (
-      <View style={forecastStyles.forecast}>
-        <Text style={styles.bigText}>
-          {this.props.main}
-        </Text>
-        <Text style={styles.mainText}>
-          Current conditions: {this.props.description}
-        </Text>
-        <Text style={styles.bigText}>
+      <View style={styles.forecast}>
+        <Text style={{color: '#FFFFFF', fontSize: 72}}>
           {this.props.temp}°F
+        </Text>
+        <Text style={{color: '#FFFFFF', fontSize: 32}}>
+          {this.props.main}
         </Text>
       </View>
     );
   }
 }
 
-const forecastStyles = StyleSheet.create({
+const styles = StyleSheet.create({
   forecast: {
     alignItems: 'center'
-  }
+  },
 });
 
 export default Forecast;
