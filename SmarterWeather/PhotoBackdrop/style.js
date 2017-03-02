@@ -5,7 +5,9 @@ import {
 export default StyleSheet.create({
   backdrop: {
     flex: 1,
-    flexDirection: 'column'
+    flexDirection: 'column',
+    width: undefined,
+    height: undefined,
   },
   button: {
     flex: 1,

@@ -77,23 +77,27 @@ class WeatherProject extends Component {
 
     return (
         <PhotoBackdrop>
-          <View style={styles.overlay}>
+        <View style={styles.overlay}>
            <View style={styles.row}>
              <Text style={textStyles.mainText}>
-               Current weather for 
+               Weather forecast for 
              </Text>
+
              <View style={styles.zipContainer}>
-               <TextInput
+              <TextInput
                  style={[textStyles.mainText, styles.zipCode]}
                  returnKeyType='go'
                  onSubmitEditing={this._handleTextChange}/>
              </View>
            </View>
+
            <View style={styles.row}>
              <LocationButton onGetCoords={this._getForecastForCoords}/>
            </View>
+
            {content}
-         </View>
+
+          </View>
         </PhotoBackdrop>
     );
   }
@@ -102,18 +106,16 @@ class WeatherProject extends Component {
 import textStyles from './styles/typography.js';
 const styles = StyleSheet.create({
   overlay: {
-    paddingTop: 5,
     backgroundColor: '#000000',
-    opacity: 0.5,
-  },
+    opacity: 0.5
+    },
   row: {
-    width: 400,
-    flex: 1,
     flexDirection: 'row',
     flexWrap: 'nowrap',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 30
+    padding: 30,
+    borderWidth: 5,
   },
   zipContainer: {
     flex: 1,
