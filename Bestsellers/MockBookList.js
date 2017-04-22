@@ -7,12 +7,8 @@ import BookItem from "./BookItem";
 class BookList extends Component {
   constructor(props) {
     super(props);
-    var ds = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2
-    });
-    this.state = {
-      dataSource: ds.cloneWithRows([])
-    };
+    var ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+    this.state = { dataSource: ds.cloneWithRows([]) };
   }
 
   componentDidMount() {
@@ -73,14 +69,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     paddingTop: 24
   },
-  list: {
-    flex: 1,
-    flexDirection: "row"
-  },
-  listContent: {
-    flex: 1,
-    flexDirection: "column"
-  },
+  list: { flex: 1, flexDirection: "row" },
+  listContent: { flex: 1, flexDirection: "column" },
   row: {
     flex: 1,
     fontSize: 24,

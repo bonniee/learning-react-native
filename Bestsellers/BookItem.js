@@ -11,11 +11,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     padding: 5
   },
-  cover: {
-    flex: 1,
-    height: 150,
-    resizeMode: "contain"
-  },
+  cover: { flex: 1, height: 150, resizeMode: "contain" },
   info: {
     flex: 3,
     alignItems: "flex-end",
@@ -23,13 +19,8 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     padding: 20
   },
-  author: {
-    fontSize: 18
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: "bold"
-  }
+  author: { fontSize: 18 },
+  title: { fontSize: 18, fontWeight: "bold" }
 });
 
 class BookItem extends Component {

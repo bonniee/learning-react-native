@@ -5,15 +5,13 @@ const ENDPOINT = `${API_STEM}/${QUERY_TYPE}?response-format=json&api-key=${API_K
 
 function fetchBooks() {
   return fetch(ENDPOINT)
-  .then((response) => response.json())
-  .then((responseJson) => {
-    return responseJson.results.books;
-  })
-  .catch((error) => {
-    console.error(error);
-  })
+    .then(response => response.json())
+    .then(responseJson => {
+      return responseJson.results.books;
+    })
+    .catch(error => {
+      console.error(error);
+    });
 }
 
-export default {
-  fetchBooks: fetchBooks
-};
+export default { fetchBooks: fetchBooks };

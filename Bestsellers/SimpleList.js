@@ -1,17 +1,12 @@
-"use strict";
+import React, { Component } from "react";
 
-var React = require("react-native");
-var {
-  StyleSheet,
-  Text,
-  View,
-  ListView
-} = React;
+import { StyleSheet, Text, View, ListView } from "react-native";
 
-var SimpleList = React.createClass({
-  getInitialState: function() {
+class SimpleList extends Component {
+  constructor(props) {
+    super(props);
     var ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-    return {
+    this.state = {
       dataSource: ds.cloneWithRows([
         "a",
         "b",
@@ -25,11 +20,13 @@ var SimpleList = React.createClass({
         "i"
       ])
     };
-  },
-  _renderRow: function(rowData) {
+  }
+
+  _renderRow(rowData) {
     return <Text style={styles.row}>{rowData}</Text>;
-  },
-  render: function() {
+  }
+
+  render() {
     return (
       <View style={styles.container}>
         <ListView
@@ -39,9 +36,9 @@ var SimpleList = React.createClass({
       </View>
     );
   }
-});
+}
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
@@ -57,4 +54,4 @@ var styles = StyleSheet.create({
   }
 });
 
-module.exports = SimpleList;
+export default SimpleList;

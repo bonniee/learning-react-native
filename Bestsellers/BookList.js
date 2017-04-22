@@ -3,15 +3,13 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View, Image, ListView } from "react-native";
 
 import BookItem from "./BookItem";
-import NYT from './NYT';
+import NYT from "./NYT";
 
 class BookList extends Component {
   constructor(props) {
     super(props);
     var ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-    this.state = {
-      dataSource: ds.cloneWithRows([])
-    };
+    this.state = { dataSource: ds.cloneWithRows([]) };
   }
 
   componentDidMount() {
@@ -23,15 +21,14 @@ class BookList extends Component {
       <BookItem
         coverURL={rowData.book_image}
         title={rowData.title}
-        author={rowData.author}/>
+        author={rowData.author}
+      />
     );
   }
 
   _refreshData() {
     NYT.fetchBooks().then(books => {
-      this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(books)
-      });
+      this.setState({ dataSource: this.state.dataSource.cloneWithRows(books) });
     });
   }
 
@@ -53,14 +50,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     paddingTop: 24
   },
-  list: {
-    flex: 1,
-    flexDirection: "row"
-  },
-  listContent: {
-    flex: 1,
-    flexDirection: "column"
-  },
+  list: { flex: 1, flexDirection: "row" },
+  listContent: { flex: 1, flexDirection: "column" },
   row: {
     flex: 1,
     fontSize: 24,
