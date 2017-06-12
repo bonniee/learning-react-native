@@ -26,7 +26,7 @@ class BookList extends Component {
   }
 
   _refreshData() {
-    var books = [
+    const books = [
       {
         rank: 1,
         title: "GATHERING PREY",
