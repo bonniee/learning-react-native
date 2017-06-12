@@ -17,11 +17,8 @@ import OpenWeatherMap from './open_weather_map';
 // This version uses flowers.png from local assets
 import PhotoBackdrop from './PhotoBackdrop/local_image';
 
-// This version has you to pick a photo
-// import PhotoBackdrop from './PhotoBackdrop';
-
 // This version pulls a specified photo from the camera roll
-// import PhotoBackdrop from './PhotoBackdrop/camera_roll_example';
+// import PhotoBackdrop from './PhotoBackdrop';
 
 class WeatherProject extends Component {
   constructor(props) {
@@ -120,10 +117,11 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     marginTop: 3,
     width: 80,
+    height: textStyles.baseFontSize * 2,
+    justifyContent: 'flex-end'
   },
   zipCode: {
-    width: 80,
-    height: textStyles.baseFontSize,
+    flex: 1
   }
 });
 

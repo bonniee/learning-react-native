@@ -4,57 +4,29 @@ import React, {
 
 import {
   Image,
-  Platform,
   CameraRoll
 } from 'react-native';
 
-import styles from './style.js';
-import Button from './../Button';
+import styles from './style';
 
-class PhotoBackdrop extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      photoSource: require('./flowers.png')
-    };
-  }
+var PhotoBackdrop = React.createClass({
+  getInitialState() {
+    return {
+      photoSource: null
+    }
+  },
 
-  _pickImage() {
-    // See https://github.com/marcshilling/react-native-image-picker#usage
-
-    var options = {
-      title: 'Select Image',
-      cancelButtonTitle: 'Cancel',
-      chooseFromLibraryButtonTitle: 'Choose From Library...',
-      takePhotoButtonTitle: 'Take Photo...',
-      cameraType: 'back', // 'front' or 'back'
-      mediaType: 'photo' // 'photo' or 'video'
-    };
-
-    // ImagePicker.showImagePicker(
-    //   options,
-    //   (response) => {
-    //     console.log('response = ', response);
-
-    //     if (response.didCancel) {
-    //       console.log('Canceled ImagePicker');
-    //     }
-    //     else if (response.error) {
-    //       console.log('ImagePicker error: ', response.error);
-    //     }
-    //     else {
-    //       var source;
-    //       if (Platform.OS === 'ios') {
-    //         source = {uri: response.uri.replace('file://', ''), isStatic: true};
-    //       }
-    //       else {
-    //         source = {uri: response.uri, isStatic: true};
-    //       }
-    //       this.setState({ photoSource: source });
-    //     }
-    //   }
-    // );
-  }
+  componentDidMount() {
+    CameraRoll.getPhotos({first: 5}).then(
+      (data) => {
+        this.setState({
+          photoSource: {uri: data.edges[3].node.image.uri}
+        })},
+      (error) => {
+        console.warn(error);
+      }
+    );
+  },
 
   render() {
     return (
@@ -63,13 +35,9 @@ class PhotoBackdrop extends Component {
         source={ this.state.photoSource }
         resizeMode='cover'>
         {this.props.children}
-        <Button
-          style={styles.button}
-          label="Load Image"
-          onPress={this._pickImage.bind(this)}/>
       </Image>
       );
   }
-}
+});
 
 export default PhotoBackdrop;
