@@ -4,13 +4,13 @@ import { AppRegistry, StyleSheet, Text, View } from "react-native";
 import _ from "lodash";
 import Video from "react-native-video";
 
-// import HelloWorld from "./HelloWorld";
+import HelloWorld from "./HelloWorld";
 
 export default class Depends extends Component {
   render() {
     var number = _.random(0, 100);
     console.log("Your lucky number is: " + number);
-    // HelloWorld.greeting("Bonnie");
+    HelloWorld.greeting("Bonnie");
 
     return (
       <View style={styles.container}>
