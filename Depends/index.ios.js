@@ -1,31 +1,28 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+import React, { Component } from "react";
+import { AppRegistry, StyleSheet, Text, View } from "react-native";
 
-import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import _ from "lodash";
+import Video from "react-native-video";
+
+// import HelloWorld from "./HelloWorld";
 
 export default class Depends extends Component {
   render() {
+    var number = _.random(0, 100);
+    console.log("Your lucky number is: " + number);
+    // HelloWorld.greeting("Bonnie");
+
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
+        <Video
+          source={require("./warbler.mp4")}
+          rate={1.0} // 0 is paused, 1 is normal.
+          muted={true} // Mutes the audio entirely.
+          paused={false} // Pauses playback entirely.
+          resizeMode="cover" // Fill the whole screen at aspect ratio.
+          repeat={true} // Repeat forever.
+          style={styles.backgroundVideo}
+        />
       </View>
     );
   }
@@ -34,20 +31,18 @@ export default class Depends extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#F5FCFF"
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  welcome: { fontSize: 20, textAlign: "center", margin: 10 },
+  backgroundVideo: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0
+  }
 });
 
-AppRegistry.registerComponent('Depends', () => Depends);
+AppRegistry.registerComponent("Depends", () => Depends);
