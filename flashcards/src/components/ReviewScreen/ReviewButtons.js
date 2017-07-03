@@ -7,7 +7,6 @@ import {
 import Button from './../Button';
 import NormalText from './../NormalText';
 import HeadingText from './../HeadingText';
-
 import colors from './../../styles/colors';
 
 

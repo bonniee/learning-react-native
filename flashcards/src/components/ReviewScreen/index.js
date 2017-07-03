@@ -5,13 +5,8 @@ import {
 } from 'react-native';
 
 import ViewCard from './ViewCard';
-import NormalText from './../NormalText';
-import HeadingText from './../HeadingText';
-import Button from './../Button';
-
-import CardModel from './../../data/Card';
-import { mkReviews, Review } from './../../data/Reviews';
-
+import { MockReviews } from './../../data/Mocks';
+import { mkReviewSummary } from './ReviewSummary';
 import colors from './../../styles/colors';
 
 var ReviewScreen = React.createClass({
@@ -23,43 +18,11 @@ var ReviewScreen = React.createClass({
   },
 
   getInitialState() {
-    // lol this is not the actual review model
-    // gotta look at something else - 
-    let mockCards = [
-    new CardModel(
-        "der Hund",
-        "the dog",
-        "fakeDeckID"
-      ),
-    new CardModel(
-      "das Kind",
-      "the child",
-      "fakeDeckID"
-      ),
-    new CardModel(
-      "die Frau",
-      "the woman",
-      "fakeDeckID"
-      ),
-    new CardModel(
-      "der Apfel",
-      "the apple",
-      "fakeDeckID"
-      ),
-    new CardModel(
-      "die Katze",
-      "the cat",
-      "fakeDeckID"
-      )
-    ];
-
-    let mockReview = mkReviews(mockCards);
-
     return {
       numReviewed: 0,
       numCorrect: 0,
       currentReview: 0,
-      reviews: mockReview
+      reviews: MockReviews
     };
   },
 
@@ -74,9 +37,6 @@ var ReviewScreen = React.createClass({
     this.setState({
       currentReview: this.state.currentReview + 1
     });
-  },
-
-  componentWillMount() {
   },
 
   _contents() {
@@ -96,19 +56,7 @@ var ReviewScreen = React.createClass({
     }
     else {
       let percent = this.state.numCorrect / this.state.numReviewed;
-      return (
-        <View style={styles.done}>
-          <HeadingText style={styles.alternate}>
-            Reviews cleared!
-          </HeadingText>
-          <NormalText style={styles.alternate}>
-            {Math.round(percent * 100)}% correct
-          </NormalText>
-          <Button onPress={this.props.quit} style={styles.doneButton}>
-            <NormalText>Done</NormalText>
-          </Button>
-        </View>
-        );
+      return mkReviewSummary(percent, this.props.quit);
     }
   },
 
@@ -126,15 +74,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.blue,
     flex: 1,
     paddingTop: 24
-  },
-  alternate: {
-    color: '#FFFFFF'
-  },
-  done: {
-    alignItems: 'center'
-  },
-  doneButton: {
-    backgroundColor: colors.tan
   }
 });
 
