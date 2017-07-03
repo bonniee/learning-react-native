@@ -8,6 +8,9 @@ import Button from './../Button';
 import NormalText from './../NormalText';
 import HeadingText from './../HeadingText';
 
+import colors from './../../styles/colors';
+
+
 class ContinueButton extends Component {
   render() {
     let text = this.props.wasCorrect
@@ -44,8 +47,39 @@ function mkContinueQuitButtons(
   }
 }
 
-function mkAnswerButtons() {
-  
+function mkAnswerButtons(
+  answers,
+  correctAnswer,
+  showingAnswer,
+  wasCorrect,
+  selectAnswerFunc
+  ) {
+  if (!answers) return null;
+
+  return answers.map((a) => {
+    let isCorrectAnswer = a === correctAnswer;
+    let buttonStyle = [styles.options];
+    if (showingAnswer && isCorrectAnswer) {
+      if (wasCorrect) {
+        buttonStyle.push(styles.rightAnswer);
+      }
+      else {
+        buttonStyle.push(styles.wrongAnswer);
+      }
+    }
+
+    return (
+      <Button
+        key={a}
+        disabled={showingAnswer}
+        style={buttonStyle}
+        onPress={() => {selectAnswerFunc(isCorrectAnswer)}}>
+        <NormalText>
+          {a}
+        </NormalText>
+      </Button>
+      );
+    });
 }
 
 const styles = StyleSheet.create({
@@ -64,5 +98,6 @@ const styles = StyleSheet.create({
 });
 
 export {
-  mkContinueQuitButtons
+  mkContinueQuitButtons,
+  mkAnswerButtons
 };

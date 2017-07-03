@@ -10,6 +10,8 @@ import HeadingText from './../HeadingText';
 
 import colors from './../../styles/colors';
 
+import { mkContinueQuitButtons, mkAnswerButtons } from './ReviewButtons';
+
 class ViewCard extends Component {
   static displayName = 'ViewCard';
 
@@ -36,7 +38,7 @@ class ViewCard extends Component {
       showingAnswer: true,
       wasCorrect: correct
     });
-    CardActions.review(this.props.cardID, this.props.orientation, correct)
+    // CardActions.review(this.props.cardID, this.props.orientation, correct)
   }
 
   _mkButtons = () => {
@@ -70,7 +72,13 @@ class ViewCard extends Component {
   }
 
   render() {
-    var buttons = this._mkButtons();
+    var buttons = mkAnswerButtons(
+      this.props.answers,
+      this.props.correctAnswer,
+      this.state.showingAnswer,
+      this.state.wasCorrect,
+      this._selectAnswer
+      );
     return (
       <View>
         <HeadingText>
@@ -78,12 +86,12 @@ class ViewCard extends Component {
         </HeadingText>
         {buttons}
         {
-          this.state.showingAnswer
-          ? <ContinueButton onPress={this._continue}
-                            wasCorrect={this.state.wasCorrect}/>
-          : <Button onPress={this.props.quit} style={styles.continueButton}>
-              <NormalText>Stop Reviewing</NormalText>
-            </Button>
+          mkContinueQuitButtons(
+            this.state.showingAnswer,
+            this.state.wasCorrect,
+            this._continue,
+            this.props.quit
+            )
         }
       </View>
       );
