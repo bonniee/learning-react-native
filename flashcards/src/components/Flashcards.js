@@ -5,15 +5,34 @@ import {
   Text
 } from 'react-native';
 
-import Decks from './Decks'
+import DeckScreen from './DeckScreen';
+import NewCardScreen from './NewCardScreen';
 import Heading from './Header';
 
+/*
+TODO:
+  - Figure out how to present different navigation options
+      - Navigator is deprecated !!! and no longer is included in the react native pacakge. welp.
+      - Expo comes with react-navigation (aka Stack Navigator) built in
+      - Idea: start with a simple StackNavigator and functioning rendering components,
+              but no logic / leave them unconnected. No Redux yet either.
+              Checkpoint #1: Dummy rendering code, basic StackNavigator, no wiring
+              Checkpoint #2: Wire up clicky callbacks so that you can tap through screens
+              Checkpoint #3: Persisting data, using Redux
+*/
+
 class Flashcards extends Component {
+
+  _renderScene(route) {
+    // TODO: implement routing.
+    return <NewCardScreen />;
+    // return <DeckScreen />;
+  }
   render() {
     return (
       <View style={styles.container}>
         <Heading/>
-        <Decks/>
+        { this._renderScene("decks")}
       </View>
       );
   }

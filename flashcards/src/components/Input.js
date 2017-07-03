@@ -44,7 +44,6 @@ class Input extends Component {
           this.props.style]}
         ref="newDeckInput"
         multiline={false}
-        value={this.state.text}
         autoCorrect={false}
         onChangeText={this._onChange}
         onSubmitEditing={this._onSubmit}/>
@@ -72,7 +71,6 @@ const styles = StyleSheet.create({
   },
   wideButton: {
     justifyContent: 'center',
-    flex: 1,
     padding: 10,
     margin: 10
   }

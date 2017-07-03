@@ -19,7 +19,7 @@ class LabeledInput extends Component {
           onEntry={this.props.onEntry}
           onChange={this.props.onChange}
           clearOnSubmit={this.props.clearOnSubmit}
-          style={[this.props.inputStyle, styles.input]}/>
+          style={this.props.inputStyle}/>
       </View>
     );
   }
