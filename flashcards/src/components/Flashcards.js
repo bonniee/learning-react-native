@@ -8,6 +8,7 @@ import {
 import DeckScreen from './DeckScreen';
 import NewCardScreen from './NewCardScreen';
 import Heading from './Header';
+import ReviewScreen from './ReviewScreen';
 
 /*
 TODO:
@@ -25,7 +26,8 @@ class Flashcards extends Component {
 
   _renderScene(route) {
     // TODO: implement routing.
-    return <NewCardScreen />;
+    return <ReviewScreen />;
+    // return <NewCardScreen />;
     // return <DeckScreen />;
   }
   render() {
