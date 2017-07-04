@@ -4,13 +4,11 @@ import {
   View
 } from 'react-native';
 
-
 import DeckModel from './../../data/Deck';
 
 import Button from '../Button';
 import LabeledInput from '../LabeledInput';
 import NormalText from '../NormalText';
-
 import colors from './../../styles/colors';
 
 class NewCard extends Component {
@@ -31,14 +29,15 @@ class NewCard extends Component {
   }
 
   _createCard = () => {
-    CardActions.createCard(this.state.front,
-      this.state.back,
-      this.props.deck.id);
-    this.props.nextCard(this.props.deck);
+    console.warn("Not implemented");
   }
 
   _reviewDeck = () => {
-    this.props.review(this.props.deck.id);
+    console.warn("Not implemented");
+  }
+
+  _doneCreating = () => {
+    console.warn("Not implemented");
   }
 
   render() {
@@ -62,7 +61,7 @@ class NewCard extends Component {
 
         <View style={styles.buttonRow}>
           <Button style={styles.secondaryButton}
-            onPress={this.props.quit}>
+            onPress={this._doneCreating}>
             <NormalText>Done</NormalText>
           </Button>
 
@@ -78,9 +77,6 @@ class NewCard extends Component {
 
 NewCard.propTypes = {
   deck: React.PropTypes.instanceOf(DeckModel),
-  quit: React.PropTypes.func.isRequired,
-  nextCard: React.PropTypes.func.isRequired,
-  review: React.PropTypes.func.isRequired
 };
 
 const styles = StyleSheet.create({
