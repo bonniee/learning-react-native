@@ -4,11 +4,17 @@ import {
   View
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux'
+
+import { reducer } from '../store';
 
 import Logo from './Header/Logo';
 import DeckScreen from './DeckScreen';
 import NewCardScreen from './NewCardScreen';
 import ReviewScreen from './ReviewScreen';
+
+let store = createStore(reducer);
 
 let headerOptions = {
   headerStyle:  {
@@ -17,7 +23,7 @@ let headerOptions = {
   headerLeft: <Logo/>
 }
 
-let navigator = StackNavigator({
+const Navigator = StackNavigator({
   Home: { 
     screen: DeckScreen,
     navigationOptions: headerOptions
@@ -32,4 +38,14 @@ let navigator = StackNavigator({
   }
 });
 
-export default navigator;
+class App extends Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <Navigator screenProps="foo"/>
+      </Provider>
+    );
+  }
+}
+
+export default App;

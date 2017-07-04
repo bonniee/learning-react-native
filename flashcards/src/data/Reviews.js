@@ -2,7 +2,7 @@ import PerCardReview from './PerCardReview';
 import Card from './Card';
 import _ from 'lodash';
 
-class Review {
+class QuizCardView {
   constructor(
     orientation,
     cardID,
@@ -31,7 +31,7 @@ function mkReviews(cards) {
           )
         )
 
-      return new Review(
+      return new QuizCardView(
         sideOne,
         card.id,
         card[sideOne],
@@ -45,4 +45,4 @@ function mkReviews(cards) {
   return _.shuffle(reviews);
 }
 
-export { mkReviews, Review }
+export { mkReviews, QuizCardView }

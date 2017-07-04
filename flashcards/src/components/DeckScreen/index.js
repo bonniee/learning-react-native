@@ -3,6 +3,8 @@ import {
   View
 } from 'react-native';
 
+import { connect } from 'react-redux'
+
 import { MockDecks } from './../../data/Mocks';
 import Deck from './Deck';
 import DeckCreation from './DeckCreation';
@@ -13,14 +15,7 @@ class DecksScreen extends Component {
   static navigationOptions = {
     title: 'All Decks'
   };
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      decks: MockDecks
-    }
-  }
-
+  
   _createDeck = () => {
     console.warn("Data saving not implemented");
     this.props.navigation.navigate('CardCreation');
@@ -37,11 +32,11 @@ class DecksScreen extends Component {
   }
 
   _mkDeckViews() {
-    if (!this.state.decks) {
+    if (!this.props.decks) {
       return null;
     }
 
-    return this.state.decks.map((deck) => {
+    return this.props.decks.map((deck) => {
       return (
         <Deck
           deck={deck}
@@ -61,4 +56,17 @@ class DecksScreen extends Component {
   }
 }
 
-export default DecksScreen;
+const mapDispatchToProps = dispatch => {
+  return {};
+}
+const mapStateToProps = state => {
+  return {
+    decks: state.decks.map(deck => deck.meta)
+  }
+}
+
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+  )(DecksScreen);
