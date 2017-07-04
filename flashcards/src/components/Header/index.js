@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import {
-  View,
-  Image
+  View
 } from 'react-native';
 
 import styles from './styles';
 import HeadingText from './../HeadingText';
+import Logo from './Logo';
 
 class Header extends Component {
   static displayName = 'Header';
@@ -13,7 +13,7 @@ class Header extends Component {
   render() {
     return (
       <View style={styles.header}>
-        <Image source={require('../../../icon.png')} style={styles.logo}/>
+        <Logo />
         <HeadingText>ZEBRETO</HeadingText>
       </View>
       );

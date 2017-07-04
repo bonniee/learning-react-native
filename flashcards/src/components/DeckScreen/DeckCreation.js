@@ -13,8 +13,8 @@ class DeckCreation extends Component {
   }
 
   _newDeck = (name) => {
-    console.warn("Not implemented");
     this.setState({ showingNameField: false });
+    this.props.create(name);
   }
 
   _showField = () => {
@@ -31,7 +31,7 @@ class DeckCreation extends Component {
 }
 
 DeckCreation.propTypes = {
-  newDeck: React.PropTypes.func
+  create: React.PropTypes.func.isRequired
 }
 
 export default DeckCreation;

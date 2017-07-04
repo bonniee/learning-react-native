@@ -13,6 +13,10 @@ class ReviewScreen extends Component {
 
   static displayName = 'ReviewScreen';
 
+  static navigationOptions = {
+    title: 'Review'
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -31,13 +35,15 @@ class ReviewScreen extends Component {
   }
 
   _nextReview = () => {
+    console.warn("Showing next review, but data saving not implemented.");
     this.setState({
       currentReview: this.state.currentReview + 1
     });
   }
 
   _quitReviewing = () => {
-    console.warn("Not implemented");
+    console.warn("Data saving not implemented");
+    this.props.navigation.goBack();
   }
 
   _contents() {

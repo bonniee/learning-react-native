@@ -12,12 +12,18 @@ import NormalText from '../NormalText';
 import colors from './../../styles/colors';
 
 class NewCard extends Component {
+  static navigationOptions = {
+    title: 'Create Card'
+  };
+
+  static initialState = {
+    front: '',
+    back: ''
+  }
+
   constructor(props) {
     super(props);
-    this.state = {
-      font: '',
-      back: ''
-    };
+    this.state = this.initialState;
   }
 
   _handleFront = (text) => {
@@ -29,15 +35,16 @@ class NewCard extends Component {
   }
 
   _createCard = () => {
-    console.warn("Not implemented");
+    console.warn("Data saving not implemented");
+    this.props.navigation.navigate('CardCreation');
   }
 
   _reviewDeck = () => {
-    console.warn("Not implemented");
+    this.props.navigation.navigate('Review');
   }
 
   _doneCreating = () => {
-    console.warn("Not implemented");
+    this.props.navigation.navigate('Home');
   }
 
   render() {

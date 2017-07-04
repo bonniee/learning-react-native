@@ -3,35 +3,33 @@ import {
   StyleSheet,
   View
 } from 'react-native';
+import { StackNavigator } from 'react-navigation';
 
-import Heading from './Header';
+import Logo from './Header/Logo';
 import DeckScreen from './DeckScreen';
 import NewCardScreen from './NewCardScreen';
 import ReviewScreen from './ReviewScreen';
 
-class Flashcards extends Component {
-
-  _renderScene(route) {
-
-    // return <ReviewScreen />;
-    // return <NewCardScreen />;
-    return <DeckScreen />;
-  }
-  render() {
-    return (
-      <View style={styles.container}>
-        <Heading/>
-        { this._renderScene("decks")}
-      </View>
-      );
-  }
+let headerOptions = {
+  headerStyle:  {
+    backgroundColor: '#FFFFFF'
+  },
+  headerLeft: <Logo/>
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: 30
+let navigator = StackNavigator({
+  Home: { 
+    screen: DeckScreen,
+    navigationOptions: headerOptions
+  },
+  Review: {
+    screen: ReviewScreen,
+    navigationOptions: headerOptions
+  },
+  CardCreation: {
+    screen: NewCardScreen,
+    navigationOptions: headerOptions
   }
 });
 
-export default Flashcards;
+export default navigator;

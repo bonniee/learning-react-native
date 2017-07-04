@@ -8,13 +8,32 @@ import Deck from './Deck';
 import DeckCreation from './DeckCreation';
 
 class DecksScreen extends Component {
-  static displayName = 'DecksScreen'
+  static displayName = 'DecksScreen';
+
+  static navigationOptions = {
+    title: 'All Decks'
+  };
 
   constructor(props) {
     super(props);
     this.state = {
       decks: MockDecks
     }
+  }
+
+  _createDeck = () => {
+    console.warn("Data saving not implemented");
+    this.props.navigation.navigate('CardCreation');
+  }
+
+  _addCards = () => {
+    console.warn("Data saving not implemented");
+    this.props.navigation.navigate('CardCreation');
+  }
+
+  _review = () => {
+    console.warn("Actual reviews not implemented");
+    this.props.navigation.navigate('Review');
   }
 
   _mkDeckViews() {
@@ -26,7 +45,9 @@ class DecksScreen extends Component {
       return (
         <Deck
           deck={deck}
-          key={deck.id} />);
+          key={deck.id}
+          add={this._addCards}
+          review={this._review} />);
     });
   }
 
@@ -34,7 +55,7 @@ class DecksScreen extends Component {
     return (
       <View>
         {this._mkDeckViews()}
-        <DeckCreation />
+        <DeckCreation create={this._createDeck}/>
       </View>
     );
   }

@@ -13,11 +13,11 @@ class Deck extends Component {
   static displayName = 'Deck';
 
   _review = () => {
-    console.warn("Not implemented");
+    this.props.review();
   }
 
   _addCards = () => {
-    console.warn("Not implemented");
+    this.props.add();
   }
 
   render() {
@@ -39,7 +39,8 @@ class Deck extends Component {
 }
 
 Deck.propTypes = {
-  deck: React.PropTypes.instanceOf(DeckModel),
+  deck: React.PropTypes.instanceOf(DeckModel).isRequired,
+  add: React.PropTypes.func.isRequired
 };
 
 const styles = StyleSheet.create({

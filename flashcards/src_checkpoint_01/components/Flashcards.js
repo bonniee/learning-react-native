@@ -11,7 +11,7 @@ import ReviewScreen from './ReviewScreen';
 
 class Flashcards extends Component {
 
-  _renderScene(route) {
+  _renderScene() {
 
     // return <ReviewScreen />;
     // return <NewCardScreen />;
@@ -21,7 +21,7 @@ class Flashcards extends Component {
     return (
       <View style={styles.container}>
         <Heading/>
-        { this._renderScene("decks")}
+        { this._renderScene()}
       </View>
       );
   }
