@@ -6,7 +6,7 @@ import { mkContinueQuitButtons, mkAnswerButtons } from './ReviewButtons';
 
 class ViewCard extends Component {
   static displayName = 'ViewCard';
-
+  
   _getInitialState() {
     return {
       showingAnswer: false,

@@ -9,35 +9,36 @@ import { MockReviews } from './../../data/Mocks';
 import { mkReviewSummary } from './ReviewSummary';
 import colors from './../../styles/colors';
 
-var ReviewScreen = React.createClass({
-  displayName: 'ReviewScreen',
+class ReviewScreen extends Component {
 
-  propTypes: {
-    deckID: React.PropTypes.string.isRequired,
-    quit: React.PropTypes.func.isRequired
-  },
+  static displayName = 'ReviewScreen';
 
-  getInitialState() {
-    return {
+  constructor(props) {
+    super(props);
+    this.state = {
       numReviewed: 0,
       numCorrect: 0,
       currentReview: 0,
       reviews: MockReviews
     };
-  },
+  }
 
-  onReview(correct) {
+  onReview = (correct) => {
     if (correct) {
       this.setState({numCorrect: this.state.numCorrect + 1});
     }
     this.setState({numReviewed: this.state.numReviewed + 1});
-  },
+  }
 
-  _nextReview() {
+  _nextReview = () => {
     this.setState({
       currentReview: this.state.currentReview + 1
     });
-  },
+  }
+
+  _quitReviewing = () => {
+    console.warn("Not implemented");
+  }
 
   _contents() {
     if (!this.state.reviews || this.state.reviews.length === 0) {
@@ -49,16 +50,16 @@ var ReviewScreen = React.createClass({
         <ViewCard
           onReview={this.onReview}
           continue={this._nextReview}
-          quit={this.props.quit}
+          quit={this._quitReviewing}
           {...this.state.reviews[this.state.currentReview]}
           />
         );
     }
     else {
       let percent = this.state.numCorrect / this.state.numReviewed;
-      return mkReviewSummary(percent, this.props.quit);
+      return mkReviewSummary(percent, this._quitReviewing);
     }
-  },
+  }
 
   render() {
     return (
@@ -67,7 +68,9 @@ var ReviewScreen = React.createClass({
       </View>
       );
   }
-});
+}
+
+ReviewScreen.propTypes = {};
 
 const styles = StyleSheet.create({
   container: {

@@ -14,8 +14,8 @@ class Flashcards extends Component {
   _renderScene(route) {
     // Each of these screens renders properly. Now we have to connect them!
 
-    //return <ReviewScreen />;
-    return <NewCardScreen />;
+    return <ReviewScreen />;
+    // return <NewCardScreen />;
     // return <DeckScreen />;
   }
   render() {
