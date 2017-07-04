@@ -34,6 +34,7 @@ const Navigator = StackNavigator({
   },
   CardCreation: {
     screen: NewCardScreen,
+    path: 'createCard/:deckID',
     navigationOptions: headerOptions
   }
 });

@@ -15,15 +15,15 @@ class DecksScreen extends Component {
   static navigationOptions = {
     title: 'All Decks'
   };
-  
+
   _createDeck = () => {
     console.warn("Data saving not implemented");
     this.props.navigation.navigate('CardCreation');
   }
 
-  _addCards = () => {
+  _addCards = (deckID) => {
     console.warn("Data saving not implemented");
-    this.props.navigation.navigate('CardCreation');
+    this.props.navigation.navigate('CardCreation', {deckID: deckID});
   }
 
   _review = () => {
@@ -40,8 +40,9 @@ class DecksScreen extends Component {
       return (
         <Deck
           deck={deck}
+          dueCount={this.props.dueCounts[deck.id]}
           key={deck.id}
-          add={this._addCards}
+          add={() => { this._addCards(deck.id)}}
           review={this._review} />);
     });
   }
@@ -56,15 +57,20 @@ class DecksScreen extends Component {
   }
 }
 
+
 const mapDispatchToProps = dispatch => {
   return {};
 }
 const mapStateToProps = state => {
+  console.log(state)
   return {
-    decks: state.decks.map(deck => deck.meta)
+    decks: state.decks.map(d => d.meta),
+    dueCounts: state.decks.reduce( (sum, deck) => {
+        sum[deck.meta.id] = deck.cards.length // TODO
+        return sum;
+      }, {})
   }
 }
-
 
 export default connect(
   mapStateToProps,

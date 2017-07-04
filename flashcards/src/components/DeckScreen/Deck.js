@@ -23,10 +23,9 @@ class Deck extends Component {
   render() {
     return (
       <View style={styles.deckGroup}>
-
         <Button style={styles.deckButton} onPress={this._review}>
           <NormalText>
-            {this.props.deck.name}: {this.props.deck.dueCards} due
+            {this.props.deck.name}: {this.props.dueCount} due
           </NormalText>
         </Button>
 

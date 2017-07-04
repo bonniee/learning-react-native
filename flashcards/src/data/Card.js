@@ -7,7 +7,7 @@ class Card {
     this.back = back;
     this.deckID = deckID;
     this.strength = 0;
-    this.dueDate = moment();
+    this.dueDate = moment().subtract(1, 'hour');
     this.id = md5(front + back + deckID);
   }
 
