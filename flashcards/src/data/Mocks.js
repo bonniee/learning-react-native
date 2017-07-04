@@ -1,4 +1,5 @@
 import CardModel from './Card';
+import DeckModel from './Deck';
 import { mkReviews } from './Reviews';
 
 let MockCards = [
@@ -31,5 +32,16 @@ let MockCards = [
 
 let MockCard = MockCards[0];
 let MockReviews = mkReviews(MockCards);
+let MockDecks = [
+  new DeckModel("French"),
+  new DeckModel("German")
+];
+let MockDeck = MockDecks[0]
 
-export { MockReviews, MockCards, MockCard };
+export { 
+  MockReviews,
+  MockCards,
+  MockCard,
+  MockDecks,
+  MockDeck
+};

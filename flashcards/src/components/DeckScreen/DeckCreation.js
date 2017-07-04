@@ -4,48 +4,7 @@ import {
   View
 } from 'react-native';
 
-import Button from './../Button';
-import NormalText from './../NormalText';
-import Input from './../Input';
-
-import colors from './../../styles/colors';
-
-class CreateDeckButton extends Component {
-  render() {
-    return (
-      <Button
-        style={styles.createDeck}
-        onPress={this.props.onPress}>
-        <NormalText>Create Deck</NormalText>
-      </Button>
-      );
-  }
-}
-
-class EnterDeck extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { text: '' };
-  }
-
-  _create = () => {
-    this.props.create(this.state.text);
-  }
-
-  render() {
-    return (
-      <View style={styles.enterDeck}>
-        <Input onEntry={this.props.create}
-          onChange={(text) => {this.setState({text});}}/>
-        <CreateDeckButton onPress={this._create}/>
-      </View>
-      );
-  }
-}
-
-EnterDeck.propTypes = {
-  create: React.PropTypes.func.isRequired
-}
+import { CreateDeckButton, EnterDeck } from './DeckCreationFields';
 
 class DeckCreation extends Component {
   constructor(props) {
@@ -54,7 +13,7 @@ class DeckCreation extends Component {
   }
 
   _newDeck = (name) => {
-    this.props.newDeck(name);
+    console.warn("Not implemented");
     this.setState({ showingNameField: false });
   }
 
@@ -63,7 +22,7 @@ class DeckCreation extends Component {
   }
 
   render() {
-    var contents = this.state.showingNameField
+    let contents = this.state.showingNameField
       ? <EnterDeck create={this._newDeck}/>
       : <CreateDeckButton onPress={this._showField}/>
       ;
@@ -72,23 +31,7 @@ class DeckCreation extends Component {
 }
 
 DeckCreation.propTypes = {
-  newDeck: React.PropTypes.func.isRequired
+  newDeck: React.PropTypes.func
 }
 
 export default DeckCreation;
-
-const styles = StyleSheet.create({
-  nameField: {
-    backgroundColor: colors.tan,
-    height: 40
-  },
-  wideButton: {
-    justifyContent: 'center',
-    flex: 1,
-    padding: 10,
-    margin: 10
-  },
-  createDeck: {
-    backgroundColor: colors.green
-  }
-});

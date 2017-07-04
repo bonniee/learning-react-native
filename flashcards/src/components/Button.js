@@ -24,7 +24,7 @@ class Button extends Component {
 }
 
 Button.propTypes = {
-  onPress: React.PropTypes.func.isRequired,
+  onPress: React.PropTypes.func,
   style: View.propTypes.style,
   children: React.PropTypes.object,
   disabled: React.PropTypes.bool

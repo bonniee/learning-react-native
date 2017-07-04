@@ -5,21 +5,19 @@ import {
 } from 'react-native';
 
 import DeckModel from './../../data/Deck';
-
 import Button from './../Button';
 import NormalText from './../NormalText';
-
 import colors from './../../styles/colors';
 
 class Deck extends Component {
   static displayName = 'Deck';
 
   _review = () => {
-    this.props.onReview(this.props.deck.id);
+    console.warn("Not implemented");
   }
 
   _addCards = () => {
-    this.props.addCards(this.props.deck);
+    console.warn("Not implemented");
   }
 
   render() {
@@ -32,8 +30,7 @@ class Deck extends Component {
           </NormalText>
         </Button>
 
-        <Button style={styles.editButton}
-          onPress={this._addCards}>
+        <Button style={styles.editButton} onPress={this._addCards}>
           <NormalText>+</NormalText>
         </Button>
       </View>
@@ -42,9 +39,7 @@ class Deck extends Component {
 }
 
 Deck.propTypes = {
-  onReview: React.PropTypes.func.isRequired,
   deck: React.PropTypes.instanceOf(DeckModel),
-  addCards: React.PropTypes.func.isRequired
 };
 
 const styles = StyleSheet.create({
