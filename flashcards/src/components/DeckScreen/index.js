@@ -6,7 +6,7 @@ import {
 import { connect } from 'react-redux'
 
 import { MockDecks } from './../../data/Mocks';
-import { addDeck } from './../../actions/creators';
+import { addDeck, reviewDeck } from './../../actions/creators';
 import Deck from './Deck';
 import DeckCreation from './DeckCreation';
 
@@ -27,8 +27,8 @@ class DecksScreen extends Component {
     this.props.navigation.navigate('CardCreation', {deckID: deckID});
   }
 
-  _review = () => {
-    console.warn("Actual reviews not implemented");
+  _review = (deckID) => {
+    this.props.reviewDeck(deckID);
     this.props.navigation.navigate('Review');
   }
 
@@ -44,7 +44,7 @@ class DecksScreen extends Component {
           dueCount={this.props.dueCounts[deck.id]}
           key={deck.id}
           add={() => { this._addCards(deck.id)}}
-          review={this._review} />);
+          review={() => {this._review(deck.id)}} />);
     });
   }
 
@@ -63,6 +63,9 @@ const mapDispatchToProps = dispatch => {
   return {
     createDeck: deckAction => {
       dispatch(deckAction)
+    },
+    reviewDeck: deckID => {
+      dispatch(reviewDeck(deckID))
     }
   };
 }

@@ -1,4 +1,4 @@
-import { ADD_DECK, ADD_CARD } from './types';
+import { ADD_DECK, ADD_CARD, REVIEW_DECK } from './types';
 import Card from '../data/Card';
 import Deck from '../data/Deck';
 
@@ -13,5 +13,12 @@ export const addCard = (front, back, deckID) => {
   return {
     type: ADD_CARD,
     data: new Card(front, back, deckID)
+  }
+}
+
+export const reviewDeck = (deckID) => {
+  return {
+    type: REVIEW_DECK,
+    data: { deckID: deckID }
   }
 }

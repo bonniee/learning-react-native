@@ -4,8 +4,8 @@ import {
   View
 } from 'react-native';
 
+import { connect } from 'react-redux';
 import ViewCard from './ViewCard';
-import { MockReviews } from './../../data/Mocks';
 import { mkReviewSummary } from './ReviewSummary';
 import colors from './../../styles/colors';
 
@@ -23,7 +23,7 @@ class ReviewScreen extends Component {
       numReviewed: 0,
       numCorrect: 0,
       currentReview: 0,
-      reviews: MockReviews
+      reviews: []
     };
   }
 
@@ -47,17 +47,17 @@ class ReviewScreen extends Component {
   }
 
   _contents() {
-    if (!this.state.reviews || this.state.reviews.length === 0) {
+    if (!this.props.reviews || this.props.reviews.length === 0) {
       return null;
     }
 
-    if (this.state.currentReview < this.state.reviews.length) {
+    if (this.state.currentReview < this.props.reviews.length) {
       return (
         <ViewCard
           onReview={this.onReview}
           continue={this._nextReview}
           quit={this._quitReviewing}
-          {...this.state.reviews[this.state.currentReview]}
+          {...this.props.reviews[this.state.currentReview]}
           />
         );
     }
@@ -68,6 +68,8 @@ class ReviewScreen extends Component {
   }
 
   render() {
+    console.log("rendering review ?!!!!!!!!")
+    console.log(this.props.reviews);
     return (
       <View style={styles.container}>
         {this._contents()}
@@ -75,8 +77,6 @@ class ReviewScreen extends Component {
       );
   }
 }
-
-ReviewScreen.propTypes = {};
 
 const styles = StyleSheet.create({
   container: {
@@ -86,4 +86,18 @@ const styles = StyleSheet.create({
   }
 });
 
-export default ReviewScreen;
+const mapDispatchToProps = dispatch => {
+  return {};
+}
+
+const mapStateToProps = state => {
+  console.log("Im looking at state");
+  console.log(state.currentReview.questions);
+  return {
+    reviews: state.currentReview.questions
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps)(ReviewScreen);

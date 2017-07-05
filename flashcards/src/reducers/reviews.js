@@ -5,24 +5,26 @@ import { REVIEW_DECK } from './../actions/types';
 
 function findDeck(decks, id) {
   return decks.find((d) => {
-    d.meta.id === id
+    return d.meta.id == id
   });
 }
 
 function dueCards(deck) {
+  let now = moment()
   return deck.cards.filter((card) => {
-    return now >= c.dudeDate;
+    return moment.now() >= card.dueDate;
   });
 }
 
 function generateReviews(deck) {
-  let dueCards = dueCards(deck);
-  let reviews = dueCards.map(card => new Review(card));
-  let quizCardViews = mkReviews(reviews);
+  let due = dueCards(deck);
+  let reviews = due.map(card => new Review(card));
+  let quizCardViews = mkReviews(due);
+
   return {
     deckID: deck.meta.id,
     cardStates: reviews,
-    quizCardViews: quizCardViews
+    questions: quizCardViews
   }
 }
 
@@ -35,7 +37,7 @@ const initialState = {
 const reducer = (state = initialState, action, decks) => {
   switch(action.type) {
     case REVIEW_DECK:
-      return generateReviews(findDeck(decks));
+      return generateReviews(findDeck(decks, action.data.deckID));
   }
   return state;
 }
