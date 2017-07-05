@@ -10,8 +10,6 @@ async function read(key, deserializer) {
       let readValue = JSON.parse(val).map(serialized => {
         return deserializer(serialized);
       });
-      console.log("Read value: ");
-      console.log(readValue);
       return readValue;
     } else {
       console.info(`${key} not found on disk.`);
@@ -22,7 +20,6 @@ async function read(key, deserializer) {
 }
 
 async function write(key, item) {
-  console.log("writing: ", item);
   try {
     await AsyncStorage.setItem(key, JSON.stringify(item));
   } catch (error) {

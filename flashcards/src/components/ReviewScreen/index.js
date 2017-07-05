@@ -31,7 +31,6 @@ class ReviewScreen extends Component {
       this.setState({numCorrect: this.state.numCorrect + 1});
     }
     this.setState({numReviewed: this.state.numReviewed + 1});
-    this.props.reviewCard(correct);
   }
 
   _nextReview = () => {
@@ -83,9 +82,6 @@ const styles = StyleSheet.create({
 
 const mapDispatchToProps = dispatch => {
   return {
-    reviewCard: correct => {
-      dispatch(reviewCard(correct));
-    },
     nextReview: () => {
       dispatch(nextReview());
     },
@@ -96,8 +92,6 @@ const mapDispatchToProps = dispatch => {
 }
 
 const mapStateToProps = state => {
-  console.log("reviewScreen mapStateToProps");
-  console.log(state.currentReview);
   return {
     reviews: state.currentReview.questions,
     currentReview: state.currentReview.currentQuestionIndex

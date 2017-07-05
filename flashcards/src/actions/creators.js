@@ -2,7 +2,6 @@ import {
   ADD_DECK,
   ADD_CARD,
   REVIEW_DECK,
-  REVIEW_CARD,
   STOP_REVIEW,
   NEXT_REVIEW,
   LOAD_DATA
@@ -21,10 +20,6 @@ export const addCard = (front, back, deckID) => {
 
 export const reviewDeck = deckID => {
   return { type: REVIEW_DECK, data: { deckID: deckID } };
-};
-
-export const reviewCard = correct => {
-  return { type: REVIEW_CARD, data: { correct } };
 };
 
 export const stopReview = () => {

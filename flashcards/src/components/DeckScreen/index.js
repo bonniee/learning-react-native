@@ -41,7 +41,7 @@ class DecksScreen extends Component {
       return (
         <Deck
           deck={deck}
-          dueCount={this.props.dueCounts[deck.id]}
+          count={this.props.counts[deck.id]}
           key={deck.id}
           add={() => { this._addCards(deck.id)}}
           review={() => {this._review(deck.id)}} />);
@@ -72,8 +72,8 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   return {
     decks: state.decks,
-    dueCounts: state.decks.reduce( (sum, deck) => {
-        sum[deck.id] = deck.cards.length // TODO: actually count TODOs
+    counts: state.decks.reduce( (sum, deck) => {
+        sum[deck.id] = deck.cards.length
         return sum;
       }, {})
   }
