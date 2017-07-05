@@ -5,9 +5,24 @@ import { MockDecks, MockCards } from "./data/Mocks";
 import DecksReducer from "./reducers/decks";
 import ReviewReducer, { mkReviewState } from "./reducers/reviews";
 
-const initialState = { decks: MockDecks.map(mockDeckInfo => {
-    return { meta: mockDeckInfo, cards: MockCards };
-  }), currentReview: mkReviewState() };
+import { readDecks, writeDecks } from './storage/decks';
+
+function loadDecks = () => {
+  readDecks().then(decks => {
+    console.log("omg we loaded decks!!");
+  });
+}
+
+const initialState = () => {
+  loadDecks();
+  return {
+    decks: MockDecks.map(mockDeckInfo => {
+        return { meta: mockDeckInfo, cards: MockCards };
+      }
+    ),
+    currentReview: mkReviewState()
+    }
+};
 
 export const reducer = (state = initialState, action) => {
   let decks = DecksReducer(state.decks, action);
