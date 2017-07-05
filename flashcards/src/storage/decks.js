@@ -1,6 +1,7 @@
 import { AsyncStorage } from 'react-native';
 import Deck from './../data/Deck';
 export const DECK_KEY = 'flashcards:decks';
+import { MockDecks } from './../data/Mocks';
 
 async function read(key, deserializer) {
     try {
@@ -17,21 +18,24 @@ async function read(key, deserializer) {
       console.info(`${key} not found on disk.`);
     }
   } catch (error) {
-    console.error('AsyncStorage error: ', error.message);
+    console.warn('AsyncStorage error: ', error.message);
   }
 }
 
 async function write(key, item) {
+  console.log("writing: ", item);
   try {
     await AsyncStorage.setItem(key, JSON.stringify(item));
   }
   catch (error) {
     console.error('AsyncStorage error: ', error.message);
-  }  
+  }
 }
 
 export const readDecks = () => {
-  return read(DECK_KEY, Deck.fromObject);
+  // TODO fix
+  return writeDecks(MockDecks).then(_ => read(DECK_KEY, Deck.fromObject));
+  // return read(DECK_KEY, Deck.fromObject);
 }
 
 export const writeDecks = (decks) => {

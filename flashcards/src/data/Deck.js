@@ -20,7 +20,7 @@ class Deck {
   }
 
   addCard(card) {
-    this.cards.concat(card);
+    this.cards = this.cards.concat(card);
   }
 }
 

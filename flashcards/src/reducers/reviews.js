@@ -19,7 +19,7 @@ export const mkReviewState = (
 
 function findDeck(decks, id) {
   return decks.find(d => {
-    return d.meta.id == id;
+    return d.id == id;
   });
 }
 
@@ -35,7 +35,7 @@ function generateReviews(deck) {
   let reviews = due.map(card => new Review(card));
   let quizCardViews = mkReviews(due);
 
-  return mkReviewState(deck.meta.id, reviews, quizCardViews, 0);
+  return mkReviewState(deck.id, reviews, quizCardViews, 0);
 }
 
 function reviewCard(reviewState, action, decks) {
