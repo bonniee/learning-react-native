@@ -1,139 +1,181 @@
-Binary files src/.DS_Store and src_checkpoint_03/.DS_Store differ
-diff -rupP src/actions/creators.js src_checkpoint_03/actions/creators.js
---- src/actions/creators.js	2017-07-05 16:34:37.000000000 -0400
-+++ src_checkpoint_03/actions/creators.js	2017-07-05 17:14:15.000000000 -0400
-@@ -3,8 +3,7 @@ import {
+Binary files src_checkpoint_03/.DS_Store and src/.DS_Store differ
+diff -rupP src_checkpoint_03/actions/creators.js src/actions/creators.js
+--- src_checkpoint_03/actions/creators.js	2017-07-05 17:14:15.000000000 -0400
++++ src/actions/creators.js	2017-07-05 16:34:37.000000000 -0400
+@@ -3,7 +3,8 @@ import {
    ADD_CARD,
    REVIEW_DECK,
    STOP_REVIEW,
--  NEXT_REVIEW,
--  LOAD_DATA
-+  NEXT_REVIEW
+-  NEXT_REVIEW
++  NEXT_REVIEW,
++  LOAD_DATA
  } from "./types";
  
  import Card from "../data/Card";
-@@ -29,7 +28,3 @@ export const stopReview = () => {
+@@ -28,3 +29,7 @@ export const stopReview = () => {
  export const nextReview = () => {
    return { type: NEXT_REVIEW, data: {} };
  };
--
--export const loadData = data => {
--  return { type: LOAD_DATA, data: data };
--};
-diff -rupP src/actions/types.js src_checkpoint_03/actions/types.js
---- src/actions/types.js	2017-07-05 17:14:38.000000000 -0400
-+++ src_checkpoint_03/actions/types.js	2017-07-05 17:14:39.000000000 -0400
-@@ -3,4 +3,3 @@ export const ADD_CARD = "ADD_CARD";
++
++export const loadData = data => {
++  return { type: LOAD_DATA, data: data };
++};
+diff -rupP src_checkpoint_03/actions/types.js src/actions/types.js
+--- src_checkpoint_03/actions/types.js	2017-07-05 17:14:39.000000000 -0400
++++ src/actions/types.js	2017-07-05 17:14:38.000000000 -0400
+@@ -3,3 +3,4 @@ export const ADD_CARD = "ADD_CARD";
  export const REVIEW_DECK = "REVIEW_DECK";
  export const STOP_REVIEW = "STOP_REVIEW";
  export const NEXT_REVIEW = "NEXT_REVIEW";
--export const LOAD_DATA = "LOAD_DATA";
-Binary files src/components/.DS_Store and src_checkpoint_03/components/.DS_Store differ
-diff -rupP src/components/Flashcards.js src_checkpoint_03/components/Flashcards.js
---- src/components/Flashcards.js	2017-07-05 17:17:50.000000000 -0400
-+++ src_checkpoint_03/components/Flashcards.js	2017-07-05 17:17:50.000000000 -0400
-@@ -5,8 +5,6 @@ import { createStore } from "redux";
++export const LOAD_DATA = "LOAD_DATA";
+Binary files src_checkpoint_03/components/.DS_Store and src/components/.DS_Store differ
+diff -rupP src_checkpoint_03/components/Flashcards.js src/components/Flashcards.js
+--- src_checkpoint_03/components/Flashcards.js	2017-07-05 17:17:50.000000000 -0400
++++ src/components/Flashcards.js	2017-07-05 17:17:50.000000000 -0400
+@@ -5,6 +5,8 @@ import { createStore } from "redux";
  import { Provider } from "react-redux";
  
  import { reducer } from "../store";
--import { readDecks } from "../storage/decks";
--import { loadData } from "../actions/creators";
++import { readDecks } from "../storage/decks";
++import { loadData } from "../actions/creators";
  
  import Logo from "./Header/Logo";
  import DeckScreen from "./DeckScreen";
-@@ -20,11 +18,6 @@ let headerOptions = {
+@@ -18,6 +20,11 @@ let headerOptions = {
    headerLeft: <Logo />
  };
  
--// On application start, read saved state from disk.
--readDecks().then(decks => {
--  store.dispatch(loadData(decks));
--});
--
++// On application start, read saved state from disk.
++readDecks().then(decks => {
++  store.dispatch(loadData(decks));
++});
++
  const Navigator = StackNavigator({
    Home: { screen: DeckScreen, navigationOptions: headerOptions },
    Review: { screen: ReviewScreen, navigationOptions: headerOptions },
-diff -rupP src/components/LabeledInput.js src_checkpoint_03/components/LabeledInput.js
---- src/components/LabeledInput.js	2017-07-05 17:18:44.000000000 -0400
-+++ src_checkpoint_03/components/LabeledInput.js	2017-07-05 17:18:41.000000000 -0400
+diff -rupP src_checkpoint_03/components/LabeledInput.js src/components/LabeledInput.js
+--- src_checkpoint_03/components/LabeledInput.js	2017-07-05 17:18:41.000000000 -0400
++++ src/components/LabeledInput.js	2017-07-05 17:18:44.000000000 -0400
 @@ -1,6 +1,6 @@
  import React, { Component } from "react";
  
--import { StyleSheet, View, ViewPropTypes} from "react-native";
-+import { StyleSheet, View, ViewPropTypes } from "react-native";
+-import { StyleSheet, View, ViewPropTypes } from "react-native";
++import { StyleSheet, View, ViewPropTypes} from "react-native";
  
  import Input from "./Input";
  import NormalText from "./NormalText";
-diff -rupP src/reducers/decks.js src_checkpoint_03/reducers/decks.js
---- src/reducers/decks.js	2017-07-05 16:34:37.000000000 -0400
-+++ src_checkpoint_03/reducers/decks.js	2017-07-05 17:07:09.000000000 -0400
-@@ -1,9 +1,11 @@
--import { ADD_DECK, ADD_CARD, LOAD_DATA } from "../actions/types";
--import Deck from "./../data/Deck";
--import { writeDecks } from "./../storage/decks";
-+import { ADD_DECK, ADD_CARD } from "../actions/types";
-+
-+function addCardToDeck(card, deck) {
-+  return { meta: deck.meta, cards: deck.cards.concat(card) };
-+}
+diff -rupP src_checkpoint_03/reducers/decks.js src/reducers/decks.js
+--- src_checkpoint_03/reducers/decks.js	2017-07-05 17:07:09.000000000 -0400
++++ src/reducers/decks.js	2017-07-05 16:34:37.000000000 -0400
+@@ -1,11 +1,9 @@
+-import { ADD_DECK, ADD_CARD } from "../actions/types";
+-
+-function addCardToDeck(card, deck) {
+-  return { meta: deck.meta, cards: deck.cards.concat(card) };
+-}
++import { ADD_DECK, ADD_CARD, LOAD_DATA } from "../actions/types";
++import Deck from "./../data/Deck";
++import { writeDecks } from "./../storage/decks";
  
  function decksWithNewCard(oldDecks, card) {
--  let newState = oldDecks.map(deck => {
-+  return oldDecks.map(deck => {
+-  return oldDecks.map(deck => {
++  let newState = oldDecks.map(deck => {
      if (deck.id === card.deckID) {
        deck.addCard(card);
        return deck;
-@@ -11,26 +13,16 @@ function decksWithNewCard(oldDecks, card
+@@ -13,16 +11,26 @@ function decksWithNewCard(oldDecks, card
        return deck;
      }
    });
--  saveDecks(newState);
--  return newState;
--}
--
--function saveDecks(state) {
--  writeDecks(state);
--  return state;
++  saveDecks(newState);
++  return newState;
  }
  
- const reducer = (state = [], action) => {
-+  console.warn("Changes are not persisted to disk");
-+
+-const reducer = (state = [], action) => {
+-  console.warn("Changes are not persisted to disk");
++function saveDecks(state) {
++  writeDecks(state);
++  return state;
++}
+ 
++const reducer = (state = [], action) => {
    switch (action.type) {
--    case LOAD_DATA:
--      return action.data;
++    case LOAD_DATA:
++      return action.data;
      case ADD_DECK:
--      let newState = state.concat(action.data);
--      saveDecks(newState);
--      return newState;
-+      return state.concat(action.data);
+-      return state.concat(action.data);
++      let newState = state.concat(action.data);
++      saveDecks(newState);
++      return newState;
      case ADD_CARD:
        return decksWithNewCard(state, action.data);
--
++
    }
    return state;
  };
-diff -rupP src/reducers/reviews.js src_checkpoint_03/reducers/reviews.js
---- src/reducers/reviews.js	2017-07-05 17:10:16.000000000 -0400
-+++ src_checkpoint_03/reducers/reviews.js	2017-07-05 17:10:16.000000000 -0400
+diff -rupP src_checkpoint_03/reducers/reviews.js src/reducers/reviews.js
+--- src_checkpoint_03/reducers/reviews.js	2017-07-05 17:10:16.000000000 -0400
++++ src/reducers/reviews.js	2017-07-05 17:10:16.000000000 -0400
 @@ -27,7 +27,7 @@ function nextReview(state) {
    );
  }
  
--const reducer = (state = mkReviewState(), action, decks) => {
-+const reducer = (state = mkReviewstate(), action, decks) => {
+-const reducer = (state = mkReviewstate(), action, decks) => {
++const reducer = (state = mkReviewState(), action, decks) => {
    switch (action.type) {
      case REVIEW_DECK:
        return generateReviews(findDeck(decks, action.data.deckID));
-Only in src: storage
-diff -rupP src/store.js src_checkpoint_03/store.js
---- src/store.js	2017-07-05 17:03:00.000000000 -0400
-+++ src_checkpoint_03/store.js	2017-07-05 17:02:40.000000000 -0400
-@@ -11,7 +11,6 @@ const initialState = () => {
+diff -rupP src_checkpoint_03/storage/decks.js src/storage/decks.js
+--- src_checkpoint_03/storage/decks.js	1969-12-31 19:00:00.000000000 -0500
++++ src/storage/decks.js	2017-07-05 16:50:23.000000000 -0400
+@@ -0,0 +1,39 @@
++import { AsyncStorage } from "react-native";
++import Deck from "./../data/Deck";
++export const DECK_KEY = "flashcards:decks";
++import { MockDecks } from "./../data/Mocks";
++
++async function read(key, deserializer) {
++  try {
++    let val = await AsyncStorage.getItem(key);
++    if (val !== null) {
++      let readValue = JSON.parse(val).map(serialized => {
++        return deserializer(serialized);
++      });
++      return readValue;
++    } else {
++      console.info(`${key} not found on disk.`);
++    }
++  } catch (error) {
++    console.warn("AsyncStorage error: ", error.message);
++  }
++}
++
++async function write(key, item) {
++  try {
++    await AsyncStorage.setItem(key, JSON.stringify(item));
++  } catch (error) {
++    console.error("AsyncStorage error: ", error.message);
++  }
++}
++
++export const readDecks = () => {
++  return read(DECK_KEY, Deck.fromObject);
++};
++
++export const writeDecks = decks => {
++  return write(DECK_KEY, decks);
++};
++
++// For debug/test purposes.
++const replaceData = writeDecks(MockDecks);
+diff -rupP src_checkpoint_03/store.js src/store.js
+--- src_checkpoint_03/store.js	2017-07-05 17:02:40.000000000 -0400
++++ src/store.js	2017-07-05 17:03:00.000000000 -0400
+@@ -11,6 +11,7 @@ const initialState = () => {
  
  export const reducer = (state = initialState(), action) => {
    let decks = DecksReducer(state.decks, action);
--
++
    return {
      decks: decks,
      currentReview: ReviewReducer(state.currentReview, action, decks)
