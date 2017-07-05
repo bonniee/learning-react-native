@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View, TouchableOpacity } from "react-native";
+import { StyleSheet, View, ViewPropTypes, TouchableOpacity } from "react-native";
 
 import colors from "./../styles/colors";
 
@@ -22,7 +22,7 @@ class Button extends Component {
 
 Button.propTypes = {
   onPress: React.PropTypes.func,
-  style: View.propTypes.style,
+  style: ViewPropTypes.style,
   children: React.PropTypes.object,
   disabled: React.PropTypes.bool
 };
