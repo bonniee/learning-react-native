@@ -1,12 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import {
-  StyleSheet,
-  View
-} from 'react-native';
+import { StyleSheet, View } from "react-native";
 
-import Input from './Input';
-import NormalText from './NormalText';
+import Input from "./Input";
+import NormalText from "./NormalText";
 
 class LabeledInput extends Component {
   render() {
@@ -19,7 +16,8 @@ class LabeledInput extends Component {
           onEntry={this.props.onEntry}
           onChange={this.props.onChange}
           clearOnSubmit={this.props.clearOnSubmit}
-          style={this.props.inputStyle}/>
+          style={this.props.inputStyle}
+        />
       </View>
     );
   }
@@ -34,12 +32,8 @@ LabeledInput.propTypes = {
 };
 
 const styles = StyleSheet.create({
-  label: {
-    paddingLeft: 10
-  },
-  wrapper: {
-    padding: 5
-  }
+  label: { paddingLeft: 10 },
+  wrapper: { padding: 5 }
 });
 
 export default LabeledInput;

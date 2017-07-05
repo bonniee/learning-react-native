@@ -1,28 +1,31 @@
-import moment from 'moment';
-import Review from './../data/PerCardReview';
-import { mkReviews } from './../data/QuizCardView';
-import { REVIEW_DECK, REVIEW_CARD, NEXT_REVIEW, STOP_REVIEW } from './../actions/types';
+import moment from "moment";
+import Review from "./../data/PerCardReview";
+import { mkReviews } from "./../data/QuizCardView";
+import {
+  REVIEW_DECK,
+  REVIEW_CARD,
+  NEXT_REVIEW,
+  STOP_REVIEW
+} from "./../actions/types";
 
 export const mkReviewState = (
   deckID = null,
   cardStates = [],
   questions = [],
   currentQuestionIndex = 0
-  ) => {
-  return {
-    deckID, cardStates, questions, currentQuestionIndex
-  }
-}
+) => {
+  return { deckID, cardStates, questions, currentQuestionIndex };
+};
 
 function findDeck(decks, id) {
-  return decks.find((d) => {
-    return d.meta.id == id
+  return decks.find(d => {
+    return d.meta.id == id;
   });
 }
 
 function dueCards(deck) {
-  let now = moment()
-  return deck.cards.filter((card) => {
+  let now = moment();
+  return deck.cards.filter(card => {
     return moment.now() >= card.dueDate;
   });
 }
@@ -41,8 +44,8 @@ function reviewCard(reviewState, action, decks) {
     reviewState.deckID,
     reviewState.cardStates, // TODO: Update card state
     reviewState.questions,
-    reviewState.currentQuestionIndex 
-    );
+    reviewState.currentQuestionIndex
+  );
 }
 
 function nextReview(state) {
@@ -55,7 +58,7 @@ function nextReview(state) {
 }
 
 const reducer = (state = mkReviewstate(), action, decks) => {
-  switch(action.type) {
+  switch (action.type) {
     case REVIEW_DECK:
       return generateReviews(findDeck(decks, action.data.deckID));
     case REVIEW_CARD:
@@ -63,9 +66,9 @@ const reducer = (state = mkReviewstate(), action, decks) => {
     case NEXT_REVIEW:
       return nextReview(state);
     case STOP_REVIEW:
-      return mkReviewState()
+      return mkReviewState();
   }
   return state;
-}
+};
 
 export default reducer;

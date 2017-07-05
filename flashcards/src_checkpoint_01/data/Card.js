@@ -1,5 +1,5 @@
-import md5 from 'md5';
-import moment from 'moment';
+import md5 from "md5";
+import moment from "moment";
 
 class Card {
   constructor(front, back, deckID) {

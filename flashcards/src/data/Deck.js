@@ -1,15 +1,15 @@
-import md5 from 'md5';
+import md5 from "md5";
 
 class Deck {
   constructor(name) {
     this.name = name;
     this.id = md5("deck:" + name);
-    this.cards = []
+    this.cards = [];
   }
 
   setFromObject(ob) {
     this.name = ob.name;
-    this.cards = ob.cards
+    this.cards = ob.cards;
     this.id = ob.id;
   }
 

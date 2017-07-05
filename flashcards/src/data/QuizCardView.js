@@ -1,13 +1,7 @@
-import _ from 'lodash';
+import _ from "lodash";
 
 class QuizCardView {
-  constructor(
-    orientation,
-    cardID,
-    prompt,
-    correctAnswer,
-    answers
-    ) {
+  constructor(orientation, cardID, prompt, correctAnswer, answers) {
     this.orientation = orientation;
     this.cardID = cardID;
     this.prompt = prompt;
@@ -18,16 +12,14 @@ class QuizCardView {
 
 function mkReviews(cards) {
   var makeReviews = function(sideOne, sideTwo) {
-    return cards.map((card) => {
-      let others = cards.filter((other) => {
+    return cards.map(card => {
+      let others = cards.filter(other => {
         return other.id !== card.id;
       });
 
       let answers = _.shuffle(
-        [card[sideTwo]].concat(
-            _.sampleSize(_.map(others, sideTwo), 3)
-          )
-        )
+        [card[sideTwo]].concat(_.sampleSize(_.map(others, sideTwo), 3))
+      );
 
       return new QuizCardView(
         sideOne,
@@ -39,8 +31,10 @@ function mkReviews(cards) {
     });
   };
 
-  let reviews = makeReviews('front', 'back').concat(makeReviews('back', 'front'));
+  let reviews = makeReviews("front", "back").concat(
+    makeReviews("back", "front")
+  );
   return _.shuffle(reviews);
 }
 
-export { mkReviews, QuizCardView }
+export { mkReviews, QuizCardView };
