@@ -96,6 +96,8 @@ const mapDispatchToProps = dispatch => {
 }
 
 const mapStateToProps = state => {
+  console.log("reviewScreen mapStateToProps");
+  console.log(state.currentReview);
   return {
     reviews: state.currentReview.questions,
     currentReview: state.currentReview.currentQuestionIndex

@@ -26,7 +26,7 @@ function findDeck(decks, id) {
 function dueCards(deck) {
   let now = moment();
   return deck.cards.filter(card => {
-    return moment.now() >= card.dueDate;
+    return now >= moment(card.dueDate);
   });
 }
 
