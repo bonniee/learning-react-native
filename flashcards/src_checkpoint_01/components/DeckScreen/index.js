@@ -26,6 +26,7 @@ class DecksScreen extends Component {
       return (
         <Deck
           deck={deck}
+          count={deck.cards.length}
           key={deck.id} />);
     });
   }

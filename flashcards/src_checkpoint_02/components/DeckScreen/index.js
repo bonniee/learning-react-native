@@ -45,6 +45,7 @@ class DecksScreen extends Component {
       return (
         <Deck
           deck={deck}
+          count={deck.cards.length}
           key={deck.id}
           add={this._addCards}
           review={this._review} />);

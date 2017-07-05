@@ -26,7 +26,7 @@ class Deck extends Component {
 
         <Button style={styles.deckButton} onPress={this._review}>
           <NormalText>
-            {this.props.deck.name}: {this.props.deck.dueCards} due
+            {this.props.deck.name}: {this.props.count} cards
           </NormalText>
         </Button>
 
@@ -40,6 +40,7 @@ class Deck extends Component {
 
 Deck.propTypes = {
   deck: React.PropTypes.instanceOf(DeckModel),
+  count: React.PropTypes.number
 };
 
 const styles = StyleSheet.create({
