@@ -2,7 +2,7 @@ import { AsyncStorage } from 'react-native';
 import Deck from './../data/Deck';
 export const DECK_KEY = 'flashcards:decks';
 
-async read(key, deserializer) {
+async function read(key, deserializer) {
     try {
     let val = await AsyncStorage.getItem(key);
     if (val !== null) {
@@ -21,7 +21,7 @@ async read(key, deserializer) {
   }
 }
 
-async write(key, item) {
+async function write(key, item) {
   try {
     await AsyncStorage.setItem(key, JSON.stringify(item));
   }
@@ -30,10 +30,10 @@ async write(key, item) {
   }  
 }
 
-export readDecks = () => {
+export const readDecks = () => {
   return read(DECK_KEY, Deck.fromObject);
 }
 
-export writeDecks = (decks) => {
+export const writeDecks = (decks) => {
   return write(DECK_KEY, decks);
 }

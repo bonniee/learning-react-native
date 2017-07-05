@@ -7,7 +7,7 @@ import ReviewReducer, { mkReviewState } from "./reducers/reviews";
 
 import { readDecks, writeDecks } from './storage/decks';
 
-function loadDecks = () => {
+const loadDecks = () => {
   readDecks().then(decks => {
     console.log("omg we loaded decks!!");
   });
@@ -16,15 +16,12 @@ function loadDecks = () => {
 const initialState = () => {
   loadDecks();
   return {
-    decks: MockDecks.map(mockDeckInfo => {
-        return { meta: mockDeckInfo, cards: MockCards };
-      }
-    ),
+    decks: MockDecks,
     currentReview: mkReviewState()
-    }
-};
+  };
+}
 
-export const reducer = (state = initialState, action) => {
+export const reducer = (state = initialState(), action) => {
   let decks = DecksReducer(state.decks, action);
   return {
     decks: decks,

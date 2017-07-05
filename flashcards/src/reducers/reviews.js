@@ -57,7 +57,7 @@ function nextReview(state) {
   );
 }
 
-const reducer = (state = mkReviewstate(), action, decks) => {
+const reducer = (state = mkReviewState(), action, decks) => {
   switch (action.type) {
     case REVIEW_DECK:
       return generateReviews(findDeck(decks, action.data.deckID));

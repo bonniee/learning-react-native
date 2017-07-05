@@ -18,6 +18,10 @@ class Deck {
     d.setFromObject(ob);
     return d;
   }
+
+  addCard(card) {
+    this.cards.concat(card);
+  }
 }
 
-module.exports = Deck;
+export default Deck;

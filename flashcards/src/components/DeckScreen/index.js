@@ -71,9 +71,9 @@ const mapDispatchToProps = dispatch => {
 }
 const mapStateToProps = state => {
   return {
-    decks: state.decks.map(d => d.meta),
+    decks: state.decks,
     dueCounts: state.decks.reduce( (sum, deck) => {
-        sum[deck.meta.id] = deck.cards.length // TODO
+        sum[deck.id] = deck.cards.length // TODO: actually count TODOs
         return sum;
       }, {})
   }
