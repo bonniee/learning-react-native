@@ -68,8 +68,6 @@ class ReviewScreen extends Component {
   }
 
   render() {
-    console.log("rendering review ?!!!!!!!!")
-    console.log(this.props.reviews);
     return (
       <View style={styles.container}>
         {this._contents()}
@@ -91,8 +89,6 @@ const mapDispatchToProps = dispatch => {
 }
 
 const mapStateToProps = state => {
-  console.log("Im looking at state");
-  console.log(state.currentReview.questions);
   return {
     reviews: state.currentReview.questions
   }

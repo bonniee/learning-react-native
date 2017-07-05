@@ -54,7 +54,6 @@ class NewCard extends Component {
   }
 
   render() {
-    console.warn(this._deckID());
     return (
       <View>
         <LabeledInput
