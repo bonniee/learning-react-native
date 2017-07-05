@@ -1,24 +1,23 @@
-import { AsyncStorage } from 'react-native';
-import Deck from './../data/Deck';
-export const DECK_KEY = 'flashcards:decks';
-import { MockDecks } from './../data/Mocks';
+import { AsyncStorage } from "react-native";
+import Deck from "./../data/Deck";
+export const DECK_KEY = "flashcards:decks";
+import { MockDecks } from "./../data/Mocks";
 
 async function read(key, deserializer) {
-    try {
+  try {
     let val = await AsyncStorage.getItem(key);
     if (val !== null) {
-      let readValue = JSON.parse(val).map((serialized) => {
+      let readValue = JSON.parse(val).map(serialized => {
         return deserializer(serialized);
       });
-      console.log('Read value: ');
+      console.log("Read value: ");
       console.log(readValue);
       return readValue;
-    }
-    else {
+    } else {
       console.info(`${key} not found on disk.`);
     }
   } catch (error) {
-    console.warn('AsyncStorage error: ', error.message);
+    console.warn("AsyncStorage error: ", error.message);
   }
 }
 
@@ -26,9 +25,8 @@ async function write(key, item) {
   console.log("writing: ", item);
   try {
     await AsyncStorage.setItem(key, JSON.stringify(item));
-  }
-  catch (error) {
-    console.error('AsyncStorage error: ', error.message);
+  } catch (error) {
+    console.error("AsyncStorage error: ", error.message);
   }
 }
 
@@ -36,8 +34,8 @@ export const readDecks = () => {
   // TODO fix
   return writeDecks(MockDecks).then(_ => read(DECK_KEY, Deck.fromObject));
   // return read(DECK_KEY, Deck.fromObject);
-}
+};
 
-export const writeDecks = (decks) => {
+export const writeDecks = decks => {
   return write(DECK_KEY, decks);
-}
+};

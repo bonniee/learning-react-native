@@ -10,7 +10,7 @@ const initialState = () => {
     decks: MockDecks,
     currentReview: mkReviewState()
   };
-}
+};
 
 export const reducer = (state = initialState(), action) => {
   let decks = DecksReducer(state.decks, action);

@@ -13,7 +13,7 @@ let MockCard = MockCards[0];
 let MockReviews = mkReviews(MockCards);
 let MockDecks = [new DeckModel("French"), new DeckModel("German")];
 
-MockDecks.map((deck) => {
+MockDecks.map(deck => {
   deck.addCard(new CardModel("der Hund", "the dog", deck.id));
   deck.addCard(new CardModel("die Katze", "the cat", deck.id));
   deck.addCard(new CardModel("das Brot", "the bread", deck.id));

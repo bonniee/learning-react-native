@@ -35,6 +35,6 @@ export const nextReview = () => {
   return { type: NEXT_REVIEW, data: {} };
 };
 
-export const loadData = (data) => {
+export const loadData = data => {
   return { type: LOAD_DATA, data: data };
-}
+};

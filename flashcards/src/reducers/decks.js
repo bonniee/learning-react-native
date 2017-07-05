@@ -1,18 +1,16 @@
 import { ADD_DECK, ADD_CARD, LOAD_DATA } from "../actions/types";
-import Deck from './../data/Deck';
-import { writeDecks } from './../storage/decks';
+import Deck from "./../data/Deck";
+import { writeDecks } from "./../storage/decks";
 
 function decksWithNewCard(oldDecks, card) {
-  let newState = oldDecks.map(
-    (deck) => {
-      if (deck.id === card.deckID) {
-        deck.addCard(card);
-        return deck;
-      } else {
-        return deck;
-      }
+  let newState = oldDecks.map(deck => {
+    if (deck.id === card.deckID) {
+      deck.addCard(card);
+      return deck;
+    } else {
+      return deck;
     }
-  );
+  });
   saveDecks(newState);
   return newState;
 }
@@ -32,7 +30,7 @@ const reducer = (state = [], action) => {
       return newState;
     case ADD_CARD:
       return decksWithNewCard(state, action.data);
-        
+
   }
   return state;
 };
