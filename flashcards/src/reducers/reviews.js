@@ -1,10 +1,6 @@
 import moment from "moment";
 import { mkReviews } from "./../data/QuizCardView";
-import {
-  REVIEW_DECK,
-  NEXT_REVIEW,
-  STOP_REVIEW
-} from "./../actions/types";
+import { REVIEW_DECK, NEXT_REVIEW, STOP_REVIEW } from "./../actions/types";
 
 export const mkReviewState = (
   deckID = null,
