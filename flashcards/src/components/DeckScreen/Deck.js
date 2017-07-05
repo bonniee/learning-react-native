@@ -40,7 +40,7 @@ class Deck extends Component {
 Deck.propTypes = {
   deck: React.PropTypes.instanceOf(DeckModel).isRequired,
   add: React.PropTypes.func.isRequired,
-  count: React.PropTypes.number
+  count: React.PropTypes.number.isRequired
 };
 
 const styles = StyleSheet.create({

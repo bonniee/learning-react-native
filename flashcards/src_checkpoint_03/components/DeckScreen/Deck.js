@@ -25,7 +25,7 @@ class Deck extends Component {
       <View style={styles.deckGroup}>
         <Button style={styles.deckButton} onPress={this._review}>
           <NormalText>
-            {this.props.deck.name}: {this.props.dueCount} due
+            {this.props.deck.name}: {this.props.count} cards
           </NormalText>
         </Button>
 
@@ -39,7 +39,8 @@ class Deck extends Component {
 
 Deck.propTypes = {
   deck: React.PropTypes.instanceOf(DeckModel).isRequired,
-  add: React.PropTypes.func.isRequired
+  add: React.PropTypes.func.isRequired,
+  count: React.PropTypes.number.isRequired
 };
 
 const styles = StyleSheet.create({

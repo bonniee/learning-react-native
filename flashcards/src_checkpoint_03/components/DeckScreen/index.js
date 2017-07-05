@@ -41,7 +41,7 @@ class DecksScreen extends Component {
       return (
         <Deck
           deck={deck}
-          dueCount={this.props.dueCounts[deck.id]}
+          count={this.props.counts[deck.id]}
           key={deck.id}
           add={() => { this._addCards(deck.id)}}
           review={() => {this._review(deck.id)}} />);
@@ -58,7 +58,6 @@ class DecksScreen extends Component {
   }
 }
 
-
 const mapDispatchToProps = dispatch => {
   return {
     createDeck: deckAction => {
@@ -69,11 +68,12 @@ const mapDispatchToProps = dispatch => {
     }
   };
 }
+
 const mapStateToProps = state => {
   return {
-    decks: state.decks.map(d => d.meta),
-    dueCounts: state.decks.reduce( (sum, deck) => {
-        sum[deck.meta.id] = deck.cards.length // TODO
+    decks: state.decks,
+    counts: state.decks.reduce( (sum, deck) => {
+        sum[deck.id] = deck.cards.length
         return sum;
       }, {})
   }

@@ -58,7 +58,6 @@ class DecksScreen extends Component {
   }
 }
 
-
 const mapDispatchToProps = dispatch => {
   return {
     createDeck: deckAction => {
@@ -69,6 +68,7 @@ const mapDispatchToProps = dispatch => {
     }
   };
 }
+
 const mapStateToProps = state => {
   return {
     decks: state.decks,

@@ -39,7 +39,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Navigator onNavigationStateChange={null} />
+        <Navigator />
       </Provider>
     );
   }
