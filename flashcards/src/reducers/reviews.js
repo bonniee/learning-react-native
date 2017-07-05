@@ -1,4 +1,3 @@
-import moment from "moment";
 import { mkReviews } from "./../data/QuizCardView";
 import { REVIEW_DECK, NEXT_REVIEW, STOP_REVIEW } from "./../actions/types";
 

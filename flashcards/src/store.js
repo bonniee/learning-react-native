@@ -6,10 +6,7 @@ import DecksReducer from "./reducers/decks";
 import ReviewReducer, { mkReviewState } from "./reducers/reviews";
 
 const initialState = () => {
-  return {
-    decks: MockDecks,
-    currentReview: mkReviewState()
-  };
+  return { decks: MockDecks, currentReview: mkReviewState() };
 };
 
 export const reducer = (state = initialState(), action) => {

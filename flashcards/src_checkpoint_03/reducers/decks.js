@@ -4,10 +4,15 @@ function addCardToDeck(card, deck) {
   return { meta: deck.meta, cards: deck.cards.concat(card) };
 }
 
-function decksWithNewCard(oldDecks, deckID, card) {
-  return oldDecks.map(
-    deck => deck.meta.id === deckID ? addCardToDeck(card, deck) : deck
-  );
+function decksWithNewCard(oldDecks, card) {
+  return oldDecks.map(deck => {
+    if (deck.id === card.deckID) {
+      deck.addCard(card);
+      return deck;
+    } else {
+      return deck;
+    }
+  });
 }
 
 const reducer = (state = [], action) => {
@@ -15,9 +20,9 @@ const reducer = (state = [], action) => {
 
   switch (action.type) {
     case ADD_DECK:
-      return state.concat({ meta: action.data, cards: [] });
+      return state.concat(action.data);
     case ADD_CARD:
-      return decksWithNewCard(state, action.data.deckID, action.data);
+      return decksWithNewCard(state, action.data);
   }
   return state;
 };
