@@ -1,5 +1,3 @@
-import PerCardReview from './PerCardReview';
-import Card from './Card';
 import _ from 'lodash';
 
 class QuizCardView {

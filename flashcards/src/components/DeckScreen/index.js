@@ -6,6 +6,7 @@ import {
 import { connect } from 'react-redux'
 
 import { MockDecks } from './../../data/Mocks';
+import { addDeck } from './../../actions/creators';
 import Deck from './Deck';
 import DeckCreation from './DeckCreation';
 
@@ -16,13 +17,13 @@ class DecksScreen extends Component {
     title: 'All Decks'
   };
 
-  _createDeck = () => {
-    console.warn("Data saving not implemented");
-    this.props.navigation.navigate('CardCreation');
+  _createDeck = (name) => {
+    let createDeckAction = addDeck(name);
+    this.props.createDeck(createDeckAction)
+    this.props.navigation.navigate('CardCreation', {deckID: createDeckAction.data.id});
   }
 
   _addCards = (deckID) => {
-    console.warn("Data saving not implemented");
     this.props.navigation.navigate('CardCreation', {deckID: deckID});
   }
 
@@ -59,10 +60,13 @@ class DecksScreen extends Component {
 
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    createDeck: deckAction => {
+      dispatch(deckAction)
+    }
+  };
 }
 const mapStateToProps = state => {
-  console.log(state)
   return {
     decks: state.decks.map(d => d.meta),
     dueCounts: state.decks.reduce( (sum, deck) => {

@@ -1,6 +1,6 @@
 import CardModel from './Card';
 import DeckModel from './Deck';
-import { mkReviews } from './Reviews';
+import { mkReviews } from './QuizCardView';
 
 let MockCards = [
     new CardModel(

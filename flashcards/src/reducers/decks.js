@@ -1,8 +1,6 @@
-const ADD_DECK = 'ADD_DECK';
-const ADD_CARD = 'ADD_CARD'
+import {ADD_DECK, ADD_CARD} from '../actions/types';
 
-
-function addCardToDeck(card, deckObj) {
+function addCardToDeck(card, deck) {
   return {
     meta: deck.meta,
     cards: deck.cards.concat(card)
@@ -18,6 +16,8 @@ function decksWithNewCard(oldDecks, deckID, card) {
 }
 
 const reducer = (state = [], action) => {
+  console.warn("Changes are not persisted to disk");
+
   switch(action.type) {
     case ADD_DECK:
       return state.concat( { meta: action.data, cards: [] });

@@ -1,11 +1,9 @@
 import { createStore, combineReducers } from 'redux';
 import{ Provider } from 'react-redux';
-
-import Card from './data/Card';
-import Deck from './data/Deck';
 import { MockDecks, MockCards } from './data/Mocks';
 
 import DecksReducer from './reducers/decks';
+import ReviewReducer from './reducers/reviews';
 
 const initialState = {
   decks: MockDecks.map(mockDeckInfo => {
@@ -21,26 +19,10 @@ const initialState = {
 
 
 export const reducer = (state = initialState, action) => {
-  return { decks: DecksReducer(state.decks, action)}
-}
-
-// Action types - duped in reducers/decks.js
-const ADD_DECK = 'ADD_DECK';
-const ADD_CARD = 'ADD_CARD'
-
-// Actions
-
-export const addDeck = (name) => {
+  let decks = DecksReducer(state.decks, action);
   return {
-    type: ADD_DECK,
-    data: new Deck(name)
-  }
-}
-
-export const addCard = (front, back, deckID) => {
-  return {
-    type: ADD_CARD,
-    data: new Card(front, back, deckID)
+    decks: decks,
+    currentReview: ReviewReducer(state.currentReview, action, decks)
   }
 }
 
