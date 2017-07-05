@@ -1,4 +1,12 @@
-import { ADD_DECK, ADD_CARD, REVIEW_DECK } from './types';
+import { 
+  ADD_DECK,
+  ADD_CARD, 
+  REVIEW_DECK,
+  REVIEW_CARD,
+  STOP_REVIEW,
+  NEXT_REVIEW
+} from './types';
+
 import Card from '../data/Card';
 import Deck from '../data/Deck';
 
@@ -20,5 +28,26 @@ export const reviewDeck = (deckID) => {
   return {
     type: REVIEW_DECK,
     data: { deckID: deckID }
+  }
+}
+
+export const reviewCard = (correct) => {
+  return {
+    type: REVIEW_CARD,
+    data: { correct }
+  }
+}
+
+export const stopReview = () => {
+  return {
+    type: STOP_REVIEW,
+    data: {}
+  }
+}
+
+export const nextReview = () => {
+  return {
+    type: NEXT_REVIEW,
+    data: {}
   }
 }

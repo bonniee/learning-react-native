@@ -19,11 +19,6 @@ let MockCards = [
       "fakeDeckID"
       ),
     new CardModel(
-      "der Apfel",
-      "the apple",
-      "fakeDeckID"
-      ),
-    new CardModel(
       "die Katze",
       "the cat",
       "fakeDeckID"

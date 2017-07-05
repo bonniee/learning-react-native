@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import ViewCard from './ViewCard';
 import { mkReviewSummary } from './ReviewSummary';
 import colors from './../../styles/colors';
+import { reviewCard, nextReview, stopReview } from './../../actions/creators';
 
 class ReviewScreen extends Component {
 
@@ -21,9 +22,7 @@ class ReviewScreen extends Component {
     super(props);
     this.state = {
       numReviewed: 0,
-      numCorrect: 0,
-      currentReview: 0,
-      reviews: []
+      numCorrect: 0
     };
   }
 
@@ -32,17 +31,15 @@ class ReviewScreen extends Component {
       this.setState({numCorrect: this.state.numCorrect + 1});
     }
     this.setState({numReviewed: this.state.numReviewed + 1});
+    this.props.reviewCard(correct);
   }
 
   _nextReview = () => {
-    console.warn("Showing next review, but data saving not implemented.");
-    this.setState({
-      currentReview: this.state.currentReview + 1
-    });
+    this.props.nextReview();
   }
 
   _quitReviewing = () => {
-    console.warn("Data saving not implemented");
+    this.props.stopReview();
     this.props.navigation.goBack();
   }
 
@@ -51,13 +48,13 @@ class ReviewScreen extends Component {
       return null;
     }
 
-    if (this.state.currentReview < this.props.reviews.length) {
+    if (this.props.currentReview < this.props.reviews.length) {
       return (
         <ViewCard
           onReview={this.onReview}
           continue={this._nextReview}
           quit={this._quitReviewing}
-          {...this.props.reviews[this.state.currentReview]}
+          {...this.props.reviews[this.props.currentReview]}
           />
         );
     }
@@ -85,12 +82,23 @@ const styles = StyleSheet.create({
 });
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    reviewCard: correct => {
+      dispatch(reviewCard(correct));
+    },
+    nextReview: () => {
+      dispatch(nextReview());
+    },
+    stopReview: () => {
+      dispatch(stopReview());
+    }
+  };
 }
 
 const mapStateToProps = state => {
   return {
-    reviews: state.currentReview.questions
+    reviews: state.currentReview.questions,
+    currentReview: state.currentReview.currentQuestionIndex
   }
 }
 
