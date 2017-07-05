@@ -28,11 +28,13 @@ async function write(key, item) {
 }
 
 export const readDecks = () => {
-  // TODO fix
-  return writeDecks(MockDecks).then(_ => read(DECK_KEY, Deck.fromObject));
-  // return read(DECK_KEY, Deck.fromObject);
+  return read(DECK_KEY, Deck.fromObject);
 };
 
 export const writeDecks = decks => {
   return write(DECK_KEY, decks);
 };
+
+// For debug/test purposes.
+const replaceData = writeDecks(MockDecks);
+
