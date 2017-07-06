@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "flex-end",
+      "backgroundColor": "#F5FCFF",
+      "borderColor": "#0099AA",
+      "borderWidth": 5,
+      "flex": 1,
+      "flexDirection": "row",
+      "marginTop": 30,
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "borderColor": "#AA0099",
+        "borderWidth": 2,
+        "flex": 1,
+        "fontSize": 24,
+        "textAlign": "center",
+      }
+    }
+  >
+     Child One 
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "borderColor": "#AA0099",
+        "borderWidth": 2,
+        "flex": 1,
+        "fontSize": 24,
+        "textAlign": "center",
+      }
+    }
+  >
+     Child Two 
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "borderColor": "#AA0099",
+        "borderWidth": 2,
+        "flex": 1,
+        "fontSize": 24,
+        "textAlign": "center",
+      }
+    }
+  >
+     Child Three 
+  </Text>
+</View>
+`;
