@@ -14,7 +14,7 @@ class Header extends Component {
     return (
       <View style={styles.header}>
         <Logo />
-        <HeadingText>ZEBRETO</HeadingText>
+        <HeadingText>FLASHCARDS</HeadingText>
       </View>
       );
   }

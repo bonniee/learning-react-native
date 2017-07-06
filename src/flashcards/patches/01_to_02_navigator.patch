@@ -203,7 +203,7 @@ diff -rupP src_checkpoint_01/components/Header/index.js src_checkpoint_02/compon
        <View style={styles.header}>
 -        <Image source={require('../../../icon.png')} style={styles.logo}/>
 +        <Logo />
-         <HeadingText>ZEBRETO</HeadingText>
+         <HeadingText>FLASHCARDS</HeadingText>
        </View>
        );
 Only in src_checkpoint_01/components: Input.js

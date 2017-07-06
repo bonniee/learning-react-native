@@ -14,7 +14,7 @@ class Header extends Component {
     return (
       <View style={styles.header}>
         <Image source={require('../../../icon.png')} style={styles.logo}/>
-        <HeadingText>ZEBRETO</HeadingText>
+        <HeadingText>FLASHCARDS</HeadingText>
       </View>
       );
   }
