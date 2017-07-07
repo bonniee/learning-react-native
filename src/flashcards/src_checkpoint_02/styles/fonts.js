@@ -6,6 +6,6 @@ const fonts = StyleSheet.create({
   big: { fontSize: 32, alignSelf: "center" }
 });
 
-const scalingFactors = { normal: 15, big: 7 };
+const scalingFactors = { normal: 15, big: 10 };
 
 module.exports = { fonts, scalingFactors };
