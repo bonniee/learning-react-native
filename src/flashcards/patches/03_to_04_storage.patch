@@ -1,7 +1,6 @@
-Binary files src_checkpoint_03/.DS_Store and src/.DS_Store differ
-diff -rupP src_checkpoint_03/actions/creators.js src/actions/creators.js
---- src_checkpoint_03/actions/creators.js	2017-07-05 17:14:15.000000000 -0400
-+++ src/actions/creators.js	2017-07-05 16:34:37.000000000 -0400
+diff -rupP src_checkpoint_03/actions/creators.js src_checkpoint_04/actions/creators.js
+--- src_checkpoint_03/actions/creators.js	2017-07-07 11:32:52.000000000 -0400
++++ src_checkpoint_04/actions/creators.js	2017-07-07 11:32:52.000000000 -0400
 @@ -3,7 +3,8 @@ import {
    ADD_CARD,
    REVIEW_DECK,
@@ -20,22 +19,21 @@ diff -rupP src_checkpoint_03/actions/creators.js src/actions/creators.js
 +export const loadData = data => {
 +  return { type: LOAD_DATA, data: data };
 +};
-diff -rupP src_checkpoint_03/actions/types.js src/actions/types.js
---- src_checkpoint_03/actions/types.js	2017-07-05 17:14:39.000000000 -0400
-+++ src/actions/types.js	2017-07-05 17:14:38.000000000 -0400
+diff -rupP src_checkpoint_03/actions/types.js src_checkpoint_04/actions/types.js
+--- src_checkpoint_03/actions/types.js	2017-07-07 11:32:52.000000000 -0400
++++ src_checkpoint_04/actions/types.js	2017-07-07 11:32:52.000000000 -0400
 @@ -3,3 +3,4 @@ export const ADD_CARD = "ADD_CARD";
  export const REVIEW_DECK = "REVIEW_DECK";
  export const STOP_REVIEW = "STOP_REVIEW";
  export const NEXT_REVIEW = "NEXT_REVIEW";
 +export const LOAD_DATA = "LOAD_DATA";
-Binary files src_checkpoint_03/components/.DS_Store and src/components/.DS_Store differ
-diff -rupP src_checkpoint_03/components/Flashcards.js src/components/Flashcards.js
---- src_checkpoint_03/components/Flashcards.js	2017-07-05 17:17:50.000000000 -0400
-+++ src/components/Flashcards.js	2017-07-05 17:17:50.000000000 -0400
+diff -rupP src_checkpoint_03/components/Flashcards.js src_checkpoint_04/components/Flashcards.js
+--- src_checkpoint_03/components/Flashcards.js	2017-07-07 23:35:55.000000000 -0400
++++ src_checkpoint_04/components/Flashcards.js	2017-07-07 23:37:28.000000000 -0400
 @@ -5,6 +5,8 @@ import { createStore } from "redux";
  import { Provider } from "react-redux";
  
- import { reducer } from "../store";
+ import { reducer } from "../reducers/index";
 +import { readDecks } from "../storage/decks";
 +import { loadData } from "../actions/creators";
  
@@ -53,9 +51,9 @@ diff -rupP src_checkpoint_03/components/Flashcards.js src/components/Flashcards.
  const Navigator = StackNavigator({
    Home: { screen: DeckScreen, navigationOptions: headerOptions },
    Review: { screen: ReviewScreen, navigationOptions: headerOptions },
-diff -rupP src_checkpoint_03/components/LabeledInput.js src/components/LabeledInput.js
---- src_checkpoint_03/components/LabeledInput.js	2017-07-05 17:18:41.000000000 -0400
-+++ src/components/LabeledInput.js	2017-07-05 17:18:44.000000000 -0400
+diff -rupP src_checkpoint_03/components/LabeledInput.js src_checkpoint_04/components/LabeledInput.js
+--- src_checkpoint_03/components/LabeledInput.js	2017-07-07 11:32:52.000000000 -0400
++++ src_checkpoint_04/components/LabeledInput.js	2017-07-07 11:32:52.000000000 -0400
 @@ -1,6 +1,6 @@
  import React, { Component } from "react";
  
@@ -64,9 +62,9 @@ diff -rupP src_checkpoint_03/components/LabeledInput.js src/components/LabeledIn
  
  import Input from "./Input";
  import NormalText from "./NormalText";
-diff -rupP src_checkpoint_03/reducers/decks.js src/reducers/decks.js
---- src_checkpoint_03/reducers/decks.js	2017-07-05 17:07:09.000000000 -0400
-+++ src/reducers/decks.js	2017-07-05 16:34:37.000000000 -0400
+diff -rupP src_checkpoint_03/reducers/decks.js src_checkpoint_04/reducers/decks.js
+--- src_checkpoint_03/reducers/decks.js	2017-07-07 11:32:52.000000000 -0400
++++ src_checkpoint_04/reducers/decks.js	2017-07-07 11:32:52.000000000 -0400
 @@ -1,11 +1,9 @@
 -import { ADD_DECK, ADD_CARD } from "../actions/types";
 -
@@ -113,9 +111,20 @@ diff -rupP src_checkpoint_03/reducers/decks.js src/reducers/decks.js
    }
    return state;
  };
-diff -rupP src_checkpoint_03/reducers/reviews.js src/reducers/reviews.js
---- src_checkpoint_03/reducers/reviews.js	2017-07-05 17:10:16.000000000 -0400
-+++ src/reducers/reviews.js	2017-07-05 17:10:16.000000000 -0400
+diff -rupP src_checkpoint_03/reducers/index.js src_checkpoint_04/reducers/index.js
+--- src_checkpoint_03/reducers/index.js	2017-07-07 23:35:27.000000000 -0400
++++ src_checkpoint_04/reducers/index.js	2017-07-07 23:37:09.000000000 -0400
+@@ -11,6 +11,7 @@ const initialState = () => {
+ 
+ export const reducer = (state = initialState(), action) => {
+   let decks = DecksReducer(state.decks, action);
++
+   return {
+     decks: decks,
+     currentReview: ReviewReducer(state.currentReview, action, decks)
+diff -rupP src_checkpoint_03/reducers/reviews.js src_checkpoint_04/reducers/reviews.js
+--- src_checkpoint_03/reducers/reviews.js	2017-07-07 11:32:52.000000000 -0400
++++ src_checkpoint_04/reducers/reviews.js	2017-07-07 11:32:52.000000000 -0400
 @@ -27,7 +27,7 @@ function nextReview(state) {
    );
  }
@@ -125,9 +134,9 @@ diff -rupP src_checkpoint_03/reducers/reviews.js src/reducers/reviews.js
    switch (action.type) {
      case REVIEW_DECK:
        return generateReviews(findDeck(decks, action.data.deckID));
-diff -rupP src_checkpoint_03/storage/decks.js src/storage/decks.js
+diff -rupP src_checkpoint_03/storage/decks.js src_checkpoint_04/storage/decks.js
 --- src_checkpoint_03/storage/decks.js	1969-12-31 19:00:00.000000000 -0500
-+++ src/storage/decks.js	2017-07-05 16:50:23.000000000 -0400
++++ src_checkpoint_04/storage/decks.js	2017-07-07 11:32:52.000000000 -0400
 @@ -0,0 +1,39 @@
 +import { AsyncStorage } from "react-native";
 +import Deck from "./../data/Deck";
@@ -168,14 +177,3 @@ diff -rupP src_checkpoint_03/storage/decks.js src/storage/decks.js
 +
 +// For debug/test purposes.
 +const replaceData = writeDecks(MockDecks);
-diff -rupP src_checkpoint_03/store.js src/store.js
---- src_checkpoint_03/store.js	2017-07-05 17:02:40.000000000 -0400
-+++ src/store.js	2017-07-05 17:03:00.000000000 -0400
-@@ -11,6 +11,7 @@ const initialState = () => {
- 
- export const reducer = (state = initialState(), action) => {
-   let decks = DecksReducer(state.decks, action);
-+
-   return {
-     decks: decks,
-     currentReview: ReviewReducer(state.currentReview, action, decks)

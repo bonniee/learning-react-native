@@ -1,8 +1,8 @@
-Binary files src_checkpoint_01/.DS_Store and src_checkpoint_02/.DS_Store differ
-Only in src_checkpoint_01/components: Button.js
+Only in src_checkpoint_01: .DS_Store
+Binary files src_checkpoint_01/components/.DS_Store and src_checkpoint_02/components/.DS_Store differ
 diff -rupP src_checkpoint_01/components/DeckScreen/Deck.js src_checkpoint_02/components/DeckScreen/Deck.js
---- src_checkpoint_01/components/DeckScreen/Deck.js	2017-07-05 17:42:07.000000000 -0400
-+++ src_checkpoint_02/components/DeckScreen/Deck.js	2017-07-05 17:41:42.000000000 -0400
+--- src_checkpoint_01/components/DeckScreen/Deck.js	2017-07-07 11:32:52.000000000 -0400
++++ src_checkpoint_02/components/DeckScreen/Deck.js	2017-07-07 14:10:32.000000000 -0400
 @@ -13,17 +13,16 @@ class Deck extends Component {
    static displayName = 'Deck';
  
@@ -23,19 +23,20 @@ diff -rupP src_checkpoint_01/components/DeckScreen/Deck.js src_checkpoint_02/com
          <Button style={styles.deckButton} onPress={this._review}>
            <NormalText>
              {this.props.deck.name}: {this.props.count} cards
-@@ -39,7 +38,8 @@ class Deck extends Component {
+@@ -39,7 +38,9 @@ class Deck extends Component {
  }
  
  Deck.propTypes = {
 -  deck: React.PropTypes.instanceOf(DeckModel),
 +  deck: React.PropTypes.instanceOf(DeckModel).isRequired,
 +  add: React.PropTypes.func.isRequired,
++  review: React.PropTypes.func.isRequired,
    count: React.PropTypes.number
  };
  
 diff -rupP src_checkpoint_01/components/DeckScreen/DeckCreation.js src_checkpoint_02/components/DeckScreen/DeckCreation.js
---- src_checkpoint_01/components/DeckScreen/DeckCreation.js	2017-07-04 12:12:01.000000000 -0400
-+++ src_checkpoint_02/components/DeckScreen/DeckCreation.js	2017-07-04 13:08:34.000000000 -0400
+--- src_checkpoint_01/components/DeckScreen/DeckCreation.js	2017-07-07 11:32:52.000000000 -0400
++++ src_checkpoint_02/components/DeckScreen/DeckCreation.js	2017-07-07 11:32:52.000000000 -0400
 @@ -13,8 +13,8 @@ class DeckCreation extends Component {
    }
  
@@ -57,8 +58,8 @@ diff -rupP src_checkpoint_01/components/DeckScreen/DeckCreation.js src_checkpoin
  export default DeckCreation;
 \ No newline at end of file
 diff -rupP src_checkpoint_01/components/DeckScreen/index.js src_checkpoint_02/components/DeckScreen/index.js
---- src_checkpoint_01/components/DeckScreen/index.js	2017-07-05 17:42:26.000000000 -0400
-+++ src_checkpoint_02/components/DeckScreen/index.js	2017-07-05 17:42:44.000000000 -0400
+--- src_checkpoint_01/components/DeckScreen/index.js	2017-07-07 11:32:52.000000000 -0400
++++ src_checkpoint_02/components/DeckScreen/index.js	2017-07-07 11:32:52.000000000 -0400
 @@ -8,7 +8,11 @@ import Deck from './Deck';
  import DeckCreation from './DeckCreation';
  
@@ -115,8 +116,8 @@ diff -rupP src_checkpoint_01/components/DeckScreen/index.js src_checkpoint_02/co
      );
    }
 diff -rupP src_checkpoint_01/components/Flashcards.js src_checkpoint_02/components/Flashcards.js
---- src_checkpoint_01/components/Flashcards.js	2017-07-05 10:25:21.000000000 -0400
-+++ src_checkpoint_02/components/Flashcards.js	2017-07-05 10:25:21.000000000 -0400
+--- src_checkpoint_01/components/Flashcards.js	2017-07-07 11:32:52.000000000 -0400
++++ src_checkpoint_02/components/Flashcards.js	2017-07-07 11:32:52.000000000 -0400
 @@ -1,27 +1,21 @@
  import React, { Component } from "react";
  import { StyleSheet, View } from "react-native";
@@ -159,7 +160,7 @@ diff -rupP src_checkpoint_01/components/Flashcards.js src_checkpoint_02/componen
 +export default navigator;
 diff -rupP src_checkpoint_01/components/Header/Logo.js src_checkpoint_02/components/Header/Logo.js
 --- src_checkpoint_01/components/Header/Logo.js	1969-12-31 19:00:00.000000000 -0500
-+++ src_checkpoint_02/components/Header/Logo.js	2017-07-04 13:08:34.000000000 -0400
++++ src_checkpoint_02/components/Header/Logo.js	2017-07-07 11:32:52.000000000 -0400
 @@ -0,0 +1,18 @@
 +import React, { Component } from 'react';
 +import {
@@ -181,8 +182,8 @@ diff -rupP src_checkpoint_01/components/Header/Logo.js src_checkpoint_02/compone
 +export default Logo;
 \ No newline at end of file
 diff -rupP src_checkpoint_01/components/Header/index.js src_checkpoint_02/components/Header/index.js
---- src_checkpoint_01/components/Header/index.js	2017-07-04 12:12:01.000000000 -0400
-+++ src_checkpoint_02/components/Header/index.js	2017-07-04 13:08:34.000000000 -0400
+--- src_checkpoint_01/components/Header/index.js	2017-07-07 11:32:52.000000000 -0400
++++ src_checkpoint_02/components/Header/index.js	2017-07-07 11:32:52.000000000 -0400
 @@ -1,11 +1,11 @@
  import React, { Component } from 'react';
  import {
@@ -206,11 +207,9 @@ diff -rupP src_checkpoint_01/components/Header/index.js src_checkpoint_02/compon
          <HeadingText>FLASHCARDS</HeadingText>
        </View>
        );
-Only in src_checkpoint_01/components: Input.js
-Only in src_checkpoint_01/components: LabeledInput.js
 diff -rupP src_checkpoint_01/components/NewCardScreen/index.js src_checkpoint_02/components/NewCardScreen/index.js
---- src_checkpoint_01/components/NewCardScreen/index.js	2017-07-04 12:12:01.000000000 -0400
-+++ src_checkpoint_02/components/NewCardScreen/index.js	2017-07-04 13:08:34.000000000 -0400
+--- src_checkpoint_01/components/NewCardScreen/index.js	2017-07-07 11:32:52.000000000 -0400
++++ src_checkpoint_02/components/NewCardScreen/index.js	2017-07-07 11:32:52.000000000 -0400
 @@ -12,12 +12,18 @@ import NormalText from '../NormalText';
  import colors from './../../styles/colors';
  
@@ -255,8 +254,8 @@ diff -rupP src_checkpoint_01/components/NewCardScreen/index.js src_checkpoint_02
  
    render() {
 diff -rupP src_checkpoint_01/components/ReviewScreen/index.js src_checkpoint_02/components/ReviewScreen/index.js
---- src_checkpoint_01/components/ReviewScreen/index.js	2017-07-04 12:12:01.000000000 -0400
-+++ src_checkpoint_02/components/ReviewScreen/index.js	2017-07-04 13:08:34.000000000 -0400
+--- src_checkpoint_01/components/ReviewScreen/index.js	2017-07-07 11:32:52.000000000 -0400
++++ src_checkpoint_02/components/ReviewScreen/index.js	2017-07-07 11:32:52.000000000 -0400
 @@ -13,6 +13,10 @@ class ReviewScreen extends Component {
  
    static displayName = 'ReviewScreen';

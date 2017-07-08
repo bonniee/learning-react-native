@@ -1,7 +1,6 @@
-Binary files src_checkpoint_02/.DS_Store and src_checkpoint_03/.DS_Store differ
 diff -rupP src_checkpoint_02/actions/creators.js src_checkpoint_03/actions/creators.js
 --- src_checkpoint_02/actions/creators.js	1969-12-31 19:00:00.000000000 -0500
-+++ src_checkpoint_03/actions/creators.js	2017-07-05 17:14:15.000000000 -0400
++++ src_checkpoint_03/actions/creators.js	2017-07-07 11:32:52.000000000 -0400
 @@ -0,0 +1,30 @@
 +import {
 +  ADD_DECK,
@@ -35,75 +34,30 @@ diff -rupP src_checkpoint_02/actions/creators.js src_checkpoint_03/actions/creat
 +};
 diff -rupP src_checkpoint_02/actions/types.js src_checkpoint_03/actions/types.js
 --- src_checkpoint_02/actions/types.js	1969-12-31 19:00:00.000000000 -0500
-+++ src_checkpoint_03/actions/types.js	2017-07-05 17:14:39.000000000 -0400
++++ src_checkpoint_03/actions/types.js	2017-07-07 11:32:52.000000000 -0400
 @@ -0,0 +1,5 @@
 +export const ADD_DECK = "ADD_DECK";
 +export const ADD_CARD = "ADD_CARD";
 +export const REVIEW_DECK = "REVIEW_DECK";
 +export const STOP_REVIEW = "STOP_REVIEW";
 +export const NEXT_REVIEW = "NEXT_REVIEW";
-Binary files src_checkpoint_02/components/.DS_Store and src_checkpoint_03/components/.DS_Store differ
-diff -rupP src_checkpoint_02/components/Button.js src_checkpoint_03/components/Button.js
---- src_checkpoint_02/components/Button.js	1969-12-31 19:00:00.000000000 -0500
-+++ src_checkpoint_03/components/Button.js	2017-07-05 17:15:37.000000000 -0400
-@@ -0,0 +1,42 @@
-+import React, { Component } from "react";
-+import { StyleSheet, View, ViewPropTypes, TouchableOpacity } from "react-native";
-+
-+import colors from "./../styles/colors";
-+
-+class Button extends Component {
-+  static displayName = "Button";
-+
-+  render() {
-+    let opacity = this.props.disabled ? 1 : 0.5;
-+    return (
-+      <TouchableOpacity
-+        activeOpacity={opacity}
-+        onPress={this.props.onPress}
-+        style={[styles.wideButton, this.props.style]}
-+      >
-+        {this.props.children}
-+      </TouchableOpacity>
-+    );
-+  }
-+}
-+
-+Button.propTypes = {
-+  onPress: React.PropTypes.func,
-+  style: ViewPropTypes.style,
-+  children: React.PropTypes.object,
-+  disabled: React.PropTypes.bool
-+};
-+
-+Button.defaultProps = { disabled: false };
-+
-+export default Button;
-+
-+const styles = StyleSheet.create({
-+  wideButton: {
-+    justifyContent: "center",
-+    alignItems: "center",
-+    padding: 10,
-+    margin: 10,
-+    backgroundColor: colors.pink
-+  }
-+});
+Only in src_checkpoint_02/components: .DS_Store
 diff -rupP src_checkpoint_02/components/DeckScreen/Deck.js src_checkpoint_03/components/DeckScreen/Deck.js
---- src_checkpoint_02/components/DeckScreen/Deck.js	2017-07-05 17:41:42.000000000 -0400
-+++ src_checkpoint_03/components/DeckScreen/Deck.js	2017-07-05 17:23:20.000000000 -0400
-@@ -40,7 +40,7 @@ class Deck extends Component {
+--- src_checkpoint_02/components/DeckScreen/Deck.js	2017-07-07 14:10:32.000000000 -0400
++++ src_checkpoint_03/components/DeckScreen/Deck.js	2017-07-07 11:32:52.000000000 -0400
+@@ -40,8 +40,7 @@ class Deck extends Component {
  Deck.propTypes = {
    deck: React.PropTypes.instanceOf(DeckModel).isRequired,
    add: React.PropTypes.func.isRequired,
+-  review: React.PropTypes.func.isRequired,
 -  count: React.PropTypes.number
 +  count: React.PropTypes.number.isRequired
  };
  
  const styles = StyleSheet.create({
 diff -rupP src_checkpoint_02/components/DeckScreen/index.js src_checkpoint_03/components/DeckScreen/index.js
---- src_checkpoint_02/components/DeckScreen/index.js	2017-07-05 17:42:44.000000000 -0400
-+++ src_checkpoint_03/components/DeckScreen/index.js	2017-07-05 17:17:16.000000000 -0400
+--- src_checkpoint_02/components/DeckScreen/index.js	2017-07-07 11:32:52.000000000 -0400
++++ src_checkpoint_03/components/DeckScreen/index.js	2017-07-07 11:32:52.000000000 -0400
 @@ -3,7 +3,10 @@ import {
    View
  } from 'react-native';
@@ -202,8 +156,8 @@ diff -rupP src_checkpoint_02/components/DeckScreen/index.js src_checkpoint_03/co
 +  mapDispatchToProps
 +  )(DecksScreen);
 diff -rupP src_checkpoint_02/components/Flashcards.js src_checkpoint_03/components/Flashcards.js
---- src_checkpoint_02/components/Flashcards.js	2017-07-05 10:25:21.000000000 -0400
-+++ src_checkpoint_03/components/Flashcards.js	2017-07-05 17:17:50.000000000 -0400
+--- src_checkpoint_02/components/Flashcards.js	2017-07-07 11:32:52.000000000 -0400
++++ src_checkpoint_03/components/Flashcards.js	2017-07-07 23:35:55.000000000 -0400
 @@ -1,21 +1,41 @@
  import React, { Component } from "react";
  import { StyleSheet, View } from "react-native";
@@ -211,7 +165,7 @@ diff -rupP src_checkpoint_02/components/Flashcards.js src_checkpoint_03/componen
 +import { createStore } from "redux";
 +import { Provider } from "react-redux";
 +
-+import { reducer } from "../store";
++import { reducer } from "../reducers/index";
  
  import Logo from "./Header/Logo";
  import DeckScreen from "./DeckScreen";
@@ -249,121 +203,9 @@ diff -rupP src_checkpoint_02/components/Flashcards.js src_checkpoint_03/componen
 +}
 +
 +export default App;
-diff -rupP src_checkpoint_02/components/Input.js src_checkpoint_03/components/Input.js
---- src_checkpoint_02/components/Input.js	1969-12-31 19:00:00.000000000 -0500
-+++ src_checkpoint_03/components/Input.js	2017-07-05 17:18:20.000000000 -0400
-@@ -0,0 +1,65 @@
-+import React, { Component } from "react";
-+import { StyleSheet, TextInput, View, ViewPropTypes } from "react-native";
-+
-+import colors from "./../styles/colors";
-+import { fonts } from "./../styles/fonts";
-+
-+class Input extends Component {
-+  constructor(props) {
-+    super(props);
-+    this.state = { text: "" };
-+  }
-+
-+  _create = () => {
-+    this.props.onEntry(this.state.text);
-+    this.setState({ text: "" });
-+  };
-+
-+  _onSubmit = ev => {
-+    this.props.onEntry(ev.nativeEvent.text);
-+    if (!!this.props.clearOnSubmit) {
-+      this.setState({ text: "" });
-+    }
-+  };
-+
-+  _onChange = text => {
-+    this.setState({ text: text });
-+    if (this.props.onChange) {
-+      this.props.onChange(text);
-+    }
-+  };
-+
-+  render() {
-+    return (
-+      <TextInput
-+        style={[
-+          styles.nameField,
-+          styles.wideButton,
-+          fonts.normal,
-+          this.props.style
-+        ]}
-+        ref="newDeckInput"
-+        multiline={false}
-+        autoCorrect={false}
-+        onChangeText={this._onChange}
-+        onSubmitEditing={this._onSubmit}
-+      />
-+    );
-+  }
-+}
-+
-+Input.propTypes = {
-+  onEntry: React.PropTypes.func.isRequired,
-+  onChange: React.PropTypes.func,
-+  style: ViewPropTypes.style,
-+  clearOnSubmit: React.PropTypes.bool
-+};
-+
-+Input.defaultProps = { clearOnSubmit: true };
-+
-+export default Input;
-+
-+const styles = StyleSheet.create({
-+  nameField: { backgroundColor: colors.tan, height: 60 },
-+  wideButton: { justifyContent: "center", padding: 10, margin: 10 }
-+});
-diff -rupP src_checkpoint_02/components/LabeledInput.js src_checkpoint_03/components/LabeledInput.js
---- src_checkpoint_02/components/LabeledInput.js	1969-12-31 19:00:00.000000000 -0500
-+++ src_checkpoint_03/components/LabeledInput.js	2017-07-05 17:18:41.000000000 -0400
-@@ -0,0 +1,39 @@
-+import React, { Component } from "react";
-+
-+import { StyleSheet, View, ViewPropTypes } from "react-native";
-+
-+import Input from "./Input";
-+import NormalText from "./NormalText";
-+
-+class LabeledInput extends Component {
-+  render() {
-+    return (
-+      <View style={styles.wrapper}>
-+        <NormalText style={styles.label}>
-+          {this.props.label}:
-+        </NormalText>
-+        <Input
-+          onEntry={this.props.onEntry}
-+          onChange={this.props.onChange}
-+          clearOnSubmit={this.props.clearOnSubmit}
-+          style={this.props.inputStyle}
-+        />
-+      </View>
-+    );
-+  }
-+}
-+
-+LabeledInput.propTypes = {
-+  onEntry: React.PropTypes.func.isRequired,
-+  onChange: React.PropTypes.func,
-+  inputStyle: ViewPropTypes.style,
-+  label: React.PropTypes.string.isRequired,
-+  clearOnSubmit: React.PropTypes.bool
-+};
-+
-+const styles = StyleSheet.create({
-+  label: { paddingLeft: 10 },
-+  wrapper: { padding: 5 }
-+});
-+
-+export default LabeledInput;
 diff -rupP src_checkpoint_02/components/NewCardScreen/index.js src_checkpoint_03/components/NewCardScreen/index.js
---- src_checkpoint_02/components/NewCardScreen/index.js	2017-07-04 13:08:34.000000000 -0400
-+++ src_checkpoint_03/components/NewCardScreen/index.js	2017-07-05 17:19:04.000000000 -0400
+--- src_checkpoint_02/components/NewCardScreen/index.js	2017-07-07 11:32:52.000000000 -0400
++++ src_checkpoint_03/components/NewCardScreen/index.js	2017-07-07 11:32:52.000000000 -0400
 @@ -5,6 +5,8 @@ import {
  } from 'react-native';
  
@@ -422,8 +264,8 @@ diff -rupP src_checkpoint_02/components/NewCardScreen/index.js src_checkpoint_03
 +
 +export default connect(mapStateToProps, mapDispatchToProps)(NewCard);
 diff -rupP src_checkpoint_02/components/ReviewScreen/index.js src_checkpoint_03/components/ReviewScreen/index.js
---- src_checkpoint_02/components/ReviewScreen/index.js	2017-07-04 13:08:34.000000000 -0400
-+++ src_checkpoint_03/components/ReviewScreen/index.js	2017-07-05 17:19:36.000000000 -0400
+--- src_checkpoint_02/components/ReviewScreen/index.js	2017-07-07 11:32:52.000000000 -0400
++++ src_checkpoint_03/components/ReviewScreen/index.js	2017-07-07 11:32:52.000000000 -0400
 @@ -4,10 +4,11 @@ import {
    View
  } from 'react-native';
@@ -520,7 +362,7 @@ diff -rupP src_checkpoint_02/components/ReviewScreen/index.js src_checkpoint_03/
 +  mapDispatchToProps)(ReviewScreen);
 diff -rupP src_checkpoint_02/reducers/decks.js src_checkpoint_03/reducers/decks.js
 --- src_checkpoint_02/reducers/decks.js	1969-12-31 19:00:00.000000000 -0500
-+++ src_checkpoint_03/reducers/decks.js	2017-07-05 17:07:09.000000000 -0400
++++ src_checkpoint_03/reducers/decks.js	2017-07-07 11:32:52.000000000 -0400
 @@ -0,0 +1,30 @@
 +import { ADD_DECK, ADD_CARD } from "../actions/types";
 +
@@ -552,9 +394,31 @@ diff -rupP src_checkpoint_02/reducers/decks.js src_checkpoint_03/reducers/decks.
 +};
 +
 +export default reducer;
+diff -rupP src_checkpoint_02/reducers/index.js src_checkpoint_03/reducers/index.js
+--- src_checkpoint_02/reducers/index.js	1969-12-31 19:00:00.000000000 -0500
++++ src_checkpoint_03/reducers/index.js	2017-07-07 23:35:27.000000000 -0400
+@@ -0,0 +1,18 @@
++import { createStore, combineReducers } from "redux";
++import { Provider } from "react-redux";
++import { MockDecks, MockCards } from "./../data/Mocks";
++
++import DecksReducer from "./decks";
++import ReviewReducer, { mkReviewState } from "./reviews";
++
++const initialState = () => {
++  return { decks: MockDecks, currentReview: mkReviewState() };
++};
++
++export const reducer = (state = initialState(), action) => {
++  let decks = DecksReducer(state.decks, action);
++  return {
++    decks: decks,
++    currentReview: ReviewReducer(state.currentReview, action, decks)
++  };
++};
 diff -rupP src_checkpoint_02/reducers/reviews.js src_checkpoint_03/reducers/reviews.js
 --- src_checkpoint_02/reducers/reviews.js	1969-12-31 19:00:00.000000000 -0500
-+++ src_checkpoint_03/reducers/reviews.js	2017-07-05 17:10:16.000000000 -0400
++++ src_checkpoint_03/reducers/reviews.js	2017-07-07 11:32:52.000000000 -0400
 @@ -0,0 +1,42 @@
 +import { mkReviews } from "./../data/QuizCardView";
 +import { REVIEW_DECK, NEXT_REVIEW, STOP_REVIEW } from "./../actions/types";
@@ -598,25 +462,3 @@ diff -rupP src_checkpoint_02/reducers/reviews.js src_checkpoint_03/reducers/revi
 +};
 +
 +export default reducer;
-diff -rupP src_checkpoint_02/store.js src_checkpoint_03/store.js
---- src_checkpoint_02/store.js	1969-12-31 19:00:00.000000000 -0500
-+++ src_checkpoint_03/store.js	2017-07-05 17:02:40.000000000 -0400
-@@ -0,0 +1,18 @@
-+import { createStore, combineReducers } from "redux";
-+import { Provider } from "react-redux";
-+import { MockDecks, MockCards } from "./data/Mocks";
-+
-+import DecksReducer from "./reducers/decks";
-+import ReviewReducer, { mkReviewState } from "./reducers/reviews";
-+
-+const initialState = () => {
-+  return { decks: MockDecks, currentReview: mkReviewState() };
-+};
-+
-+export const reducer = (state = initialState(), action) => {
-+  let decks = DecksReducer(state.decks, action);
-+  return {
-+    decks: decks,
-+    currentReview: ReviewReducer(state.currentReview, action, decks)
-+  };
-+};
