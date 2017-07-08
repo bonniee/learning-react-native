@@ -1,9 +1,5 @@
 import { ADD_DECK, ADD_CARD } from "../actions/types";
 
-function addCardToDeck(card, deck) {
-  return { meta: deck.meta, cards: deck.cards.concat(card) };
-}
-
 function decksWithNewCard(oldDecks, card) {
   return oldDecks.map(deck => {
     if (deck.id === card.deckID) {
