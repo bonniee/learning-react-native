@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  return { decks: state.decks.map(deck => deck) };
+  return { decks: state.decks };
 };
 
 const mapDispatchToProps = dispatch => {
