@@ -4,7 +4,7 @@ import { StackNavigator } from "react-navigation";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 
-import { reducer } from "../store";
+import { reducer } from "../reducers/index";
 
 import Logo from "./Header/Logo";
 import DeckScreen from "./DeckScreen";
