@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { StyleSheet, View, ViewPropTypes} from "react-native";
+import { StyleSheet, View, ViewPropTypes } from "react-native";
 
 import Input from "./Input";
 import NormalText from "./NormalText";

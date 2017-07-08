@@ -1,48 +1,43 @@
-import React, { Component } from 'react';
-import {
-  StyleSheet,
-  View
-} from 'react-native';
+import React, { Component } from "react";
+import { StyleSheet, View } from "react-native";
 
-import Button from './../Button';
-import NormalText from './../NormalText';
-import HeadingText from './../HeadingText';
-import colors from './../../styles/colors';
-
+import Button from "./../Button";
+import NormalText from "./../NormalText";
+import HeadingText from "./../HeadingText";
+import colors from "./../../styles/colors";
 
 class ContinueButton extends Component {
   render() {
     let text = this.props.wasCorrect
-      ? 'Correct! Next card?'
-      : 'Oops, not quite. Next card?'
-      ;
+      ? "Correct! Next card?"
+      : "Oops, not quite. Next card?";
     return (
       <Button onPress={this.props.onPress} style={styles.continueButton}>
         <NormalText>{text}</NormalText>
       </Button>
-      );
+    );
   }
 }
 
 ContinueButton.propTypes = {
   onPress: React.PropTypes.func.isRequired,
   wasCorrect: React.PropTypes.bool.isRequired
-}
+};
 
 function mkContinueQuitButtons(
   showingAnswer,
   wasCorrect,
   continueFunc,
   quitFunc
-  ) {
+) {
   if (showingAnswer) {
-    return <ContinueButton onPress={continueFunc} wasCorrect={wasCorrect} />
+    return <ContinueButton onPress={continueFunc} wasCorrect={wasCorrect} />;
   } else {
     return (
       <Button onPress={quitFunc} style={styles.continueButton}>
         <NormalText>Stop Reviewing</NormalText>
       </Button>
-      );
+    );
   }
 }
 
@@ -52,17 +47,16 @@ function mkAnswerButtons(
   showingAnswer,
   wasCorrect,
   selectAnswerFunc
-  ) {
+) {
   if (!answers) return null;
 
-  return answers.map((a) => {
+  return answers.map(a => {
     let isCorrectAnswer = a === correctAnswer;
     let buttonStyle = [styles.options];
     if (showingAnswer && isCorrectAnswer) {
       if (wasCorrect) {
         buttonStyle.push(styles.rightAnswer);
-      }
-      else {
+      } else {
         buttonStyle.push(styles.wrongAnswer);
       }
     }
@@ -72,31 +66,23 @@ function mkAnswerButtons(
         key={a}
         disabled={showingAnswer}
         style={buttonStyle}
-        onPress={() => {selectAnswerFunc(isCorrectAnswer)}}>
+        onPress={() => {
+          selectAnswerFunc(isCorrectAnswer);
+        }}
+      >
         <NormalText>
           {a}
         </NormalText>
       </Button>
-      );
-    });
+    );
+  });
 }
 
 const styles = StyleSheet.create({
-  options: {
-    backgroundColor: '#FFFFFF'
-  },
-  continueButton: {
-    backgroundColor: colors.tan
-  },
-  rightAnswer: {
-    backgroundColor: colors.green
-  },
-  wrongAnswer: {
-    backgroundColor: colors.pink
-  }
+  options: { backgroundColor: "#FFFFFF" },
+  continueButton: { backgroundColor: colors.tan },
+  rightAnswer: { backgroundColor: colors.green },
+  wrongAnswer: { backgroundColor: colors.pink }
 });
 
-export {
-  mkContinueQuitButtons,
-  mkAnswerButtons
-};
+export { mkContinueQuitButtons, mkAnswerButtons };

@@ -9,7 +9,7 @@ const initialState = () => {
 
 export const reducer = (state = initialState(), action) => {
   let decks = DecksReducer(state.decks, action);
-  
+
   return {
     decks: decks,
     currentReview: ReviewReducer(state.currentReview, action, decks)

@@ -1,24 +1,21 @@
-import React, { Component } from 'react';
-import {
-  StyleSheet,
-  View
-} from 'react-native';
+import React, { Component } from "react";
+import { StyleSheet, View } from "react-native";
 
-import DeckModel from './../../data/Deck';
-import Button from './../Button';
-import NormalText from './../NormalText';
-import colors from './../../styles/colors';
+import DeckModel from "./../../data/Deck";
+import Button from "./../Button";
+import NormalText from "./../NormalText";
+import colors from "./../../styles/colors";
 
 class Deck extends Component {
-  static displayName = 'Deck';
+  static displayName = "Deck";
 
   _review = () => {
     this.props.review();
-  }
+  };
 
   _addCards = () => {
     this.props.add();
-  }
+  };
 
   render() {
     return (
@@ -33,7 +30,7 @@ class Deck extends Component {
           <NormalText>+</NormalText>
         </Button>
       </View>
-      );
+    );
   }
 }
 
@@ -45,23 +42,18 @@ Deck.propTypes = {
 
 const styles = StyleSheet.create({
   deckGroup: {
-    flexDirection: 'row',
-    alignItems: 'stretch',
+    flexDirection: "row",
+    alignItems: "stretch",
     padding: 10,
     marginBottom: 5
   },
-  deckButton: {
-    backgroundColor: colors.pink,
-    padding: 10,
-    margin: 0,
-    flex: 1
-  },
+  deckButton: { backgroundColor: colors.pink, padding: 10, margin: 0, flex: 1 },
   editButton: {
     width: 60,
     backgroundColor: colors.pink2,
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'center',
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: "center",
     padding: 0,
     paddingTop: 10,
     paddingBottom: 10,

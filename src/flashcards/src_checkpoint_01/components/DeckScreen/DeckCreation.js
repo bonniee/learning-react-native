@@ -1,10 +1,7 @@
-import React, { Component } from 'react';
-import {
-  StyleSheet,
-  View
-} from 'react-native';
+import React, { Component } from "react";
+import { StyleSheet, View } from "react-native";
 
-import { CreateDeckButton, EnterDeck } from './DeckCreationFields';
+import { CreateDeckButton, EnterDeck } from "./DeckCreationFields";
 
 class DeckCreation extends Component {
   constructor(props) {
@@ -12,26 +9,23 @@ class DeckCreation extends Component {
     this.state = { showingNameField: false };
   }
 
-  _newDeck = (name) => {
+  _newDeck = name => {
     console.warn("Not implemented");
     this.setState({ showingNameField: false });
-  }
+  };
 
   _showField = () => {
-    this.setState({showingNameField: true});
-  }
+    this.setState({ showingNameField: true });
+  };
 
   render() {
     let contents = this.state.showingNameField
-      ? <EnterDeck create={this._newDeck}/>
-      : <CreateDeckButton onPress={this._showField}/>
-      ;
+      ? <EnterDeck create={this._newDeck} />
+      : <CreateDeckButton onPress={this._showField} />;
     return contents;
   }
 }
 
-DeckCreation.propTypes = {
-  newDeck: React.PropTypes.func
-}
+DeckCreation.propTypes = { newDeck: React.PropTypes.func };
 
 export default DeckCreation;

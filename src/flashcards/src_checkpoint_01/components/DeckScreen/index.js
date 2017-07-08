@@ -1,20 +1,16 @@
-import React, { Component } from 'react';
-import {
-  View
-} from 'react-native';
+import React, { Component } from "react";
+import { View } from "react-native";
 
-import { MockDecks } from './../../data/Mocks';
-import Deck from './Deck';
-import DeckCreation from './DeckCreation';
+import { MockDecks } from "./../../data/Mocks";
+import Deck from "./Deck";
+import DeckCreation from "./DeckCreation";
 
 class DecksScreen extends Component {
-  static displayName = 'DecksScreen'
+  static displayName = "DecksScreen";
 
   constructor(props) {
     super(props);
-    this.state = {
-      decks: MockDecks
-    }
+    this.state = { decks: MockDecks };
   }
 
   _mkDeckViews() {
@@ -22,12 +18,8 @@ class DecksScreen extends Component {
       return null;
     }
 
-    return this.state.decks.map((deck) => {
-      return (
-        <Deck
-          deck={deck}
-          count={deck.cards.length}
-          key={deck.id} />);
+    return this.state.decks.map(deck => {
+      return <Deck deck={deck} count={deck.cards.length} key={deck.id} />;
     });
   }
 

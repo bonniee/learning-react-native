@@ -1,18 +1,12 @@
-import React, { Component } from 'react';
-import {
-  StyleSheet,
-  View
-} from 'react-native';
+import React, { Component } from "react";
+import { StyleSheet, View } from "react-native";
 
-import HeadingText from './../HeadingText';
-import NormalText from './../NormalText';
-import Button from './../Button';
-import colors from './../../styles/colors';
+import HeadingText from "./../HeadingText";
+import NormalText from "./../NormalText";
+import Button from "./../Button";
+import colors from "./../../styles/colors";
 
-function mkReviewSummary(
-  percentCorrect,
-  quitFunc
-  ) {
+function mkReviewSummary(percentCorrect, quitFunc) {
   return (
     <View style={styles.done}>
       <HeadingText style={styles.alternate}>
@@ -25,19 +19,13 @@ function mkReviewSummary(
         <NormalText>Done</NormalText>
       </Button>
     </View>
-    );
+  );
 }
 
 const styles = StyleSheet.create({
-  alternate: {
-    color: '#FFFFFF'
-  },
-  done: {
-    alignItems: 'center'
-  },
-  doneButton: {
-    backgroundColor: colors.tan
-  }
+  alternate: { color: "#FFFFFF" },
+  done: { alignItems: "center" },
+  doneButton: { backgroundColor: colors.tan }
 });
 
 export { mkReviewSummary };

@@ -1,17 +1,14 @@
-import React, { Component } from 'react';
-import { View } from 'react-native';
+import React, { Component } from "react";
+import { View } from "react-native";
 
-import HeadingText from './../HeadingText';
-import { mkContinueQuitButtons, mkAnswerButtons } from './ReviewButtons';
+import HeadingText from "./../HeadingText";
+import { mkContinueQuitButtons, mkAnswerButtons } from "./ReviewButtons";
 
 class ViewCard extends Component {
-  static displayName = 'ViewCard';
-  
+  static displayName = "ViewCard";
+
   _getInitialState() {
-    return {
-      showingAnswer: false,
-      wasCorrect: false
-    };
+    return { showingAnswer: false, wasCorrect: false };
   }
 
   constructor(props) {
@@ -22,15 +19,12 @@ class ViewCard extends Component {
   _continue = () => {
     this.setState(this._getInitialState());
     this.props.continue();
-  }
+  };
 
-  _selectAnswer = (correct) => {
+  _selectAnswer = correct => {
     this.props.onReview(correct);
-    this.setState({
-      showingAnswer: true,
-      wasCorrect: correct
-    });
-  }
+    this.setState({ showingAnswer: true, wasCorrect: correct });
+  };
 
   render() {
     return (
@@ -38,25 +32,21 @@ class ViewCard extends Component {
         <HeadingText>
           {this.props.prompt}
         </HeadingText>
-        {
-          mkAnswerButtons(
-            this.props.answers,
-            this.props.correctAnswer,
-            this.state.showingAnswer,
-            this.state.wasCorrect,
-            this._selectAnswer
-            )
-        }
-        {
-          mkContinueQuitButtons(
-            this.state.showingAnswer,
-            this.state.wasCorrect,
-            this._continue,
-            this.props.quit
-            )
-        }
+        {mkAnswerButtons(
+          this.props.answers,
+          this.props.correctAnswer,
+          this.state.showingAnswer,
+          this.state.wasCorrect,
+          this._selectAnswer
+        )}
+        {mkContinueQuitButtons(
+          this.state.showingAnswer,
+          this.state.wasCorrect,
+          this._continue,
+          this.props.quit
+        )}
       </View>
-      );
+    );
   }
 }
 
@@ -69,7 +59,6 @@ ViewCard.propTypes = {
   answers: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
   correctAnswer: React.PropTypes.string.isRequired,
   prompt: React.PropTypes.string.isRequired
-}
-
+};
 
 export default ViewCard;
