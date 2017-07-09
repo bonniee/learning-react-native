@@ -1,2 +1,2 @@
-import Newsflash from './Newsflash';
+import Newsflash from "./Newsflash";
 export default Newsflash;

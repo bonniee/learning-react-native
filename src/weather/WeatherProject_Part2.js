@@ -18,10 +18,11 @@ class WeatherProject extends Component {
         <Text style={styles.welcome}>
           You input {this.state.zip}.
         </Text>
-        <Forecast 
+        <Forecast
           main={this.state.forecast.main}
           description={this.state.forecast.description}
-          temp={this.state.forecast.temp}/>
+          temp={this.state.forecast.temp}
+        />
         <TextInput
           style={styles.input}
           returnKeyType="go"

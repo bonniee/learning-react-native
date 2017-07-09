@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 import {
   StyleSheet,
   Text,
@@ -6,16 +6,16 @@ import {
   TextInput,
   AsyncStorage,
   Image
-} from 'react-native';
+} from "react-native";
 
-import Forecast from './Forecast';
-import LocationButton from './LocationButton';
-const STORAGE_KEY = '@SmarterWeather:zip';
+import Forecast from "./Forecast";
+import LocationButton from "./LocationButton";
+const STORAGE_KEY = "@SmarterWeather:zip";
 
-import OpenWeatherMap from './open_weather_map';
+import OpenWeatherMap from "./open_weather_map";
 
 // This version uses flowers.png from local assets
-import PhotoBackdrop from './PhotoBackdrop/local_image';
+import PhotoBackdrop from "./PhotoBackdrop/local_image";
 
 // This version pulls a specified photo from the camera roll
 // import PhotoBackdrop from './PhotoBackdrop';
@@ -28,97 +28,100 @@ class WeatherProject extends Component {
 
   componentDidMount() {
     AsyncStorage.getItem(STORAGE_KEY)
-      .then((value) => {
+      .then(value => {
         if (value !== null) {
           this._getForecastForZip(value);
         }
       })
-      .catch((error) => console.error('AsyncStorage error: ' + error.message))
+      .catch(error => console.error("AsyncStorage error: " + error.message))
       .done();
   }
 
-  _getForecastForZip = (zip) => {
+  _getForecastForZip = zip => {
     // Store zip code
     AsyncStorage.setItem(STORAGE_KEY, zip)
-      .then(() => console.log('Saved selection to disk: ' + zip))
-      .catch((error) => console.error('AsyncStorage error: ' + error.message))
+      .then(() => console.log("Saved selection to disk: " + zip))
+      .catch(error => console.error("AsyncStorage error: " + error.message))
       .done();
 
     OpenWeatherMap.fetchZipForecast(zip).then(forecast => {
       this.setState({ forecast: forecast });
     });
-  }
+  };
 
   _getForecastForCoords = (lat, lon) => {
     OpenWeatherMap.fetchLatLonForecast(lat, lon).then(forecast => {
       this.setState({ forecast: forecast });
     });
-  }
+  };
 
-  _handleTextChange = (event) => {
+  _handleTextChange = event => {
     var zip = event.nativeEvent.text;
     this._getForecastForZip(zip);
-  }
+  };
 
   render() {
     var content = null;
     if (this.state.forecast !== null) {
       content = (
         <View style={styles.row}>
-          <Forecast 
+          <Forecast
             main={this.state.forecast.main}
-            temp={this.state.forecast.temp}/>
-        </View>);
+            temp={this.state.forecast.temp}
+          />
+        </View>
+      );
     }
 
     return (
-        <PhotoBackdrop>
+      <PhotoBackdrop>
         <View style={styles.overlay}>
-           <View style={styles.row}>
-             <Text style={textStyles.mainText}>
-               Forecast for 
-             </Text>
+          <View style={styles.row}>
+            <Text style={textStyles.mainText}>
+              Forecast for
+            </Text>
 
-             <View style={styles.zipContainer}>
+            <View style={styles.zipContainer}>
               <TextInput
-                 style={[textStyles.mainText, styles.zipCode]}
-                 returnKeyType='go'
-                 onSubmitEditing={this._handleTextChange}/>
-             </View>
-           </View>
-
-           <View style={styles.row}>
-           <LocationButton onGetCoords={this._getForecastForCoords}/>
-           </View>
-
-           {content}
-
+                style={[textStyles.mainText, styles.zipCode]}
+                returnKeyType="go"
+                onSubmitEditing={this._handleTextChange}
+              />
+            </View>
           </View>
-        </PhotoBackdrop>
+
+          <View style={styles.row}>
+            <LocationButton onGetCoords={this._getForecastForCoords} />
+          </View>
+
+          {content}
+
+        </View>
+      </PhotoBackdrop>
     );
   }
 }
 
-import textStyles from './styles/typography.js';
+import textStyles from "./styles/typography.js";
 const styles = StyleSheet.create({
   overlay: {
-    backgroundColor: 'rgba(0,0,0,0.1)',
-    },
+    backgroundColor: "rgba(0,0,0,0.1)"
+  },
   row: {
-    flexDirection: 'row',
-    flexWrap: 'nowrap',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 24,
+    flexDirection: "row",
+    flexWrap: "nowrap",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 24
   },
   zipContainer: {
-    borderBottomColor: '#DDDDDD',
+    borderBottomColor: "#DDDDDD",
     borderBottomWidth: 1,
     marginLeft: 5,
     marginTop: 3,
     width: 80,
     height: textStyles.baseFontSize * 2,
-    justifyContent: 'flex-end'
+    justifyContent: "flex-end"
   },
   zipCode: {
     flex: 1

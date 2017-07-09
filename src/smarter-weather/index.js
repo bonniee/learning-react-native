@@ -1,3 +1,3 @@
-import WeatherProject from './weather_project';
+import WeatherProject from "./weather_project";
 
 export default WeatherProject;

@@ -20,7 +20,8 @@ class BookList extends Component {
       <BookItem
         coverURL={rowData.book_image}
         title={rowData.title}
-        author={rowData.author} />
+        author={rowData.author}
+      />
     );
   }
 
