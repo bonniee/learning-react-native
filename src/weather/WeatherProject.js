@@ -11,15 +11,15 @@ class WeatherProject extends Component {
     this.state = { zip: "", forecast: null };
   }
 
-  _handleTextChange(event) {
-    var zip = event.nativeEvent.text;
+  _handleTextChange = event => {
+    let zip = event.nativeEvent.text;
     OpenWeatherMap.fetchForecast(zip).then(forecast => {
       this.setState({ forecast: forecast });
     });
-  }
+  };
 
   render() {
-    var content = null;
+    let content = null;
     if (this.state.forecast !== null) {
       content = (
         <Forecast
@@ -44,7 +44,7 @@ class WeatherProject extends Component {
               <View style={styles.zipContainer}>
                 <TextInput
                   style={[styles.zipCode, styles.mainText]}
-                  onSubmitEditing={event => this._handleTextChange(event)}
+                  onSubmitEditing={this._handleTextChange}
                 />
               </View>
             </View>
