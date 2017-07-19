@@ -8,7 +8,7 @@ class WeatherProject extends Component {
     this.state = { zip: "" };
   }
 
-  _handleTextChange(event) {
+  _handleTextChange = (event) => {
     this.setState({ zip: event.nativeEvent.text });
   }
 
@@ -20,8 +20,7 @@ class WeatherProject extends Component {
         </Text>
         <TextInput
           style={styles.input}
-          returnKeyType="go"
-          onSubmitEditing={event => this._handleTextChange(event)}
+          onSubmitEditing={this._handleTextChange}
         />
       </View>
     );
