@@ -42,8 +42,6 @@ class EnterDeck extends Component {
   }
 }
 
-EnterDeck.propTypes = { create: React.PropTypes.func.isRequired };
-
 const styles = StyleSheet.create({
   createDeck: { backgroundColor: colors.green }
 });

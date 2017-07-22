@@ -26,6 +26,4 @@ class DeckCreation extends Component {
   }
 }
 
-DeckCreation.propTypes = { create: React.PropTypes.func.isRequired };
-
 export default DeckCreation;

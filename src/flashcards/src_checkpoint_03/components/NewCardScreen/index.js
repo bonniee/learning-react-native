@@ -79,8 +79,6 @@ class NewCard extends Component {
   }
 }
 
-NewCard.propTypes = {};
-
 const styles = StyleSheet.create({
   createButton: { backgroundColor: colors.green },
   secondaryButton: { backgroundColor: colors.blue },
