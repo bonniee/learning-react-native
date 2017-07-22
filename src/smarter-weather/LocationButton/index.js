@@ -1,23 +1,25 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from "react";
 
-import Button from './../Button';
-import styles from './style.js';
+import Button from "./../Button";
+import styles from "./style.js";
+
+const style = { backgroundColor: "DDDDDD" };
 
 class LocationButton extends Component {
-  propTypes: {
-    onGetCoords: React.PropTypes.func.isRequired
-  }
+  propTypes: { onGetCoords: React.PropTypes.func.isRequired };
 
   _onPress() {
     navigator.geolocation.getCurrentPosition(
-      (initialPosition) => {
-        this.props.onGetCoords(initialPosition.coords.latitude,
-          initialPosition.coords.longitude);
+      initialPosition => {
+        this.props.onGetCoords(
+          initialPosition.coords.latitude,
+          initialPosition.coords.longitude
+        );
       },
-      (error) => {alert(error.message)},
-      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+      error => {
+        alert(error.message);
+      },
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
     );
   }
 
@@ -25,12 +27,11 @@ class LocationButton extends Component {
     return (
       <Button
         label="Use Current Location"
-        style={{backgroundColor: '#DDDDDD'}}
-        onPress={this._onPress.bind(this)}/>
-      );
+        style={style}
+        onPress={this._onPress.bind(this)}
+      />
+    );
   }
 }
 
 export default LocationButton;
-
-

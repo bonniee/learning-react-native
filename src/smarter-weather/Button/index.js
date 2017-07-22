@@ -1,20 +1,11 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from "react";
 
-import {
-  Text,
-  View,
-  TouchableHighlight
-} from 'react-native';
+import { Text, View, TouchableHighlight } from "react-native";
 
-import styles from './style';
+import styles from "./style";
 
 class Button extends Component {
-  propTypes: {
-    onPress: React.PropTypes.func,
-    label: React.PropTypes.string
-  }
+  propTypes: { onPress: React.PropTypes.func, label: React.PropTypes.string };
 
   render() {
     return (
@@ -25,7 +16,7 @@ class Button extends Component {
           </Text>
         </View>
       </TouchableHighlight>
-      );
+    );
   }
 }
 
