@@ -50,15 +50,4 @@ class ViewCard extends Component {
   }
 }
 
-ViewCard.propTypes = {
-  continue: React.PropTypes.func.isRequired,
-  quit: React.PropTypes.func.isRequired,
-  onReview: React.PropTypes.func.isRequired,
-  orientation: React.PropTypes.string.isRequired,
-  cardID: React.PropTypes.string.isRequired,
-  answers: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
-  correctAnswer: React.PropTypes.string.isRequired,
-  prompt: React.PropTypes.string.isRequired
-};
-
 export default ViewCard;

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import {
   StyleSheet,
   View,
-  ViewPropTypes,
   TouchableOpacity
 } from "react-native";
 
@@ -24,13 +23,6 @@ class Button extends Component {
     );
   }
 }
-
-Button.propTypes = {
-  onPress: React.PropTypes.func,
-  style: ViewPropTypes.style,
-  children: React.PropTypes.object,
-  disabled: React.PropTypes.bool
-};
 
 Button.defaultProps = { disabled: false };
 
