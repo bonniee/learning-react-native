@@ -68,8 +68,6 @@ class NewCard extends Component {
   }
 }
 
-NewCard.propTypes = { deck: React.PropTypes.instanceOf(DeckModel) };
-
 const styles = StyleSheet.create({
   createButton: { backgroundColor: colors.green },
   secondaryButton: { backgroundColor: colors.blue },

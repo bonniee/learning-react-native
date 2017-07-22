@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import {
   StyleSheet,
   View,
-  ViewPropTypes,
   TouchableOpacity
 } from "react-native";
 

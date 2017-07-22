@@ -35,11 +35,6 @@ class Deck extends Component {
   }
 }
 
-Deck.propTypes = {
-  deck: React.PropTypes.instanceOf(DeckModel),
-  count: React.PropTypes.number
-};
-
 const styles = StyleSheet.create({
   deckGroup: {
     flexDirection: "row",

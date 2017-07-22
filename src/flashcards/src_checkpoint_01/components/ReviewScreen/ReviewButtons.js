@@ -19,11 +19,6 @@ class ContinueButton extends Component {
   }
 }
 
-ContinueButton.propTypes = {
-  onPress: React.PropTypes.func.isRequired,
-  wasCorrect: React.PropTypes.bool.isRequired
-};
-
 function mkContinueQuitButtons(
   showingAnswer,
   wasCorrect,
