@@ -27,7 +27,8 @@ class WeatherProject extends Component {
   }
 
   componentDidMount() {
-    AsyncStorage.getItem(STORAGE_KEY)
+    AsyncStorage
+      .getItem(STORAGE_KEY)
       .then(value => {
         if (value !== null) {
           this._getForecastForZip(value);
@@ -39,7 +40,8 @@ class WeatherProject extends Component {
 
   _getForecastForZip = zip => {
     // Store zip code
-    AsyncStorage.setItem(STORAGE_KEY, zip)
+    AsyncStorage
+      .setItem(STORAGE_KEY, zip)
       .then(() => console.log("Saved selection to disk: " + zip))
       .catch(error => console.error("AsyncStorage error: " + error.message))
       .done();
@@ -84,7 +86,6 @@ class WeatherProject extends Component {
             <View style={styles.zipContainer}>
               <TextInput
                 style={[textStyles.mainText, styles.zipCode]}
-                returnKeyType="go"
                 onSubmitEditing={this._handleTextChange}
               />
             </View>
@@ -104,9 +105,7 @@ class WeatherProject extends Component {
 
 import textStyles from "./styles/typography.js";
 const styles = StyleSheet.create({
-  overlay: {
-    backgroundColor: "rgba(0,0,0,0.1)"
-  },
+  overlay: { backgroundColor: "rgba(0,0,0,0.1)" },
   row: {
     flexDirection: "row",
     flexWrap: "nowrap",
@@ -123,9 +122,7 @@ const styles = StyleSheet.create({
     height: textStyles.baseFontSize * 2,
     justifyContent: "flex-end"
   },
-  zipCode: {
-    flex: 1
-  }
+  zipCode: { flex: 1 }
 });
 
 export default WeatherProject;

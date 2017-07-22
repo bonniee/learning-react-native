@@ -48,7 +48,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#F5FCFF"
   },
   welcome: { fontSize: 20, textAlign: "center", margin: 10 },
-  input: { fontSize: 20, borderWidth: 2, height: 40 }
+  input: {
+    fontSize: 20,
+    borderWidth: 2,
+    padding: 2,
+    height: 40,
+    width: 100,
+    textAlign: "center"
+  }
 });
 
 export default WeatherProject;
