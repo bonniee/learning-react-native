@@ -89,6 +89,7 @@ class WeatherProject extends Component {
               <TextInput
                 style={[textStyles.mainText, styles.zipCode]}
                 onSubmitEditing={this._handleTextChange}
+                underlineColorAndroid="transparent"
               />
             </View>
           </View>
