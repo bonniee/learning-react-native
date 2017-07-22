@@ -3,3 +3,9 @@
 node_modules
 *.sublime-project
 *.sublime-workspace
+.expo
+App.js
+App.test.js
+app.json
+package.json
+yarn.lock
