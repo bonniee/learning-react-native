@@ -1,6 +1,8 @@
-diff -rupP src_checkpoint_02/actions/creators.js src_checkpoint_03/actions/creators.js
---- src_checkpoint_02/actions/creators.js	1969-12-31 19:00:00.000000000 -0500
-+++ src_checkpoint_03/actions/creators.js	2017-07-07 11:32:52.000000000 -0400
+diff --git a/src_checkpoint_03/actions/creators.js b/src_checkpoint_03/actions/creators.js
+new file mode 100644
+index 0000000..e26a167
+--- /dev/null
++++ b/src_checkpoint_03/actions/creators.js
 @@ -0,0 +1,30 @@
 +import {
 +  ADD_DECK,
@@ -32,76 +34,69 @@ diff -rupP src_checkpoint_02/actions/creators.js src_checkpoint_03/actions/creat
 +export const nextReview = () => {
 +  return { type: NEXT_REVIEW, data: {} };
 +};
-diff -rupP src_checkpoint_02/actions/types.js src_checkpoint_03/actions/types.js
---- src_checkpoint_02/actions/types.js	1969-12-31 19:00:00.000000000 -0500
-+++ src_checkpoint_03/actions/types.js	2017-07-07 11:32:52.000000000 -0400
+diff --git a/src_checkpoint_03/actions/types.js b/src_checkpoint_03/actions/types.js
+new file mode 100644
+index 0000000..215d05b
+--- /dev/null
++++ b/src_checkpoint_03/actions/types.js
 @@ -0,0 +1,5 @@
 +export const ADD_DECK = "ADD_DECK";
 +export const ADD_CARD = "ADD_CARD";
 +export const REVIEW_DECK = "REVIEW_DECK";
 +export const STOP_REVIEW = "STOP_REVIEW";
 +export const NEXT_REVIEW = "NEXT_REVIEW";
-Only in src_checkpoint_02/components: .DS_Store
-diff -rupP src_checkpoint_02/components/DeckScreen/Deck.js src_checkpoint_03/components/DeckScreen/Deck.js
---- src_checkpoint_02/components/DeckScreen/Deck.js	2017-07-07 14:10:32.000000000 -0400
-+++ src_checkpoint_03/components/DeckScreen/Deck.js	2017-07-07 11:32:52.000000000 -0400
-@@ -40,8 +40,7 @@ class Deck extends Component {
- Deck.propTypes = {
-   deck: React.PropTypes.instanceOf(DeckModel).isRequired,
-   add: React.PropTypes.func.isRequired,
--  review: React.PropTypes.func.isRequired,
--  count: React.PropTypes.number
-+  count: React.PropTypes.number.isRequired
- };
+diff --git a/src_checkpoint_02/components/.DS_Store b/src_checkpoint_02/components/.DS_Store
+deleted file mode 100644
+index 7d86a7f..0000000
+Binary files a/src_checkpoint_02/components/.DS_Store and /dev/null differ
+diff --git a/src_checkpoint_02/components/DeckScreen/index.js b/src_checkpoint_03/components/DeckScreen/index.js
+index 4b8a59a..3ceca1b 100644
+--- a/src_checkpoint_02/components/DeckScreen/index.js
++++ b/src_checkpoint_03/components/DeckScreen/index.js
+@@ -1,7 +1,10 @@
+ import React, { Component } from "react";
+ import { View } from "react-native";
  
- const styles = StyleSheet.create({
-diff -rupP src_checkpoint_02/components/DeckScreen/index.js src_checkpoint_03/components/DeckScreen/index.js
---- src_checkpoint_02/components/DeckScreen/index.js	2017-07-07 11:32:52.000000000 -0400
-+++ src_checkpoint_03/components/DeckScreen/index.js	2017-07-07 11:32:52.000000000 -0400
-@@ -3,7 +3,10 @@ import {
-   View
- } from 'react-native';
- 
-+import { connect } from 'react-redux'
++import { connect } from "react-redux";
 +
- import { MockDecks } from './../../data/Mocks';
-+import { addDeck, reviewDeck } from './../../actions/creators';
- import Deck from './Deck';
- import DeckCreation from './DeckCreation';
+ import { MockDecks } from "./../../data/Mocks";
++import { addDeck, reviewDeck } from "./../../actions/creators";
+ import Deck from "./Deck";
+ import DeckCreation from "./DeckCreation";
  
-@@ -14,41 +17,34 @@ class DecksScreen extends Component {
-     title: 'All Decks'
-   };
+@@ -10,39 +13,40 @@ class DecksScreen extends Component {
+ 
+   static navigationOptions = { title: "All Decks" };
  
 -  constructor(props) {
 -    super(props);
--    this.state = {
--      decks: MockDecks
--    }
+-    this.state = { decks: MockDecks };
 -  }
 -
 -  _createDeck = () => {
 -    console.warn("Data saving not implemented");
--    this.props.navigation.navigate('CardCreation');
-+  _createDeck = (name) => {
+-    this.props.navigation.navigate("CardCreation");
++  _createDeck = name => {
 +    let createDeckAction = addDeck(name);
-+    this.props.createDeck(createDeckAction)
-+    this.props.navigation.navigate('CardCreation', {deckID: createDeckAction.data.id});
-   }
++    this.props.createDeck(createDeckAction);
++    this.props.navigation.navigate("CardCreation", {
++      deckID: createDeckAction.data.id
++    });
+   };
  
 -  _addCards = () => {
 -    console.warn("Data saving not implemented");
--    this.props.navigation.navigate('CardCreation');
-+  _addCards = (deckID) => {
-+    this.props.navigation.navigate('CardCreation', {deckID: deckID});
-   }
+-    this.props.navigation.navigate("CardCreation");
++  _addCards = deckID => {
++    this.props.navigation.navigate("CardCreation", { deckID: deckID });
+   };
  
 -  _review = () => {
 -    console.warn("Actual reviews not implemented");
-+  _review = (deckID) => {
++  _review = deckID => {
 +    this.props.reviewDeck(deckID);
-     this.props.navigation.navigate('Review');
-   }
+     this.props.navigation.navigate("Review");
+   };
  
    _mkDeckViews() {
 -    if (!this.state.decks) {
@@ -109,8 +104,8 @@ diff -rupP src_checkpoint_02/components/DeckScreen/index.js src_checkpoint_03/co
        return null;
      }
  
--    return this.state.decks.map((deck) => {
-+    return this.props.decks.map((deck) => {
+-    return this.state.decks.map(deck => {
++    return this.props.decks.map(deck => {
        return (
          <Deck
            deck={deck}
@@ -118,46 +113,50 @@ diff -rupP src_checkpoint_02/components/DeckScreen/index.js src_checkpoint_03/co
 +          count={this.props.counts[deck.id]}
            key={deck.id}
 -          add={this._addCards}
--          review={this._review} />);
-+          add={() => { this._addCards(deck.id)}}
-+          review={() => {this._review(deck.id)}} />);
+-          review={this._review}
++          add={() => {
++            this._addCards(deck.id);
++          }}
++          review={() => {
++            this._review(deck.id);
++          }}
+         />
+       );
      });
-   }
- 
-@@ -62,4 +58,28 @@ class DecksScreen extends Component {
+@@ -58,4 +62,28 @@ class DecksScreen extends Component {
    }
  }
  
 -export default DecksScreen;
-\ No newline at end of file
 +const mapDispatchToProps = dispatch => {
 +  return {
 +    createDeck: deckAction => {
-+      dispatch(deckAction)
++      dispatch(deckAction);
 +    },
 +    reviewDeck: deckID => {
-+      dispatch(reviewDeck(deckID))
++      dispatch(reviewDeck(deckID));
 +    }
 +  };
-+}
++};
 +
 +const mapStateToProps = state => {
 +  return {
 +    decks: state.decks,
-+    counts: state.decks.reduce( (sum, deck) => {
-+        sum[deck.id] = deck.cards.length
++    counts: state.decks.reduce(
++      (sum, deck) => {
++        sum[deck.id] = deck.cards.length;
 +        return sum;
-+      }, {})
-+  }
-+}
++      },
++      {}
++    )
++  };
++};
 +
-+export default connect(
-+  mapStateToProps,
-+  mapDispatchToProps
-+  )(DecksScreen);
-diff -rupP src_checkpoint_02/components/Flashcards.js src_checkpoint_03/components/Flashcards.js
---- src_checkpoint_02/components/Flashcards.js	2017-07-07 11:32:52.000000000 -0400
-+++ src_checkpoint_03/components/Flashcards.js	2017-07-07 23:35:55.000000000 -0400
++export default connect(mapStateToProps, mapDispatchToProps)(DecksScreen);
+diff --git a/src_checkpoint_02/components/Flashcards.js b/src_checkpoint_03/components/Flashcards.js
+index 8907527..4a87233 100644
+--- a/src_checkpoint_02/components/Flashcards.js
++++ b/src_checkpoint_03/components/Flashcards.js
 @@ -1,21 +1,41 @@
  import React, { Component } from "react";
  import { StyleSheet, View } from "react-native";
@@ -203,109 +202,104 @@ diff -rupP src_checkpoint_02/components/Flashcards.js src_checkpoint_03/componen
 +}
 +
 +export default App;
-diff -rupP src_checkpoint_02/components/NewCardScreen/index.js src_checkpoint_03/components/NewCardScreen/index.js
---- src_checkpoint_02/components/NewCardScreen/index.js	2017-07-07 11:32:52.000000000 -0400
-+++ src_checkpoint_03/components/NewCardScreen/index.js	2017-07-07 11:32:52.000000000 -0400
-@@ -5,6 +5,8 @@ import {
- } from 'react-native';
+diff --git a/src_checkpoint_02/components/NewCardScreen/index.js b/src_checkpoint_03/components/NewCardScreen/index.js
+index 2545512..6d64405 100644
+--- a/src_checkpoint_02/components/NewCardScreen/index.js
++++ b/src_checkpoint_03/components/NewCardScreen/index.js
+@@ -2,6 +2,8 @@ import React, { Component } from "react";
+ import { StyleSheet, View } from "react-native";
  
- import DeckModel from './../../data/Deck';
-+import { addCard } from './../../actions/creators';
-+import { connect } from 'react-redux';
+ import DeckModel from "./../../data/Deck";
++import { addCard } from "./../../actions/creators";
++import { connect } from "react-redux";
  
- import Button from '../Button';
- import LabeledInput from '../LabeledInput';
-@@ -26,6 +28,10 @@ class NewCard extends Component {
+ import Button from "../Button";
+ import LabeledInput from "../LabeledInput";
+@@ -18,6 +20,10 @@ class NewCard extends Component {
      this.state = this.initialState;
    }
  
 +  _deckID = () => {
-+    return this.props.navigation.state.params.deckID
-+  }
++    return this.props.navigation.state.params.deckID;
++  };
 +
-   _handleFront = (text) => {
-     this.setState({front: text});
-   }
-@@ -35,8 +41,8 @@ class NewCard extends Component {
-   }
+   _handleFront = text => {
+     this.setState({ front: text });
+   };
+@@ -27,8 +33,8 @@ class NewCard extends Component {
+   };
  
    _createCard = () => {
 -    console.warn("Data saving not implemented");
--    this.props.navigation.navigate('CardCreation');
+-    this.props.navigation.navigate("CardCreation");
 +    this.props.createCard(this.state.front, this.state.back, this._deckID());
-+    this.props.navigation.navigate('CardCreation', {deckID: this._deckID()});
-   }
++    this.props.navigation.navigate("CardCreation", { deckID: this._deckID() });
+   };
  
    _reviewDeck = () => {
-@@ -83,7 +89,6 @@ class NewCard extends Component {
- }
- 
- NewCard.propTypes = {
--  deck: React.PropTypes.instanceOf(DeckModel),
- };
- 
- const styles = StyleSheet.create({
-@@ -98,4 +103,16 @@ const styles = StyleSheet.create({
-   }
+@@ -79,4 +85,16 @@ const styles = StyleSheet.create({
+   buttonRow: { flexDirection: "row" }
  });
  
 -export default NewCard;
 +const mapStateToProps = state => {
-+  return { decks: state.decks.map(deck => deck)}
-+}
++  return { decks: state.decks };
++};
 +
 +const mapDispatchToProps = dispatch => {
 +  return {
 +    createCard: (front, back, deckID) => {
-+      dispatch(addCard(front, back, deckID))
++      dispatch(addCard(front, back, deckID));
 +    }
-+  }
-+}
++  };
++};
 +
 +export default connect(mapStateToProps, mapDispatchToProps)(NewCard);
-diff -rupP src_checkpoint_02/components/ReviewScreen/index.js src_checkpoint_03/components/ReviewScreen/index.js
---- src_checkpoint_02/components/ReviewScreen/index.js	2017-07-07 11:32:52.000000000 -0400
-+++ src_checkpoint_03/components/ReviewScreen/index.js	2017-07-07 11:32:52.000000000 -0400
-@@ -4,10 +4,11 @@ import {
-   View
- } from 'react-native';
+diff --git a/src_checkpoint_02/components/ReviewScreen/index.js b/src_checkpoint_03/components/ReviewScreen/index.js
+index 645c6d0..7df1669 100644
+--- a/src_checkpoint_02/components/ReviewScreen/index.js
++++ b/src_checkpoint_03/components/ReviewScreen/index.js
+@@ -1,10 +1,11 @@
+ import React, { Component } from "react";
+ import { StyleSheet, View } from "react-native";
  
-+import { connect } from 'react-redux';
- import ViewCard from './ViewCard';
--import { MockReviews } from './../../data/Mocks';
- import { mkReviewSummary } from './ReviewSummary';
- import colors from './../../styles/colors';
-+import { reviewCard, nextReview, stopReview } from './../../actions/creators';
++import { connect } from "react-redux";
+ import ViewCard from "./ViewCard";
+-import { MockReviews } from "./../../data/Mocks";
+ import { mkReviewSummary } from "./ReviewSummary";
+ import colors from "./../../styles/colors";
++import { reviewCard, nextReview, stopReview } from "./../../actions/creators";
  
  class ReviewScreen extends Component {
+   static displayName = "ReviewScreen";
+@@ -13,12 +14,7 @@ class ReviewScreen extends Component {
  
-@@ -21,9 +22,7 @@ class ReviewScreen extends Component {
+   constructor(props) {
      super(props);
-     this.state = {
-       numReviewed: 0,
+-    this.state = {
+-      numReviewed: 0,
 -      numCorrect: 0,
 -      currentReview: 0,
 -      reviews: MockReviews
-+      numCorrect: 0
-     };
+-    };
++    this.state = { numReviewed: 0, numCorrect: 0 };
    }
  
-@@ -35,29 +34,26 @@ class ReviewScreen extends Component {
-   }
+   onReview = correct => {
+@@ -29,27 +25,26 @@ class ReviewScreen extends Component {
+   };
  
    _nextReview = () => {
 -    console.warn("Showing next review, but data saving not implemented.");
--    this.setState({
--      currentReview: this.state.currentReview + 1
--    });
+-    this.setState({ currentReview: this.state.currentReview + 1 });
 +    this.props.nextReview();
-   }
+   };
  
    _quitReviewing = () => {
 -    console.warn("Data saving not implemented");
 +    this.props.stopReview();
      this.props.navigation.goBack();
-   }
+   };
  
    _contents() {
 -    if (!this.state.reviews || this.state.reviews.length === 0) {
@@ -322,20 +316,11 @@ diff -rupP src_checkpoint_02/components/ReviewScreen/index.js src_checkpoint_03/
            quit={this._quitReviewing}
 -          {...this.state.reviews[this.state.currentReview]}
 +          {...this.props.reviews[this.props.currentReview]}
-           />
-         );
-     }
-@@ -76,8 +72,6 @@ class ReviewScreen extends Component {
-   }
- }
- 
--ReviewScreen.propTypes = {};
--
- const styles = StyleSheet.create({
-   container: {
-     backgroundColor: colors.blue,
-@@ -86,4 +80,24 @@ const styles = StyleSheet.create({
-   }
+         />
+       );
+     } else {
+@@ -71,4 +66,22 @@ const styles = StyleSheet.create({
+   container: { backgroundColor: colors.blue, flex: 1, paddingTop: 24 }
  });
  
 -export default ReviewScreen;
@@ -348,27 +333,23 @@ diff -rupP src_checkpoint_02/components/ReviewScreen/index.js src_checkpoint_03/
 +      dispatch(stopReview());
 +    }
 +  };
-+}
++};
 +
 +const mapStateToProps = state => {
 +  return {
 +    reviews: state.currentReview.questions,
 +    currentReview: state.currentReview.currentQuestionIndex
-+  }
-+}
++  };
++};
 +
-+export default connect(
-+  mapStateToProps,
-+  mapDispatchToProps)(ReviewScreen);
-diff -rupP src_checkpoint_02/reducers/decks.js src_checkpoint_03/reducers/decks.js
---- src_checkpoint_02/reducers/decks.js	1969-12-31 19:00:00.000000000 -0500
-+++ src_checkpoint_03/reducers/decks.js	2017-07-07 11:32:52.000000000 -0400
-@@ -0,0 +1,30 @@
++export default connect(mapStateToProps, mapDispatchToProps)(ReviewScreen);
+diff --git a/src_checkpoint_03/reducers/decks.js b/src_checkpoint_03/reducers/decks.js
+new file mode 100644
+index 0000000..1202a28
+--- /dev/null
++++ b/src_checkpoint_03/reducers/decks.js
+@@ -0,0 +1,26 @@
 +import { ADD_DECK, ADD_CARD } from "../actions/types";
-+
-+function addCardToDeck(card, deck) {
-+  return { meta: deck.meta, cards: deck.cards.concat(card) };
-+}
 +
 +function decksWithNewCard(oldDecks, card) {
 +  return oldDecks.map(deck => {
@@ -394,12 +375,12 @@ diff -rupP src_checkpoint_02/reducers/decks.js src_checkpoint_03/reducers/decks.
 +};
 +
 +export default reducer;
-diff -rupP src_checkpoint_02/reducers/index.js src_checkpoint_03/reducers/index.js
---- src_checkpoint_02/reducers/index.js	1969-12-31 19:00:00.000000000 -0500
-+++ src_checkpoint_03/reducers/index.js	2017-07-07 23:35:27.000000000 -0400
-@@ -0,0 +1,18 @@
-+import { createStore, combineReducers } from "redux";
-+import { Provider } from "react-redux";
+diff --git a/src_checkpoint_03/reducers/index.js b/src_checkpoint_03/reducers/index.js
+new file mode 100644
+index 0000000..4d271a0
+--- /dev/null
++++ b/src_checkpoint_03/reducers/index.js
+@@ -0,0 +1,17 @@
 +import { MockDecks, MockCards } from "./../data/Mocks";
 +
 +import DecksReducer from "./decks";
@@ -411,14 +392,17 @@ diff -rupP src_checkpoint_02/reducers/index.js src_checkpoint_03/reducers/index.
 +
 +export const reducer = (state = initialState(), action) => {
 +  let decks = DecksReducer(state.decks, action);
++
 +  return {
 +    decks: decks,
 +    currentReview: ReviewReducer(state.currentReview, action, decks)
 +  };
 +};
-diff -rupP src_checkpoint_02/reducers/reviews.js src_checkpoint_03/reducers/reviews.js
---- src_checkpoint_02/reducers/reviews.js	1969-12-31 19:00:00.000000000 -0500
-+++ src_checkpoint_03/reducers/reviews.js	2017-07-07 11:32:52.000000000 -0400
+diff --git a/src_checkpoint_03/reducers/reviews.js b/src_checkpoint_03/reducers/reviews.js
+new file mode 100644
+index 0000000..93aae7e
+--- /dev/null
++++ b/src_checkpoint_03/reducers/reviews.js
 @@ -0,0 +1,42 @@
 +import { mkReviews } from "./../data/QuizCardView";
 +import { REVIEW_DECK, NEXT_REVIEW, STOP_REVIEW } from "./../actions/types";

@@ -1,6 +1,11 @@
-diff -rupP src_checkpoint_03/actions/creators.js src_checkpoint_04/actions/creators.js
---- src_checkpoint_03/actions/creators.js	2017-07-07 11:32:52.000000000 -0400
-+++ src_checkpoint_04/actions/creators.js	2017-07-07 11:32:52.000000000 -0400
+diff --git a/src_checkpoint_04/.DS_Store b/src_checkpoint_04/.DS_Store
+new file mode 100644
+index 0000000..cf17762
+Binary files /dev/null and b/src_checkpoint_04/.DS_Store differ
+diff --git a/src_checkpoint_03/actions/creators.js b/src_checkpoint_04/actions/creators.js
+index e26a167..635c227 100644
+--- a/src_checkpoint_03/actions/creators.js
++++ b/src_checkpoint_04/actions/creators.js
 @@ -3,7 +3,8 @@ import {
    ADD_CARD,
    REVIEW_DECK,
@@ -19,17 +24,19 @@ diff -rupP src_checkpoint_03/actions/creators.js src_checkpoint_04/actions/creat
 +export const loadData = data => {
 +  return { type: LOAD_DATA, data: data };
 +};
-diff -rupP src_checkpoint_03/actions/types.js src_checkpoint_04/actions/types.js
---- src_checkpoint_03/actions/types.js	2017-07-07 11:32:52.000000000 -0400
-+++ src_checkpoint_04/actions/types.js	2017-07-07 11:32:52.000000000 -0400
+diff --git a/src_checkpoint_03/actions/types.js b/src_checkpoint_04/actions/types.js
+index 215d05b..6e41b62 100644
+--- a/src_checkpoint_03/actions/types.js
++++ b/src_checkpoint_04/actions/types.js
 @@ -3,3 +3,4 @@ export const ADD_CARD = "ADD_CARD";
  export const REVIEW_DECK = "REVIEW_DECK";
  export const STOP_REVIEW = "STOP_REVIEW";
  export const NEXT_REVIEW = "NEXT_REVIEW";
 +export const LOAD_DATA = "LOAD_DATA";
-diff -rupP src_checkpoint_03/components/Flashcards.js src_checkpoint_04/components/Flashcards.js
---- src_checkpoint_03/components/Flashcards.js	2017-07-07 23:35:55.000000000 -0400
-+++ src_checkpoint_04/components/Flashcards.js	2017-07-07 23:37:28.000000000 -0400
+diff --git a/src_checkpoint_03/components/Flashcards.js b/src_checkpoint_04/components/Flashcards.js
+index 4a87233..d1d1056 100644
+--- a/src_checkpoint_03/components/Flashcards.js
++++ b/src_checkpoint_04/components/Flashcards.js
 @@ -5,6 +5,8 @@ import { createStore } from "redux";
  import { Provider } from "react-redux";
  
@@ -51,20 +58,10 @@ diff -rupP src_checkpoint_03/components/Flashcards.js src_checkpoint_04/componen
  const Navigator = StackNavigator({
    Home: { screen: DeckScreen, navigationOptions: headerOptions },
    Review: { screen: ReviewScreen, navigationOptions: headerOptions },
-diff -rupP src_checkpoint_03/components/LabeledInput.js src_checkpoint_04/components/LabeledInput.js
---- src_checkpoint_03/components/LabeledInput.js	2017-07-07 11:32:52.000000000 -0400
-+++ src_checkpoint_04/components/LabeledInput.js	2017-07-07 11:32:52.000000000 -0400
-@@ -1,6 +1,6 @@
- import React, { Component } from "react";
- 
--import { StyleSheet, View, ViewPropTypes } from "react-native";
-+import { StyleSheet, View, ViewPropTypes} from "react-native";
- 
- import Input from "./Input";
- import NormalText from "./NormalText";
-diff -rupP src_checkpoint_03/reducers/decks.js src_checkpoint_04/reducers/decks.js
---- src_checkpoint_03/reducers/decks.js	2017-07-07 23:57:33.000000000 -0400
-+++ src_checkpoint_04/reducers/decks.js	2017-07-07 11:32:52.000000000 -0400
+diff --git a/src_checkpoint_03/reducers/decks.js b/src_checkpoint_04/reducers/decks.js
+index 1202a28..9eb40fe 100644
+--- a/src_checkpoint_03/reducers/decks.js
++++ b/src_checkpoint_04/reducers/decks.js
 @@ -1,7 +1,9 @@
 -import { ADD_DECK, ADD_CARD } from "../actions/types";
 +import { ADD_DECK, ADD_CARD, LOAD_DATA } from "../actions/types";
@@ -77,7 +74,7 @@ diff -rupP src_checkpoint_03/reducers/decks.js src_checkpoint_04/reducers/decks.
      if (deck.id === card.deckID) {
        deck.addCard(card);
        return deck;
-@@ -9,16 +11,26 @@ function decksWithNewCard(oldDecks, card
+@@ -9,16 +11,26 @@ function decksWithNewCard(oldDecks, card) {
        return deck;
      }
    });
@@ -107,20 +104,10 @@ diff -rupP src_checkpoint_03/reducers/decks.js src_checkpoint_04/reducers/decks.
    }
    return state;
  };
-diff -rupP src_checkpoint_03/reducers/index.js src_checkpoint_04/reducers/index.js
---- src_checkpoint_03/reducers/index.js	2017-07-07 23:35:27.000000000 -0400
-+++ src_checkpoint_04/reducers/index.js	2017-07-07 23:37:09.000000000 -0400
-@@ -11,6 +11,7 @@ const initialState = () => {
- 
- export const reducer = (state = initialState(), action) => {
-   let decks = DecksReducer(state.decks, action);
-+
-   return {
-     decks: decks,
-     currentReview: ReviewReducer(state.currentReview, action, decks)
-diff -rupP src_checkpoint_03/reducers/reviews.js src_checkpoint_04/reducers/reviews.js
---- src_checkpoint_03/reducers/reviews.js	2017-07-07 11:32:52.000000000 -0400
-+++ src_checkpoint_04/reducers/reviews.js	2017-07-07 11:32:52.000000000 -0400
+diff --git a/src_checkpoint_03/reducers/reviews.js b/src_checkpoint_04/reducers/reviews.js
+index 93aae7e..30f234c 100644
+--- a/src_checkpoint_03/reducers/reviews.js
++++ b/src_checkpoint_04/reducers/reviews.js
 @@ -27,7 +27,7 @@ function nextReview(state) {
    );
  }
@@ -130,9 +117,11 @@ diff -rupP src_checkpoint_03/reducers/reviews.js src_checkpoint_04/reducers/revi
    switch (action.type) {
      case REVIEW_DECK:
        return generateReviews(findDeck(decks, action.data.deckID));
-diff -rupP src_checkpoint_03/storage/decks.js src_checkpoint_04/storage/decks.js
---- src_checkpoint_03/storage/decks.js	1969-12-31 19:00:00.000000000 -0500
-+++ src_checkpoint_04/storage/decks.js	2017-07-07 11:32:52.000000000 -0400
+diff --git a/src_checkpoint_04/storage/decks.js b/src_checkpoint_04/storage/decks.js
+new file mode 100644
+index 0000000..6f9cf55
+--- /dev/null
++++ b/src_checkpoint_04/storage/decks.js
 @@ -0,0 +1,39 @@
 +import { AsyncStorage } from "react-native";
 +import Deck from "./../data/Deck";

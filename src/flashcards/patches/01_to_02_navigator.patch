@@ -1,20 +1,23 @@
-Only in src_checkpoint_01: .DS_Store
-Binary files src_checkpoint_01/components/.DS_Store and src_checkpoint_02/components/.DS_Store differ
-diff -rupP src_checkpoint_01/components/DeckScreen/Deck.js src_checkpoint_02/components/DeckScreen/Deck.js
---- src_checkpoint_01/components/DeckScreen/Deck.js	2017-07-07 11:32:52.000000000 -0400
-+++ src_checkpoint_02/components/DeckScreen/Deck.js	2017-07-07 14:10:32.000000000 -0400
-@@ -13,17 +13,16 @@ class Deck extends Component {
-   static displayName = 'Deck';
+diff --git a/src_checkpoint_01/.DS_Store b/src_checkpoint_01/.DS_Store
+deleted file mode 100644
+index 7b96e2d..0000000
+Binary files a/src_checkpoint_01/.DS_Store and /dev/null differ
+diff --git a/src_checkpoint_01/components/DeckScreen/Deck.js b/src_checkpoint_02/components/DeckScreen/Deck.js
+index 42955b4..fc9f18c 100644
+--- a/src_checkpoint_01/components/DeckScreen/Deck.js
++++ b/src_checkpoint_02/components/DeckScreen/Deck.js
+@@ -10,17 +10,16 @@ class Deck extends Component {
+   static displayName = "Deck";
  
    _review = () => {
 -    console.warn("Not implemented");
 +    this.props.review();
-   }
+   };
  
    _addCards = () => {
 -    console.warn("Not implemented");
 +    this.props.add();
-   }
+   };
  
    render() {
      return (
@@ -23,101 +26,82 @@ diff -rupP src_checkpoint_01/components/DeckScreen/Deck.js src_checkpoint_02/com
          <Button style={styles.deckButton} onPress={this._review}>
            <NormalText>
              {this.props.deck.name}: {this.props.count} cards
-@@ -39,7 +38,9 @@ class Deck extends Component {
- }
- 
- Deck.propTypes = {
--  deck: React.PropTypes.instanceOf(DeckModel),
-+  deck: React.PropTypes.instanceOf(DeckModel).isRequired,
-+  add: React.PropTypes.func.isRequired,
-+  review: React.PropTypes.func.isRequired,
-   count: React.PropTypes.number
- };
- 
-diff -rupP src_checkpoint_01/components/DeckScreen/DeckCreation.js src_checkpoint_02/components/DeckScreen/DeckCreation.js
---- src_checkpoint_01/components/DeckScreen/DeckCreation.js	2017-07-07 11:32:52.000000000 -0400
-+++ src_checkpoint_02/components/DeckScreen/DeckCreation.js	2017-07-07 11:32:52.000000000 -0400
-@@ -13,8 +13,8 @@ class DeckCreation extends Component {
+diff --git a/src_checkpoint_01/components/DeckScreen/DeckCreation.js b/src_checkpoint_02/components/DeckScreen/DeckCreation.js
+index b12deb3..1bcbf45 100644
+--- a/src_checkpoint_01/components/DeckScreen/DeckCreation.js
++++ b/src_checkpoint_02/components/DeckScreen/DeckCreation.js
+@@ -10,8 +10,8 @@ class DeckCreation extends Component {
    }
  
-   _newDeck = (name) => {
+   _newDeck = name => {
 -    console.warn("Not implemented");
      this.setState({ showingNameField: false });
 +    this.props.create(name);
-   }
+   };
  
    _showField = () => {
-@@ -31,7 +31,7 @@ class DeckCreation extends Component {
- }
- 
- DeckCreation.propTypes = {
--  newDeck: React.PropTypes.func
-+  create: React.PropTypes.func.isRequired
- }
- 
- export default DeckCreation;
-\ No newline at end of file
-diff -rupP src_checkpoint_01/components/DeckScreen/index.js src_checkpoint_02/components/DeckScreen/index.js
---- src_checkpoint_01/components/DeckScreen/index.js	2017-07-07 11:32:52.000000000 -0400
-+++ src_checkpoint_02/components/DeckScreen/index.js	2017-07-07 11:32:52.000000000 -0400
-@@ -8,7 +8,11 @@ import Deck from './Deck';
- import DeckCreation from './DeckCreation';
- 
+diff --git a/src_checkpoint_01/components/DeckScreen/index.js b/src_checkpoint_02/components/DeckScreen/index.js
+index 30d7e2b..4b8a59a 100644
+--- a/src_checkpoint_01/components/DeckScreen/index.js
++++ b/src_checkpoint_02/components/DeckScreen/index.js
+@@ -8,18 +8,43 @@ import DeckCreation from "./DeckCreation";
  class DecksScreen extends Component {
--  static displayName = 'DecksScreen'
-+  static displayName = 'DecksScreen';
-+
-+  static navigationOptions = {
-+    title: 'All Decks'
-+  };
+   static displayName = "DecksScreen";
  
++  static navigationOptions = { title: "All Decks" };
++
    constructor(props) {
      super(props);
-@@ -17,6 +21,21 @@ class DecksScreen extends Component {
-     }
+     this.state = { decks: MockDecks };
    }
  
 +  _createDeck = () => {
 +    console.warn("Data saving not implemented");
-+    this.props.navigation.navigate('CardCreation');
-+  }
++    this.props.navigation.navigate("CardCreation");
++  };
 +
 +  _addCards = () => {
 +    console.warn("Data saving not implemented");
-+    this.props.navigation.navigate('CardCreation');
-+  }
++    this.props.navigation.navigate("CardCreation");
++  };
 +
 +  _review = () => {
 +    console.warn("Actual reviews not implemented");
-+    this.props.navigation.navigate('Review');
-+  }
++    this.props.navigation.navigate("Review");
++  };
 +
    _mkDeckViews() {
      if (!this.state.decks) {
        return null;
-@@ -27,7 +46,9 @@ class DecksScreen extends Component {
-         <Deck
-           deck={deck}
-           count={deck.cards.length}
--          key={deck.id} />);
+     }
+ 
+     return this.state.decks.map(deck => {
+-      return <Deck deck={deck} count={deck.cards.length} key={deck.id} />;
++      return (
++        <Deck
++          deck={deck}
++          count={deck.cards.length}
 +          key={deck.id}
 +          add={this._addCards}
-+          review={this._review} />);
++          review={this._review}
++        />
++      );
      });
    }
  
-@@ -35,7 +56,7 @@ class DecksScreen extends Component {
+@@ -27,7 +52,7 @@ class DecksScreen extends Component {
      return (
        <View>
          {this._mkDeckViews()}
 -        <DeckCreation />
-+        <DeckCreation create={this._createDeck}/>
++        <DeckCreation create={this._createDeck} />
        </View>
      );
    }
-diff -rupP src_checkpoint_01/components/Flashcards.js src_checkpoint_02/components/Flashcards.js
---- src_checkpoint_01/components/Flashcards.js	2017-07-07 11:32:52.000000000 -0400
-+++ src_checkpoint_02/components/Flashcards.js	2017-07-07 11:32:52.000000000 -0400
+diff --git a/src_checkpoint_01/components/Flashcards.js b/src_checkpoint_02/components/Flashcards.js
+index 5ed3771..8907527 100644
+--- a/src_checkpoint_01/components/Flashcards.js
++++ b/src_checkpoint_02/components/Flashcards.js
 @@ -1,27 +1,21 @@
  import React, { Component } from "react";
  import { StyleSheet, View } from "react-native";
@@ -158,129 +142,127 @@ diff -rupP src_checkpoint_01/components/Flashcards.js src_checkpoint_02/componen
  
 -export default Flashcards;
 +export default navigator;
-diff -rupP src_checkpoint_01/components/Header/Logo.js src_checkpoint_02/components/Header/Logo.js
---- src_checkpoint_01/components/Header/Logo.js	1969-12-31 19:00:00.000000000 -0500
-+++ src_checkpoint_02/components/Header/Logo.js	2017-07-07 11:32:52.000000000 -0400
-@@ -0,0 +1,18 @@
-+import React, { Component } from 'react';
-+import {
-+  Image
-+} from 'react-native';
+diff --git a/src_checkpoint_02/components/Header/Logo.js b/src_checkpoint_02/components/Header/Logo.js
+new file mode 100644
+index 0000000..a108454
+--- /dev/null
++++ b/src_checkpoint_02/components/Header/Logo.js
+@@ -0,0 +1,14 @@
++import React, { Component } from "react";
++import { Image } from "react-native";
 +
-+import styles from './styles';
++import styles from "./styles";
 +
 +class Logo extends Component {
-+  static displayName = 'Logo';
-+  
++  static displayName = "Logo";
++
 +  render() {
-+    return (
-+        <Image source={require('../../../icon.png')} style={styles.logo}/>
-+      );
++    return <Image source={require("../../../icon.png")} style={styles.logo} />;
 +  }
 +}
 +
 +export default Logo;
-\ No newline at end of file
-diff -rupP src_checkpoint_01/components/Header/index.js src_checkpoint_02/components/Header/index.js
---- src_checkpoint_01/components/Header/index.js	2017-07-07 11:32:52.000000000 -0400
-+++ src_checkpoint_02/components/Header/index.js	2017-07-07 11:32:52.000000000 -0400
-@@ -1,11 +1,11 @@
- import React, { Component } from 'react';
- import {
--  View,
--  Image
-+  View
- } from 'react-native';
+diff --git a/src_checkpoint_01/components/Header/index.js b/src_checkpoint_02/components/Header/index.js
+index a1c8a54..a6c1030 100644
+--- a/src_checkpoint_01/components/Header/index.js
++++ b/src_checkpoint_02/components/Header/index.js
+@@ -1,8 +1,9 @@
+ import React, { Component } from "react";
+-import { View, Image } from "react-native";
++import { View } from "react-native";
  
- import styles from './styles';
- import HeadingText from './../HeadingText';
-+import Logo from './Logo';
+ import styles from "./styles";
+ import HeadingText from "./../HeadingText";
++import Logo from "./Logo";
  
  class Header extends Component {
-   static displayName = 'Header';
-@@ -13,7 +13,7 @@ class Header extends Component {
+   static displayName = "Header";
+@@ -10,7 +11,7 @@ class Header extends Component {
    render() {
      return (
        <View style={styles.header}>
--        <Image source={require('../../../icon.png')} style={styles.logo}/>
+-        <Image source={require("../../../icon.png")} style={styles.logo} />
 +        <Logo />
          <HeadingText>FLASHCARDS</HeadingText>
        </View>
-       );
-diff -rupP src_checkpoint_01/components/NewCardScreen/index.js src_checkpoint_02/components/NewCardScreen/index.js
---- src_checkpoint_01/components/NewCardScreen/index.js	2017-07-07 11:32:52.000000000 -0400
-+++ src_checkpoint_02/components/NewCardScreen/index.js	2017-07-07 11:32:52.000000000 -0400
-@@ -12,12 +12,18 @@ import NormalText from '../NormalText';
- import colors from './../../styles/colors';
+     );
+diff --git a/src_checkpoint_01/components/Input.js b/src_checkpoint_02/components/Input.js
+index 2571017..523d927 100644
+--- a/src_checkpoint_01/components/Input.js
++++ b/src_checkpoint_02/components/Input.js
+@@ -48,6 +48,8 @@ class Input extends Component {
+   }
+ }
+ 
++Input.defaultProps = { clearOnSubmit: true };
++
+ export default Input;
+ 
+ const styles = StyleSheet.create({
+diff --git a/src_checkpoint_01/components/NewCardScreen/index.js b/src_checkpoint_02/components/NewCardScreen/index.js
+index da240d1..2545512 100644
+--- a/src_checkpoint_01/components/NewCardScreen/index.js
++++ b/src_checkpoint_02/components/NewCardScreen/index.js
+@@ -9,9 +9,13 @@ import NormalText from "../NormalText";
+ import colors from "./../../styles/colors";
  
  class NewCard extends Component {
-+  static navigationOptions = {
-+    title: 'Create Card'
-+  };
++  static navigationOptions = { title: "Create Card" };
 +
-+  static initialState = {
-+    front: '',
-+    back: ''
-+  }
++  static initialState = { front: "", back: "" };
 +
    constructor(props) {
      super(props);
--    this.state = {
--      font: '',
--      back: ''
--    };
+-    this.state = { font: "", back: "" };
 +    this.state = this.initialState;
    }
  
-   _handleFront = (text) => {
-@@ -29,15 +35,16 @@ class NewCard extends Component {
-   }
+   _handleFront = text => {
+@@ -23,15 +27,16 @@ class NewCard extends Component {
+   };
  
    _createCard = () => {
 -    console.warn("Not implemented");
 +    console.warn("Data saving not implemented");
-+    this.props.navigation.navigate('CardCreation');
-   }
++    this.props.navigation.navigate("CardCreation");
+   };
  
    _reviewDeck = () => {
 -    console.warn("Not implemented");
-+    this.props.navigation.navigate('Review');
-   }
++    this.props.navigation.navigate("Review");
+   };
  
    _doneCreating = () => {
 -    console.warn("Not implemented");
-+    this.props.navigation.navigate('Home');
-   }
++    this.props.navigation.navigate("Home");
+   };
  
    render() {
-diff -rupP src_checkpoint_01/components/ReviewScreen/index.js src_checkpoint_02/components/ReviewScreen/index.js
---- src_checkpoint_01/components/ReviewScreen/index.js	2017-07-07 11:32:52.000000000 -0400
-+++ src_checkpoint_02/components/ReviewScreen/index.js	2017-07-07 11:32:52.000000000 -0400
-@@ -13,6 +13,10 @@ class ReviewScreen extends Component {
+diff --git a/src_checkpoint_01/components/ReviewScreen/index.js b/src_checkpoint_02/components/ReviewScreen/index.js
+index 043dfad..645c6d0 100644
+--- a/src_checkpoint_01/components/ReviewScreen/index.js
++++ b/src_checkpoint_02/components/ReviewScreen/index.js
+@@ -9,6 +9,8 @@ import colors from "./../../styles/colors";
+ class ReviewScreen extends Component {
+   static displayName = "ReviewScreen";
  
-   static displayName = 'ReviewScreen';
- 
-+  static navigationOptions = {
-+    title: 'Review'
-+  };
++  static navigationOptions = { title: "Review" };
 +
    constructor(props) {
      super(props);
      this.state = {
-@@ -31,13 +35,15 @@ class ReviewScreen extends Component {
-   }
+@@ -27,11 +29,13 @@ class ReviewScreen extends Component {
+   };
  
    _nextReview = () => {
 +    console.warn("Showing next review, but data saving not implemented.");
-     this.setState({
-       currentReview: this.state.currentReview + 1
-     });
-   }
+     this.setState({ currentReview: this.state.currentReview + 1 });
+   };
  
    _quitReviewing = () => {
 -    console.warn("Not implemented");
 +    console.warn("Data saving not implemented");
 +    this.props.navigation.goBack();
-   }
+   };
  
    _contents() {
