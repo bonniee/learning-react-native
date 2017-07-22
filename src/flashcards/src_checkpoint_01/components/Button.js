@@ -1,9 +1,5 @@
 import React, { Component } from "react";
-import {
-  StyleSheet,
-  View,
-  TouchableOpacity
-} from "react-native";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
 
 import colors from "./../styles/colors";
 
