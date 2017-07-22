@@ -10,6 +10,8 @@ import {
 
 import Forecast from "./Forecast";
 import LocationButton from "./LocationButton";
+import textStyles from "./styles/typography.js";
+
 const STORAGE_KEY = "@SmarterWeather:zip";
 
 import OpenWeatherMap from "./open_weather_map";
@@ -103,7 +105,6 @@ class WeatherProject extends Component {
   }
 }
 
-import textStyles from "./styles/typography.js";
 const styles = StyleSheet.create({
   overlay: { backgroundColor: "rgba(0,0,0,0.1)" },
   row: {
