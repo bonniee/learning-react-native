@@ -24,12 +24,6 @@ const styles = StyleSheet.create({
 });
 
 class BookItem extends Component {
-  propTypes: {
-    coverURL: React.PropTypes.string,
-    author: React.PropTypes.string,
-    title: React.PropTypes.string
-  };
-
   render() {
     return (
       <View style={styles.bookItem}>

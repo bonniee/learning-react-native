@@ -6,8 +6,6 @@ import styles from "./style.js";
 const style = { backgroundColor: "DDDDDD" };
 
 class LocationButton extends Component {
-  propTypes: { onGetCoords: React.PropTypes.func.isRequired };
-
   _onPress() {
     navigator.geolocation.getCurrentPosition(
       initialPosition => {

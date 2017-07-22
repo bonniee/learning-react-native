@@ -44,10 +44,7 @@ class PanResponderExample extends Component {
     this._previousLeft = 20;
     this._previousTop = 84;
     this._circleStyles = {
-      style: {
-        left: this._previousLeft,
-        top: this._previousTop
-      }
+      style: { left: this._previousLeft, top: this._previousTop }
     };
   }
 
@@ -79,19 +76,15 @@ class PanResponderExample extends Component {
   // _highlight and _unHighlight get called by PanResponder methods,
   // providing visual feedback to the user.
   _highlight = () => {
-    this.circle && this.circle.setNativeProps({
-        style: {
-          backgroundColor: CIRCLE_HIGHLIGHT_COLOR
-        }
+    this.circle &&
+      this.circle.setNativeProps({
+        style: { backgroundColor: CIRCLE_HIGHLIGHT_COLOR }
       });
   };
 
   _unHighlight = () => {
-    this.circle && this.circle.setNativeProps({
-        style: {
-          backgroundColor: CIRCLE_COLOR
-        }
-      });
+    this.circle &&
+      this.circle.setNativeProps({ style: { backgroundColor: CIRCLE_COLOR } });
   };
 
   // We're controlling the circle's position directly with setNativeProps.
@@ -150,10 +143,7 @@ const styles = StyleSheet.create({
     left: 0,
     top: 0
   },
-  container: {
-    flex: 1,
-    paddingTop: 64
-  }
+  container: { flex: 1, paddingTop: 64 }
 });
 
 export default PanResponderExample;

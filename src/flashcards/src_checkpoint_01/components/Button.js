@@ -25,13 +25,6 @@ class Button extends Component {
   }
 }
 
-Button.propTypes = {
-  onPress: React.PropTypes.func,
-  style: ViewPropTypes.style,
-  children: React.PropTypes.object,
-  disabled: React.PropTypes.bool
-};
-
 Button.defaultProps = { disabled: false };
 
 export default Button;

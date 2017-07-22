@@ -48,13 +48,6 @@ class Input extends Component {
   }
 }
 
-Input.propTypes = {
-  onEntry: React.PropTypes.func.isRequired,
-  onChange: React.PropTypes.func,
-  style: ViewPropTypes.style,
-  clearOnSubmit: React.PropTypes.bool
-};
-
 Input.defaultProps = { clearOnSubmit: true };
 
 export default Input;
