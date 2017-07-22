@@ -63,8 +63,6 @@ class ReviewScreen extends Component {
   }
 }
 
-ReviewScreen.propTypes = {};
-
 const styles = StyleSheet.create({
   container: { backgroundColor: colors.blue, flex: 1, paddingTop: 24 }
 });

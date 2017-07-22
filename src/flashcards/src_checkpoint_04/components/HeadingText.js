@@ -17,8 +17,6 @@ class HeadingText extends Component {
   }
 }
 
-HeadingText.propTypes = { style: Text.propTypes.style };
-
 var scaled = StyleSheet.create({
   big: { fontSize: width / scalingFactors.big }
 });

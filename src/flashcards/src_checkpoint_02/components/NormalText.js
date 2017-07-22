@@ -17,8 +17,6 @@ class NormalText extends Component {
   }
 }
 
-NormalText.propTypes = { style: Text.propTypes.style };
-
 const scaled = StyleSheet.create({
   normal: { fontSize: width * 1.0 / scalingFactors.normal }
 });

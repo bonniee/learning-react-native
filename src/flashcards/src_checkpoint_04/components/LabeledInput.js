@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { StyleSheet, View, ViewPropTypes } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 import Input from "./Input";
 import NormalText from "./NormalText";
@@ -22,14 +22,6 @@ class LabeledInput extends Component {
     );
   }
 }
-
-LabeledInput.propTypes = {
-  onEntry: React.PropTypes.func.isRequired,
-  onChange: React.PropTypes.func,
-  inputStyle: ViewPropTypes.style,
-  label: React.PropTypes.string.isRequired,
-  clearOnSubmit: React.PropTypes.bool
-};
 
 const styles = StyleSheet.create({
   label: { paddingLeft: 10 },
