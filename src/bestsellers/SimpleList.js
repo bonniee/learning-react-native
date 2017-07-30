@@ -28,17 +28,14 @@ class SimpleList extends Component {
     };
   }
 
-  _renderItem = (data) => {
+  _renderItem = data => {
     return <Text style={styles.row}>{data.item.key}</Text>;
-  }
+  };
 
   render() {
     return (
       <View style={styles.container}>
-        <FlatList
-          data={this.state.data}
-          renderItem={this._renderItem}
-        />
+        <FlatList data={this.state.data} renderItem={this._renderItem} />
       </View>
     );
   }
@@ -51,12 +48,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#F5FCFF"
   },
-  row: {
-    fontSize: 24,
-    padding: 42,
-    borderWidth: 1,
-    borderColor: "#DDDDDD"
-  }
+  row: { fontSize: 24, padding: 42, borderWidth: 1, borderColor: "#DDDDDD" }
 });
 
 export default SimpleList;

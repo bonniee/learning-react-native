@@ -29,7 +29,7 @@ class BookList extends Component {
     this._refreshData();
   }
 
-  _renderItem = ({item}) => {
+  _renderItem = ({ item }) => {
     return (
       <BookItem
         coverURL={item.book_image}
@@ -37,38 +37,26 @@ class BookList extends Component {
         author={item.author}
       />
     );
-  }
+  };
 
-  _addKeysToBooks = (books) => {
+  _addKeysToBooks = books => {
     // Takes the API response from the NYTimes,
     // and adds a key property to the object
     // for rendering purposes
-    return books.map( (book) => {
-      return Object.assign(book, {key: book.title });
+    return books.map(book => {
+      return Object.assign(book, { key: book.title });
     });
-  }
+  };
 
   _refreshData = () => {
-    this.setState({
-      data: this._addKeysToBooks(mockBooks)
-    });
-  }
+    this.setState({ data: this._addKeysToBooks(mockBooks) });
+  };
 
   render() {
-    return (
-      <FlatList
-        data={this.state.data}
-        renderItem={this._renderItem}
-      />
-    );
+    return <FlatList data={this.state.data} renderItem={this._renderItem} />;
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 22
-  }
-});
+const styles = StyleSheet.create({ container: { flex: 1, paddingTop: 22 } });
 
 export default BookList;
