@@ -1,37 +1,43 @@
 import React, { Component } from "react";
 
-import { StyleSheet, Text, View, ListView } from "react-native";
+import { StyleSheet, Text, View, FlatList } from "react-native";
 
 class SimpleList extends Component {
   constructor(props) {
     super(props);
-    var ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
-      dataSource: ds.cloneWithRows([
-        "a",
-        "b",
-        "c",
-        "a longer example",
-        "d",
-        "e",
-        "f",
-        "g",
-        "h",
-        "i"
-      ])
+      data: [
+        { key: "a" },
+        { key: "b" },
+        { key: "c" },
+        { key: "d" },
+        { key: "a longer example" },
+        { key: "e" },
+        { key: "f" },
+        { key: "g" },
+        { key: "h" },
+        { key: "i" },
+        { key: "j" },
+        { key: "k" },
+        { key: "l" },
+        { key: "m" },
+        { key: "n" },
+        { key: "o" },
+        { key: "p" }
+      ]
     };
   }
 
-  _renderRow(rowData) {
-    return <Text style={styles.row}>{rowData}</Text>;
+  _renderItem = (data) => {
+    return <Text style={styles.row}>{data.item.key}</Text>;
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={this._renderRow}
+        <FlatList
+          data={this.state.data}
+          renderItem={this._renderItem}
         />
       </View>
     );
@@ -46,7 +52,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#F5FCFF"
   },
   row: {
-    flex: 1,
     fontSize: 24,
     padding: 42,
     borderWidth: 1,

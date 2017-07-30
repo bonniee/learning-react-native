@@ -4,12 +4,12 @@ import { StyleSheet, Text, View, Image, ListView } from "react-native";
 
 const styles = StyleSheet.create({
   bookItem: {
-    flex: 1,
     flexDirection: "row",
     backgroundColor: "#FFFFFF",
     borderBottomColor: "#AAAAAA",
     borderBottomWidth: 2,
-    padding: 5
+    padding: 5,
+    height: 175
   },
   cover: { flex: 1, height: 150, resizeMode: "contain" },
   info: {

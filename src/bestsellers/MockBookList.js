@@ -1,62 +1,65 @@
 import React, { Component } from "react";
 
-import { StyleSheet, Text, View, Image, ListView } from "react-native";
+import { StyleSheet, Text, View, Image, FlatList } from "react-native";
 
 import BookItem from "./BookItem";
+
+const mockBooks = [
+  {
+    rank: 1,
+    title: "GATHERING PREY",
+    author: "John Sandford",
+    book_image: "http://du.ec2.nytimes.com.s3.amazonaws.com/prd/books/9780399168796.jpg"
+  },
+  {
+    rank: 2,
+    title: "MEMORY MAN",
+    author: "David Baldacci",
+    book_image: "http://du.ec2.nytimes.com.s3.amazonaws.com/prd/books/9781455586387.jpg"
+  }
+];
 
 class BookList extends Component {
   constructor(props) {
     super(props);
-    var ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-    this.state = { dataSource: ds.cloneWithRows([]) };
+    this.state = { data: [] };
   }
 
   componentDidMount() {
     this._refreshData();
   }
 
-  _renderRow(rowData) {
+  _renderItem = ({item}) => {
     return (
       <BookItem
-        coverURL={rowData.book_image}
-        title={rowData.title}
-        author={rowData.author}
+        coverURL={item.book_image}
+        title={item.key}
+        author={item.author}
       />
     );
   }
 
-  _refreshData() {
-    const books = [
-      {
-        rank: 1,
-        title: "GATHERING PREY",
-        author: "John Sandford",
-        book_image: "http://du.ec2.nytimes.com.s3.amazonaws.com/prd/books/9780399168796.jpg"
-      },
-      {
-        rank: 2,
-        title: "MEMORY MAN",
-        author: "David Baldacci",
-        book_image: "http://du.ec2.nytimes.com.s3.amazonaws.com/prd/books/9781455586387.jpg"
-      }
-    ];
+  _addKeysToBooks = (books) => {
+    // Takes the API response from the NYTimes,
+    // and adds a key property to the object
+    // for rendering purposes
+    return books.map( (book) => {
+      return Object.assign(book, {key: book.title });
+    });
+  }
 
+  _refreshData = () => {
     this.setState({
-      books: books,
-      dataSource: this.state.dataSource.cloneWithRows(books)
+      data: this._addKeysToBooks(mockBooks)
     });
   }
 
   render() {
     return (
-      <View style={styles.container}>
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={this._renderRow}
-          contentContainerStyle={styles.listContent}
-          style={styles.list}
-        />
-      </View>
+      <FlatList
+        data={this.state.data}
+        renderItem={this._renderItem}
+      />
     );
   }
 }
@@ -64,19 +67,7 @@ class BookList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#FFFFFF",
-    paddingTop: 24
-  },
-  list: { flex: 1, flexDirection: "row" },
-  listContent: { flex: 1, flexDirection: "column" },
-  row: {
-    flex: 1,
-    fontSize: 24,
-    padding: 42,
-    borderWidth: 1,
-    borderColor: "#DDDDDD"
+    paddingTop: 22
   }
 });
 
