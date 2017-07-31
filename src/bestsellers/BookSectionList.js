@@ -5,25 +5,10 @@ import { StyleSheet, Text, View, Image, SectionList } from "react-native";
 import BookItem from "./BookItem";
 import NYT from "./NYT";
 
-const mockBooks = [
-  {
-    rank: 1,
-    title: "GATHERING PREY",
-    author: "John Sandford",
-    book_image: "http://du.ec2.nytimes.com.s3.amazonaws.com/prd/books/9780399168796.jpg"
-  },
-  {
-    rank: 2,
-    title: "MEMORY MAN",
-    author: "David Baldacci",
-    book_image: "http://du.ec2.nytimes.com.s3.amazonaws.com/prd/books/9781455586387.jpg"
-  }
-];
-
 class BookList extends Component {
   constructor(props) {
     super(props);
-    this.state = { data: [] };
+    this.state = { sections: [] };
   }
 
   componentDidMount() {
@@ -50,10 +35,8 @@ class BookList extends Component {
           console.error("Unexpected results");
         }
 
-        console.info(results);
-
         this.setState({
-          data: [
+          sections: [
             {
               title: "Hardcover Fiction",
               data: this._addKeysToBooks(results[0])
@@ -89,7 +72,7 @@ class BookList extends Component {
     return (
       <View style={styles.container}>
         <SectionList
-          sections={this.state.data}
+          sections={this.state.sections}
           renderItem={this._renderItem}
           renderSectionHeader={this._renderHeader}
         />

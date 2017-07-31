@@ -22,11 +22,7 @@ const mockBooks = [
 class BookList extends Component {
   constructor(props) {
     super(props);
-    this.state = { data: [] };
-  }
-
-  componentDidMount() {
-    this._refreshData();
+    this.state = { data: this._addKeysToBooks(mockBooks) };
   }
 
   _renderItem = ({ item }) => {
@@ -46,10 +42,6 @@ class BookList extends Component {
     return books.map(book => {
       return Object.assign(book, { key: book.title });
     });
-  };
-
-  _refreshData = () => {
-    this.setState({ data: this._addKeysToBooks(mockBooks) });
   };
 
   render() {
