@@ -17,7 +17,7 @@ class HeadingText extends Component {
   }
 }
 
-var scaled = StyleSheet.create({
+const scaled = StyleSheet.create({
   big: { fontSize: width / scalingFactors.big }
 });
 

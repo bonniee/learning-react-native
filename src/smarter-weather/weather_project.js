@@ -60,12 +60,12 @@ class WeatherProject extends Component {
   };
 
   _handleTextChange = event => {
-    var zip = event.nativeEvent.text;
+    let zip = event.nativeEvent.text;
     this._getForecastForZip(zip);
   };
 
   render() {
-    var content = null;
+    let content = null;
     if (this.state.forecast !== null) {
       content = (
         <View style={styles.row}>

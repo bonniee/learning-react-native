@@ -4,17 +4,20 @@ import { Image, CameraRoll } from "react-native";
 
 import styles from "./style";
 
-var PhotoBackdrop = React.createClass({
-  getInitialState() {
-    return { photoSource: null };
-  },
+class PhotoBackdrop extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { photoSource: null };
+  }
+
   componentDidMount() {
     CameraRoll.getPhotos({ first: 5 }).then(data => {
       this.setState({ photoSource: { uri: data.edges[3].node.image.uri } });
     }, error => {
       console.warn(error);
     });
-  },
+  }
+
   render() {
     return (
       <Image
@@ -26,6 +29,6 @@ var PhotoBackdrop = React.createClass({
       </Image>
     );
   }
-});
+}
 
 export default PhotoBackdrop;

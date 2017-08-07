@@ -11,7 +11,7 @@ class QuizCardView {
 }
 
 function mkReviews(cards) {
-  var makeReviews = function(sideOne, sideTwo) {
+  let makeReviews = function(sideOne, sideTwo) {
     return cards.map(card => {
       let others = cards.filter(other => {
         return other.id !== card.id;

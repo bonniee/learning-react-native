@@ -8,7 +8,7 @@ import HelloWorld from "./HelloWorld";
 
 export default class Depends extends Component {
   render() {
-    var number = _.random(0, 100);
+    let number = _.random(0, 100);
     console.log("Your lucky number is: " + number);
     HelloWorld.greeting("Bonnie");
 
