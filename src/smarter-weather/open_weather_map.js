@@ -10,7 +10,6 @@ function latLonUrl(lat, lon) {
 }
 
 function fetchForecast(url) {
-  console.log("going to fetch forecast " + url);
   return fetch(url)
     .then(response => response.json())
     .then(responseJSON => {
