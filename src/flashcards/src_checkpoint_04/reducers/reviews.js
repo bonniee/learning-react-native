@@ -11,7 +11,7 @@ export const mkReviewState = (
 
 function findDeck(decks, id) {
   return decks.find(d => {
-    return d.id == id;
+    return d.id === id;
   });
 }
 

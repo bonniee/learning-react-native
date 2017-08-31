@@ -417,7 +417,7 @@ index 0000000..93aae7e
 +
 +function findDeck(decks, id) {
 +  return decks.find(d => {
-+    return d.id == id;
++    return d.id === id;
 +  });
 +}
 +

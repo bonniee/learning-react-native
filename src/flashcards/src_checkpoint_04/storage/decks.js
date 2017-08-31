@@ -13,6 +13,7 @@ async function read(key, deserializer) {
       return readValue;
     } else {
       console.info(`${key} not found on disk.`);
+      return [];
     }
   } catch (error) {
     console.warn("AsyncStorage error: ", error.message);
