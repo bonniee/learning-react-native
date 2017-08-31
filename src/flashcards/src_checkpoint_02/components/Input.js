@@ -17,7 +17,7 @@ class Input extends Component {
 
   _onSubmit = ev => {
     this.props.onEntry(ev.nativeEvent.text);
-    if (!!this.props.clearOnSubmit) {
+    if (this.props.clearOnSubmit) {
       this.setState({ text: "" });
     }
   };
@@ -48,6 +48,7 @@ class Input extends Component {
   }
 }
 
+// Default props are used if not otherwise specified
 Input.defaultProps = { clearOnSubmit: true };
 
 export default Input;

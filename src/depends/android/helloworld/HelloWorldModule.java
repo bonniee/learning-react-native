@@ -17,6 +17,6 @@ public class HelloWorldModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void greeting(String message) {
-    Log.e("HelloWorld", "Saluton, " + message);
+    Log.e("HelloWorldModule", "Saluton, " + message);
   }
 }
