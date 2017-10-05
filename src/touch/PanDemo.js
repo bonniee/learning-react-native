@@ -1,4 +1,5 @@
-// Adapted from https://github.com/facebook/react-native/blob/master/Examples/UIExplorer/PanResponderExample.js
+// Adapted from https://github.com/facebook/react-native/blob/master/
+// Examples/UIExplorer/PanResponderExample.js
 
 "use strict";
 
