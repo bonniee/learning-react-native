@@ -1,6 +1,6 @@
 # learning-react-native
 
-Code samples for the book _Learning React Native_. You can get the book from [Amazon](http://bit.ly/lrnamaff) or [O'Reilly](http://bit.ly/learningreactnative)!
+Code samples for the book _Learning React Native_. You can get the book from [Amazon](http://bit.ly/lrn2edition). More info about the book is available from [O'Reilly](http://shop.oreilly.com/product/0636920085270.do).
 
 ## How to use
 
