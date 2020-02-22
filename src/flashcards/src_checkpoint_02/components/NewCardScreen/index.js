@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
 
-import DeckModel from "./../../data/Deck";
-
 import Button from "../Button";
 import LabeledInput from "../LabeledInput";
 import NormalText from "../NormalText";

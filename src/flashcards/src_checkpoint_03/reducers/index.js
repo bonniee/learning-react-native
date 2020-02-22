@@ -1,4 +1,4 @@
-import { MockDecks, MockCards } from "./../data/Mocks";
+import { MockDecks } from "./../data/Mocks";
 
 import DecksReducer from "./decks";
 import ReviewReducer, { mkReviewState } from "./reviews";

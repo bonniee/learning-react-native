@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import ViewCard from "./ViewCard";
 import { mkReviewSummary } from "./ReviewSummary";
 import colors from "./../../styles/colors";
-import { reviewCard, nextReview, stopReview } from "./../../actions/creators";
+import { nextReview, stopReview } from "./../../actions/creators";
 
 class ReviewScreen extends Component {
   static displayName = "ReviewScreen";
@@ -54,11 +54,7 @@ class ReviewScreen extends Component {
   }
 
   render() {
-    return (
-      <View style={styles.container}>
-        {this._contents()}
-      </View>
-    );
+    return <View style={styles.container}>{this._contents()}</View>;
   }
 }
 

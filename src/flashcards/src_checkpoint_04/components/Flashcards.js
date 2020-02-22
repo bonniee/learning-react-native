@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { StyleSheet, View } from "react-native";
 import { StackNavigator } from "react-navigation";
 import { createStore } from "redux";
 import { Provider } from "react-redux";

@@ -1,5 +1,4 @@
 import { ADD_DECK, ADD_CARD, LOAD_DATA } from "../actions/types";
-import Deck from "./../data/Deck";
 import { writeDecks } from "./../storage/decks";
 
 function decksWithNewCard(oldDecks, card) {
@@ -30,7 +29,6 @@ const reducer = (state = [], action) => {
       return newState;
     case ADD_CARD:
       return decksWithNewCard(state, action.data);
-
   }
   return state;
 };

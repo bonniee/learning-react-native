@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text } from "react-native";
 
 import { fonts, scalingFactors } from "./../styles/fonts";
 import Dimensions from "Dimensions";

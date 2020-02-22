@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import { StyleSheet, View } from "react-native";
+import React from "react";
 import { StackNavigator } from "react-navigation";
 
 import Logo from "./Header/Logo";
