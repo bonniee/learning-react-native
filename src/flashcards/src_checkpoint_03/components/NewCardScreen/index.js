@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
 
-import DeckModel from "./../../data/Deck";
 import { addCard } from "./../../actions/creators";
 import { connect } from "react-redux";
 

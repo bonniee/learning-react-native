@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 
 import Button from "./../Button";
 import NormalText from "./../NormalText";
-import HeadingText from "./../HeadingText";
 import colors from "./../../styles/colors";
 
 class ContinueButton extends Component {
@@ -65,9 +64,7 @@ function mkAnswerButtons(
           selectAnswerFunc(isCorrectAnswer);
         }}
       >
-        <NormalText>
-          {a}
-        </NormalText>
+        <NormalText>{a}</NormalText>
       </Button>
     );
   });

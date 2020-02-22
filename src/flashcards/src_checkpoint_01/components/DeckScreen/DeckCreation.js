@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { StyleSheet, View } from "react-native";
 
 import { CreateDeckButton, EnterDeck } from "./DeckCreationFields";
 
@@ -9,7 +8,7 @@ class DeckCreation extends Component {
     this.state = { showingNameField: false };
   }
 
-  _newDeck = name => {
+  _newDeck = () => {
     console.warn("Not implemented");
     this.setState({ showingNameField: false });
   };
@@ -19,9 +18,11 @@ class DeckCreation extends Component {
   };
 
   render() {
-    let contents = this.state.showingNameField
-      ? <EnterDeck create={this._newDeck} />
-      : <CreateDeckButton onPress={this._showField} />;
+    let contents = this.state.showingNameField ? (
+      <EnterDeck create={this._newDeck} />
+    ) : (
+      <CreateDeckButton onPress={this._showField} />
+    );
     return contents;
   }
 }

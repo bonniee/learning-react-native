@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { StyleSheet, View } from "react-native";
 
 import HeadingText from "./../HeadingText";
@@ -9,9 +9,7 @@ import colors from "./../../styles/colors";
 function mkReviewSummary(percentCorrect, quitFunc) {
   return (
     <View style={styles.done}>
-      <HeadingText style={styles.alternate}>
-        Reviews cleared!
-      </HeadingText>
+      <HeadingText style={styles.alternate}>Reviews cleared!</HeadingText>
       <NormalText style={styles.alternate}>
         {Math.round(percentCorrect * 100)}% correct
       </NormalText>

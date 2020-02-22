@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
 
-import DeckModel from "./../../data/Deck";
 import Button from "./../Button";
 import NormalText from "./../NormalText";
 import colors from "./../../styles/colors";
@@ -20,7 +19,6 @@ class Deck extends Component {
   render() {
     return (
       <View style={styles.deckGroup}>
-
         <Button style={styles.deckButton} onPress={this._review}>
           <NormalText>
             {this.props.deck.name}: {this.props.count} cards

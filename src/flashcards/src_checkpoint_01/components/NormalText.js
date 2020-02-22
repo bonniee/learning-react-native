@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text } from "react-native";
 
 import { fonts, scalingFactors } from "./../styles/fonts";
 import Dimensions from "Dimensions";
@@ -18,7 +18,7 @@ class NormalText extends Component {
 }
 
 const scaled = StyleSheet.create({
-  normal: { fontSize: width * 1.0 / scalingFactors.normal }
+  normal: { fontSize: (width * 1.0) / scalingFactors.normal }
 });
 
 export default NormalText;

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { StyleSheet, Text, View, Image, SectionList } from "react-native";
+import { StyleSheet, Text, View, SectionList } from "react-native";
 
 import BookItem from "./BookItem";
 import NYT from "./NYT";
@@ -25,29 +25,27 @@ class BookList extends Component {
   };
 
   _refreshData = () => {
-    Promise
-      .all([
-        NYT.fetchBooks("hardcover-fiction"),
-        NYT.fetchBooks("hardcover-nonfiction")
-      ])
-      .then(results => {
-        if (results.length !== 2) {
-          console.error("Unexpected results");
-        }
+    Promise.all([
+      NYT.fetchBooks("hardcover-fiction"),
+      NYT.fetchBooks("hardcover-nonfiction")
+    ]).then(results => {
+      if (results.length !== 2) {
+        console.error("Unexpected results");
+      }
 
-        this.setState({
-          sections: [
-            {
-              title: "Hardcover Fiction",
-              data: this._addKeysToBooks(results[0])
-            },
-            {
-              title: "Hardcover NonFiction",
-              data: this._addKeysToBooks(results[1])
-            }
-          ]
-        });
+      this.setState({
+        sections: [
+          {
+            title: "Hardcover Fiction",
+            data: this._addKeysToBooks(results[0])
+          },
+          {
+            title: "Hardcover NonFiction",
+            data: this._addKeysToBooks(results[1])
+          }
+        ]
       });
+    });
   };
 
   _renderItem = ({ item }) => {
@@ -61,11 +59,7 @@ class BookList extends Component {
   };
 
   _renderHeader = ({ section }) => {
-    return (
-      <Text style={styles.headingText}>
-        {section.title}
-      </Text>
-    );
+    return <Text style={styles.headingText}>{section.title}</Text>;
   };
 
   render() {

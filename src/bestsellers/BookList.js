@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { StyleSheet, Text, View, Image, FlatList } from "react-native";
+import { StyleSheet, View, FlatList } from "react-native";
 
 import BookItem from "./BookItem";
 import NYT from "./NYT";
